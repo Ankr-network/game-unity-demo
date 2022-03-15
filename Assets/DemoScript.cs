@@ -13,33 +13,41 @@ using UnityEngine.UI;
 
 public class DemoScript : MonoBehaviour
 {
-	[SerializeField]
-	private GameObject _character;
-	[SerializeField]
-	private TMP_Text _characterID;
-	[SerializeField]
-	private GameObject _blueHat;
-	[SerializeField]
-	private Button _blueHatButton;
-
-	private IContract _gameCharacterContract;
-	private IContract _gameItemContract;
-	
-	[SerializeField]
-	private GameObject _redHat;
-	[SerializeField]
-	private Button _redHatButton;
-	[SerializeField]
-	private TMP_Text _text;
-	[SerializeField]
-	private Inventory _inventory;
-
-	private int _redHatID = 1;
-	private int _blueHatID = 0;
 	private const string TransactionGasLimit = "1000000";
 	private const string BlueHatAddress = "0x00010000000000000000000000000000000000000000000000000000000001";
 	private const string RedHatAddress = "0x00010000000000000000000000000000000000000000000000000000000002";
-	
+
+	[SerializeField]
+	private GameObject _character;
+
+	[SerializeField]
+	private TMP_Text _characterID;
+
+	[SerializeField]
+	private GameObject _blueHat;
+
+	[SerializeField]
+	private Button _blueHatButton;
+
+	[SerializeField]
+	private GameObject _redHat;
+
+	[SerializeField]
+	private Button _redHatButton;
+
+	[SerializeField]
+	private TMP_Text _text;
+
+	[SerializeField]
+	private Inventory _inventory;
+
+	private readonly int _blueHatID = 0;
+
+	private readonly int _redHatID = 1;
+
+	private IContract _gameCharacterContract;
+	private IContract _gameItemContract;
+
 
 	private void Awake()
 	{
@@ -55,10 +63,10 @@ public class DemoScript : MonoBehaviour
 			WearableNFTContractInformation.GameCharacterABI);
 		_gameItemContract = mirageSDKWrapper.GetContract(WearableNFTContractInformation.GameItemContractAddress,
 			WearableNFTContractInformation.GameItemABI);
-		
+
 		_character.SetActive(false);
-		LoadCharacter(); 
-		CheckCharactersEquippedHatAndDisplay(); 
+		LoadCharacter();
+		CheckCharactersEquippedHatAndDisplay();
 		GetItemTokensBalanceAndUpdateShow();
 	}
 
@@ -85,15 +93,12 @@ public class DemoScript : MonoBehaviour
 		{
 			case "0x10000000000000000000000000000000000000000000000000000000002":
 				Debug.LogError("1");
-				UpdateHatVisuals("Red");
 				break;
 			case "0x10000000000000000000000000000000000000000000000000000000001":
 				UpdateHatVisuals("Blue");
-				Debug.LogError("2");
 				break;
 			default:
 				UpdateHatVisuals("");
-				Debug.LogError("+"+equippedHat+"+");
 				break;
 		}
 	}
@@ -111,7 +116,7 @@ public class DemoScript : MonoBehaviour
 				UpdateHatVisuals(hatColour);
 				break;
 		}
-		Debug.LogError("yolooooooo");
+
 		GetItemTokensBalanceAndUpdateShow();
 	}
 
@@ -133,7 +138,7 @@ public class DemoScript : MonoBehaviour
 				break;
 		}
 	}
-	
+
 	private async UniTask<string> GetHat()
 	{
 		var characterID = await GetCharacterTokenId();
@@ -147,7 +152,7 @@ public class DemoScript : MonoBehaviour
 
 		return hexaHatID;
 	}
-	
+
 	private async UniTask ChangeHat(string hatAddress)
 	{
 		const string changeHatMethodName = "changeHat";
@@ -170,7 +175,7 @@ public class DemoScript : MonoBehaviour
 			UpdateUILogs($"Hat Changed. Hash : {transactionHash}");
 		}
 	}
-	
+
 	private async UniTask<bool> GetHasHatToken(string tokenAddress)
 	{
 		var tokenBalance = await GetBalanceERC1155(_gameItemContract, tokenAddress);
@@ -195,7 +200,7 @@ public class DemoScript : MonoBehaviour
 			_character.SetActive(true);
 		}
 	}
-	
+
 	private async UniTask<BigInteger> GetCharacterTokenId()
 	{
 		var activeSessionAccount = WalletConnect.ActiveSession.Accounts[0];
@@ -214,7 +219,7 @@ public class DemoScript : MonoBehaviour
 		UpdateUILogs("You dont own any of these tokens.");
 		return -1;
 	}
-	
+
 	private async UniTask<BigInteger> GetCharacterBalance()
 	{
 		var activeSessionAccount = WalletConnect.ActiveSession.Accounts[0];
@@ -223,6 +228,7 @@ public class DemoScript : MonoBehaviour
 		UpdateUILogs($"Number of NFTs Owned: {balance}");
 		return balance;
 	}
+
 	private async UniTask<BigInteger> GetBalanceERC1155(IContract contract, string id)
 	{
 		var activeSessionAccount = WalletConnect.ActiveSession.Accounts[0];
@@ -237,6 +243,7 @@ public class DemoScript : MonoBehaviour
 		UpdateUILogs($"Number of NFTs Owned: {balance}");
 		return balance;
 	}
+
 	private async void GetItemTokensBalanceAndUpdateShow()
 	{
 		var redHatTokenBalance = await GetBalanceERC1155(_gameItemContract, RedHatAddress);
@@ -250,18 +257,17 @@ public class DemoScript : MonoBehaviour
 		{
 			_inventory.ShowInventoryItem(_redHatID, false);
 		}
-		
+
 		if (blueHatTokenBalance > 0)
 		{
-			_inventory.ShowInventoryItem(_blueHatID,true);
+			_inventory.ShowInventoryItem(_blueHatID, true);
 		}
 		else
 		{
-			_inventory.ShowInventoryItem(_blueHatID,false);
+			_inventory.ShowInventoryItem(_blueHatID, false);
 		}
 	}
-	
-	
+
 	private void UpdateUILogs(string log)
 	{
 		_text.text += "\n" + log;
