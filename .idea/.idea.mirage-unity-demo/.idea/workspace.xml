@@ -5,20 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="909ebaeb-a8bc-486b-b8f9-53eb2b557e7a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/Examples/UseCases/MobileUseCaseIndex.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/Examples/UseCases/MobileUseCaseIndex.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/UI/Prefabs/CanvasPortrait 2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MirageSDK/UI/Prefabs/CanvasPortrait 2.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/UI/Scenes/UIDemo.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MirageSDK/UI/Scenes/UIDemo.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/UseCases/UpdateNFT/MobileUpdateNftExample.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/UseCases/UpdateNFT/MobileUpdateNftExample.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/UseCases/UseCaseIndex.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/UseCases/UseCaseIndex.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.mirage-unity-demo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.mirage-unity-demo/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DemoScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DemoScript.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Inventory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Inventory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/Demo/Prefabs/SM_Chr_Attach_Hat_Beer_01.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/Demo/Prefabs/SM_Chr_Attach_Hat_Beer_01.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/Demo/Prefabs/SM_Chr_Attach_Hat_Squid_01.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/Demo/Prefabs/SM_Chr_Attach_Hat_Squid_01.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/Demo/UIDemo-Demo.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MirageSDK/Demo/UIDemo-Demo.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/Examples/Scripts/WearableNFTExample/WearableNFTContractInformation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MirageSDK/Examples/Scripts/WearableNFTExample/WearableNFTContractInformation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/Scripts/Core/Utils/ERC721ContractFunctions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MirageSDK/Scripts/Core/Utils/ERC721ContractFunctions.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a0ef933b1aa54b668801ea864e4204fe13b600/eb/4037f3b7/UnityAction.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -33,6 +38,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="rider.run.widget.enabled.cache" value="false" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -77,6 +83,10 @@
       <workItem from="1646991117729" duration="756000" />
       <workItem from="1647249984393" duration="8645000" />
       <workItem from="1647269770445" duration="5428000" />
+      <workItem from="1647330831074" duration="692000" />
+      <workItem from="1647339099147" duration="19223000" />
+      <workItem from="1647415949148" duration="3432000" />
+      <workItem from="1647425868509" duration="7638000" />
     </task>
     <servers />
   </component>
@@ -86,4 +96,34 @@
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/DemoScript.cs</url>
+          <line>110</line>
+          <properties documentPath="E:\Github\mirage-unity-demo\Assets\DemoScript.cs" initialLine="89" containingFunctionPresentation="method 'CheckCharactersEquippedHatAndDisplay'">
+            <startOffsets>
+              <option value="2747" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2779" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
 </project>

@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-	[SerializeField]
-	private List<GameObject> _itemList;
+	public List<GameObject> _itemList;
 
 	// Start is called before the first frame update
 	private void Start()
@@ -22,14 +21,6 @@ public class Inventory : MonoBehaviour
 
 	public void ShowInventoryItem(int itemID, bool show)
 	{
-		switch (itemID)
-		{
-			case 0:
-				_itemList[0].SetActive(show);
-				break;
-			case 1:
-				_itemList[1].SetActive(show);
-				break;
-		}
+		_itemList[itemID].SetActive(show);
 	}
 }
