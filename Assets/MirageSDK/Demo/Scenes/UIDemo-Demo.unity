@@ -1501,15 +1501,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _text: {fileID: 135367449}
-  _items:
-  - {fileID: 11400000, guid: 417faab1603025a41ac506db5fdc4eb0, type: 2}
-  - {fileID: 11400000, guid: 3591651889a7b6347b7bffbb342bcde3, type: 2}
-  _inventoryButtons: []
-  _inventoryButtonRoot: {fileID: 270086259}
+  _characterID: {fileID: 770423745}
   _character: {fileID: 1900853230}
   _characterHead: {fileID: 394558632}
-  _characterID: {fileID: 770423745}
+  _itemsDescriptions: {fileID: 11400000, guid: 417faab1603025a41ac506db5fdc4eb0, type: 2}
   _inventory: {fileID: 1642229940}
+  _contractHandler: {fileID: 902926624}
 --- !u!114 &902926624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1522,7 +1519,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecc548cc70e4a404fabd13ff72170e66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 135367449}
 --- !u!1 &913236068
 GameObject:
   m_ObjectHideFlags: 0
@@ -2390,7 +2386,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c17a4a3eb754548b45036071221db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemList: []
+  _inventoryButtonRoot: {fileID: 270086259}
+  _buttonPrefab: {fileID: 8032307023216792568, guid: bf0799358ec29fc43929990a59d74b94, type: 3}
 --- !u!1001 &1685600446
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3183,7 +3180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4394764592491411520, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4394764592491411520, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3199,7 +3196,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4394952846341664930, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 786
       objectReference: {fileID: 0}
     - target: {fileID: 4394952846341664930, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
       propertyPath: m_SizeDelta.y
@@ -3207,7 +3204,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4394952846341664930, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 413
       objectReference: {fileID: 0}
     - target: {fileID: 4394952846341664930, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3455,7 +3452,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4395328647001602096, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 774.01587
       objectReference: {fileID: 0}
     - target: {fileID: 4395328647001602096, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3515,7 +3512,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4395462653378631928, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 186.08
       objectReference: {fileID: 0}
     - target: {fileID: 4395462653378631928, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -4240,7 +4237,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8635958831189265469, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 8635958831189265469, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
       propertyPath: m_SizeDelta.y
@@ -4248,7 +4245,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8635958831189265469, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 8786705531769301666, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
       propertyPath: m_Alpha
@@ -4535,7 +4532,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c17a4a3eb754548b45036071221db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemList: []
+  _inventoryButtonRoot: {fileID: 0}
+  _buttonPrefab: {fileID: 0}
 --- !u!1 &1838516889
 GameObject:
   m_ObjectHideFlags: 0

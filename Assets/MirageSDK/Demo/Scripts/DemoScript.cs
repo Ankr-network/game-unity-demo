@@ -1,177 +1,172 @@
-using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
-using MirageSDK.Core.Utils;
+using MirageSDK.Demo.Data;
+using MirageSDK.Demo.Helpers;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class DemoScript : MonoBehaviour
+namespace MirageSDK.Demo
 {
-	[SerializeField]
-	private TMP_Text _text;
-	[SerializeField]
-	private List<ItemScriptableObject> _items;
-	
-	[SerializeField]
-	private List<Button> _inventoryButtons;
-	[SerializeField]
-	private GameObject _inventoryButtonRoot;
-
-	[SerializeField]
-	private GameObject _character;
-	[SerializeField]
-	private GameObject _characterHead;
-	[SerializeField]
-	private TMP_Text _characterID;
-
-	[SerializeField]
-	private Inventory _inventory;
-	
-	private DemoContractHandler _contractHandler;
-
-	private void Awake()
+	public class DemoScript : MonoBehaviour
 	{
-		foreach (var item in _items)
+		[SerializeField]
+		private TMP_Text _text;
+
+		[SerializeField]
+		private TMP_Text _characterID;
+
+		[SerializeField]
+		private GameObject _character;
+
+		[SerializeField]
+		private GameObject _characterHead;
+
+		[SerializeField]
+		private ItemDescriptionsScriptableObject _itemsDescriptions;
+
+		[SerializeField]
+		private Inventory _inventory;
+
+		[SerializeField]
+		private DemoContractHandler _contractHandler;
+		
+		private readonly Dictionary<HatColour, ItemSceneData> _items = new Dictionary<HatColour, ItemSceneData>();
+
+		private void Awake()
 		{
-			var itemButton = item._button;
-			itemButton = Instantiate(itemButton, _inventoryButtonRoot.transform, true);
-			itemButton.onClick.AddListener(()=>OnButtonClick(item));
-			itemButton.GetComponent<Image>().sprite = item._icon;
-			_inventoryButtons.Add(itemButton);
-			_inventory._itemList.Add(itemButton.gameObject);
+			foreach (var item in _itemsDescriptions.Descriptions)
+			{
+				var instantiatedGO = CreateHat(item);
+				var itemButton = _inventory.AddItem(item);
+				itemButton.onClick.AddListener(() => OnButtonClick(item.Address));
+
+				_items.Add(item.Colour, new ItemSceneData
+				{
+					Button = itemButton,
+					GameObject = instantiatedGO,
+				});
+			}
+		}
+
+		private void OnDestroy()
+		{
+			foreach (var itemData in _items.Values)
+			{
+				itemData.Button.onClick.RemoveAllListeners();
+			}
+		}
+
+		private async void Start()
+		{
+			_character.SetActive(false);
 			
-			item._button = itemButton;
+			var hasCharacter = await LoadCharacter();
+			if (!hasCharacter)
+			{
+				await _contractHandler.MintCharacter();
+				await _contractHandler.MintItems();
+			}
+
+			await CheckCharactersEquippedHatAndDisplay();
+			await GetItemTokensBalanceAndUpdateShow();
+
+			var characterID = await _contractHandler.GetCharacterTokenId();
+			var equippedHatID = await _contractHandler.GetHat();
+			UpdateUILogs("characterID: " + characterID + " / HatID: " + equippedHatID);
+
+			var isApprovedForAll = await _contractHandler.CheckIfCharacterIsApprovedForAll();
+			if (!isApprovedForAll)
+			{
+				await _contractHandler.ApproveAllForCharacter(true);
+			}
 		}
-	}
 
-	private void OnButtonClick(ItemScriptableObject item)
-	{
-		OnButtonClickAsync(item).Forget();
-	}
-
-	private async UniTask OnButtonClickAsync(ItemScriptableObject item)
-	{
-		await EquipHat(item);
-	}
-
-	private async void Start()
-	{
-		_contractHandler = GetComponent<DemoContractHandler>();
-		_character.SetActive(false);
-		var hasCharacter = await LoadCharacter();
-		if (!hasCharacter)
+		private GameObject CreateHat(ItemDescription item)
 		{
-			await _contractHandler.MintCharacter();
-			await _contractHandler.MintItems();
+			var prefab = item.GameObjectPrefab;
+			var instantiatedGO = Instantiate(prefab, _characterHead.transform, false);
+			instantiatedGO.SetActive(false);
+			return instantiatedGO;
 		}
-		LoadHats();
-		await CheckCharactersEquippedHatAndDisplay();
-		await GetItemTokensBalanceAndUpdateShow();
 
-		var characterID = await _contractHandler.GetCharacterTokenId();
-		var equippedHatID = await _contractHandler.GetHat();
-		UpdateUILogs("characterID: "+characterID+" / HatID: "+ equippedHatID);
-
-		var isApprovedForAll = await _contractHandler.CheckIfCharacterIsApprovedForAll();
-		if (!isApprovedForAll)
+		private void OnButtonClick(string address)
 		{
-			await _contractHandler.ApproveAllForCharacter(true);
+			OnButtonClickAsync(address).Forget();
 		}
-	}
 
-	private void LoadHats()
-	{
-		foreach (var item in _items)
+		private async UniTask OnButtonClickAsync(string address)
 		{
-			var itemsGameObject = item._gameObject;
-			itemsGameObject = Instantiate(itemsGameObject, _characterHead.transform, false);
-			itemsGameObject.SetActive(false);
-			
-			item._gameObject = itemsGameObject;
+			await EquipHat(address);
 		}
-	}
 
-	private void OnDestroy()
-	{
-		foreach (var button in _inventoryButtons)
+		private async UniTask CheckCharactersEquippedHatAndDisplay()
 		{
-			button.onClick.RemoveAllListeners();
-		}
-	}
-	
-	private async Task CheckCharactersEquippedHatAndDisplay()
-	{
-		var equippedHat = await _contractHandler.GetHat();
-		Debug.LogWarning(equippedHat);
-		switch (equippedHat)
-		{
-			case "0x10000000000000000000000000000000000000000000000000000000002":
-				UpdateHatVisuals(HatColour.Red);
-				break;
-			case "0x10000000000000000000000000000000000000000000000000000000001":
-				UpdateHatVisuals(HatColour.Blue);
-				break;
-			default:
+			var equippedHat = await _contractHandler.GetHat();
+			Debug.LogWarning(equippedHat);
+			if (equippedHat.TryConvertToHatColour(out var hatColour))
+			{
+				UpdateHatVisuals(hatColour);
+			}
+			else
+			{
 				Debug.LogWarning(equippedHat);
 				RemoveHatVisuals();
-				break;
+			}
 		}
-	}
 
-	private async Task EquipHat(ItemScriptableObject item)
-	{
-		await _contractHandler.ChangeHat(item._address);
-		await CheckCharactersEquippedHatAndDisplay();
-		//UpdateHatVisuals(item._colour);
-		await GetItemTokensBalanceAndUpdateShow();
-	}
-
-	private void UpdateHatVisuals(HatColour hatColour)
-	{
-		foreach (var item in _items)
+		private async UniTask EquipHat(string address)
 		{
-			var isRightColour = hatColour == item._colour;
-			item._gameObject.SetActive(isRightColour);
+			await _contractHandler.ChangeHat(address);
+			await CheckCharactersEquippedHatAndDisplay();
+			await GetItemTokensBalanceAndUpdateShow();
 		}
-	}
-	
-	private void RemoveHatVisuals()
-	{
-		foreach (var item in _items)
+
+		private void UpdateHatVisuals(HatColour hatColour)
 		{
-			item._gameObject.SetActive(false);
+			foreach (var item in _items)
+			{
+				var isRightColour = hatColour == item.Key;
+				item.Value.GameObject.SetActive(isRightColour);
+			}
 		}
-	}
 
-	private async Task<bool> LoadCharacter()
-	{
-		var tokenID = await _contractHandler.GetCharacterTokenId();
-
-		if (tokenID == -1)
+		private void RemoveHatVisuals()
 		{
-			return false;
+			foreach (var item in _items.Values)
+			{
+				item.GameObject.SetActive(false);
+			}
 		}
 
-		_characterID.text = tokenID.ToString();
-		_character.SetActive(true);
-		
-		return true;
-	}
-
-	private async Task GetItemTokensBalanceAndUpdateShow()
-	{
-		for(var i = 0; i < _items.Count; i++)
+		private async UniTask<bool> LoadCharacter()
 		{
-			var addressTokenBalance = await _contractHandler.GetItemBalance(_items[i]._address);
-			_inventory.ShowInventoryItem(i, addressTokenBalance > 0);
+			var tokenID = await _contractHandler.GetCharacterTokenId();
+
+			if (tokenID == -1)
+			{
+				return false;
+			}
+
+			_characterID.text = tokenID.ToString();
+			_character.SetActive(true);
+
+			return true;
 		}
-	}
-	
-	private void UpdateUILogs(string log)
-	{
-		_text.text += "\n" + log;
-		Debug.Log(log);
+
+		private async UniTask GetItemTokensBalanceAndUpdateShow()
+		{
+			for (var i = 0; i < _itemsDescriptions.Descriptions.Count; i++)
+			{
+				var addressTokenBalance =
+					await _contractHandler.GetItemBalance(_itemsDescriptions.Descriptions[i].Address);
+				_inventory.ShowInventoryItem(i, addressTokenBalance > 0);
+			}
+		}
+
+		private void UpdateUILogs(string log)
+		{
+			_text.text += "\n" + log;
+			Debug.Log(log);
+		}
 	}
 }

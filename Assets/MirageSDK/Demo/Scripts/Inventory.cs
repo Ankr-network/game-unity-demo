@@ -1,26 +1,43 @@
 using System.Collections.Generic;
+using MirageSDK.Demo.Data;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Inventory : MonoBehaviour
+namespace MirageSDK.Demo
 {
-	public List<GameObject> _itemList;
-
-	// Start is called before the first frame update
-	private void Start()
+	public class Inventory : MonoBehaviour
 	{
-		HideInventoryItems();
-	}
+		[SerializeField] private GameObject _inventoryButtonRoot;
+		[SerializeField] private GameObject _buttonPrefab;
 
-	private void HideInventoryItems()
-	{
-		foreach (var item in _itemList)
+		private readonly List<GameObject> _itemList = new List<GameObject>();
+
+		private void Start()
 		{
-			item.SetActive(false);
+			HideInventoryItems();
 		}
-	}
 
-	public void ShowInventoryItem(int itemID, bool show)
-	{
-		_itemList[itemID].SetActive(show);
+		private void HideInventoryItems()
+		{
+			foreach (var item in _itemList)
+			{
+				item.SetActive(false);
+			}
+		}
+
+		public Button AddItem(ItemDescription item)
+		{
+			var itemButtonGO = Instantiate(_buttonPrefab, _inventoryButtonRoot.transform, true);
+			itemButtonGO.GetComponent<Image>().sprite = item.Icon;
+			var itemButton = itemButtonGO.GetComponent<Button>();
+			_itemList.Add(itemButtonGO);
+
+			return itemButton;
+		}
+
+		public void ShowInventoryItem(int itemID, bool show)
+		{
+			_itemList[itemID].SetActive(show);
+		}
 	}
 }
