@@ -6,16 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="909ebaeb-a8bc-486b-b8f9-53eb2b557e7a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.mirage-unity-demo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.mirage-unity-demo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/DemoScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DemoScript.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Inventory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Inventory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/Demo/Prefabs/SM_Chr_Attach_Hat_Beer_01.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/Demo/Prefabs/SM_Chr_Attach_Hat_Beer_01.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/Demo/Prefabs/SM_Chr_Attach_Hat_Squid_01.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/Demo/Prefabs/SM_Chr_Attach_Hat_Squid_01.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/Demo/UIDemo-Demo.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MirageSDK/Demo/UIDemo-Demo.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/Examples/Scripts/WearableNFTExample/WearableNFTContractInformation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MirageSDK/Examples/Scripts/WearableNFTExample/WearableNFTContractInformation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/Scripts/Core/Utils/ERC721ContractFunctions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MirageSDK/Scripts/Core/Utils/ERC721ContractFunctions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/Demo/Scenes/UIDemo-Demo.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MirageSDK/Demo/Scenes/UIDemo-Demo.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/Demo/ScriptableObjects/Hats.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MirageSDK/Demo/ScriptableObjects/Hats.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/Demo/Scripts/DemoScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MirageSDK/Demo/Scripts/DemoScript.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +17,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a0ef933b1aa54b668801ea864e4204fe13b600/eb/4037f3b7/UnityAction.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/ScrollRect.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -113,14 +107,7 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/DemoScript.cs</url>
           <line>110</line>
-          <properties documentPath="E:\Github\mirage-unity-demo\Assets\DemoScript.cs" initialLine="89" containingFunctionPresentation="method 'CheckCharactersEquippedHatAndDisplay'">
-            <startOffsets>
-              <option value="2747" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2779" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="E:\Github\mirage-unity-demo\Assets\DemoScript.cs" initialLine="89" containingFunctionPresentation="method 'CheckCharactersEquippedHatAndDisplay'" />
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>

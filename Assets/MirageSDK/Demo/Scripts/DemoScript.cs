@@ -102,14 +102,12 @@ namespace MirageSDK.Demo
 		private async UniTask CheckCharactersEquippedHatAndDisplay()
 		{
 			var equippedHat = await _contractHandler.GetHat();
-			Debug.LogWarning(equippedHat);
 			if (equippedHat.TryConvertToHatColour(out var hatColour))
 			{
 				UpdateHatVisuals(hatColour);
 			}
 			else
 			{
-				Debug.LogWarning(equippedHat);
 				RemoveHatVisuals();
 			}
 		}
