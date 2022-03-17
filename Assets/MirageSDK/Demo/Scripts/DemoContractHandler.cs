@@ -3,6 +3,7 @@ using Cysharp.Threading.Tasks;
 using MirageSDK.Core.Implementation;
 using MirageSDK.Core.Infrastructure;
 using MirageSDK.Core.Utils;
+using MirageSDK.Demo.Helpers;
 using MirageSDK.Examples.ContractMessages.ERC1155;
 using MirageSDK.Examples.ContractMessages.GameCharacterContract;
 using MirageSDK.Examples.WearableNFTExample;
@@ -14,13 +15,6 @@ namespace MirageSDK.Demo
 	public class DemoContractHandler : MonoBehaviour
 	{
 		private const string TransactionGasLimit = "1000000";
-		private const string BlueHatAddress = "0x00010000000000000000000000000000000000000000000000000000000001";
-		private const string RedHatAddress = "0x00010000000000000000000000000000000000000000000000000000000002";
-		private const string BlueShoesAddress = "0x00020000000000000000000000000000000000000000000000000000000001";
-		private const string WhiteShoesAddress = "0x00020000000000000000000000000000000000000000000000000000000003";
-		private const string RedGlassesAddress = "0x00030000000000000000000000000000000000000000000000000000000002";
-		private const string WhiteGlassesAddress = "0x00030000000000000000000000000000000000000000000000000000000003";
-
 		private IContract _gameCharacterContract;
 		private IContract _gameItemContract;
 
@@ -40,12 +34,12 @@ namespace MirageSDK.Demo
 			var activeSessionAccount = WalletConnect.ActiveSession.Accounts[0];
 			var itemsToMint = new[]
 			{
-				BlueHatAddress,
-				RedHatAddress,
-				BlueShoesAddress,
-				WhiteShoesAddress,
-				RedGlassesAddress,
-				WhiteGlassesAddress
+				ItemsContractHelper.BlueHatAddress,
+				ItemsContractHelper.RedHatAddress,
+				ItemsContractHelper.BlueShoesAddress,
+				ItemsContractHelper.WhiteShoesAddress,
+				ItemsContractHelper.RedGlassesAddress,
+				ItemsContractHelper.WhiteGlassesAddress
 			};
 			var itemsAmounts = new[]
 			{

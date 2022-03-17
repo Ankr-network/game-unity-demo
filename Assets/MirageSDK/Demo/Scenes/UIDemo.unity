@@ -17747,7 +17747,6 @@ GameObject:
   - component: {fileID: 533005553}
   - component: {fileID: 533005552}
   - component: {fileID: 533005551}
-  - component: {fileID: 533005554}
   m_Layer: 5
   m_Name: UseCaseIndex
   m_TagString: Untagged
@@ -17816,20 +17815,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 533005549}
   m_CullTransparentMesh: 0
---- !u!114 &533005554
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 533005549}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: beb2ffb6f3eccb047a8679576819e81a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _loginButton: {fileID: 202117263}
-  _useCaseButtonsMenu: {fileID: 1839168764}
 --- !u!1 &533974197
 GameObject:
   m_ObjectHideFlags: 0
