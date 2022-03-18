@@ -18872,7 +18872,7 @@ RectTransform:
   m_GameObject: {fileID: 559482013}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 8, y: 8, z: 8}
+  m_LocalScale: {x: 6, y: 6, z: 6}
   m_Children: []
   m_Father: {fileID: 781947433}
   m_RootOrder: 4
@@ -18889,7 +18889,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 559482013}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9d2f9067277ade4e9b47012ea4d9e17, type: 3}
   m_Name: 
@@ -18948,7 +18948,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3ab2c4871d9340747abd0b5186cda626, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9f79d7402798525418df3b64d0a298e8, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -56868,7 +56868,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 224413972544493284, guid: bdb8f55c79de3ce429e354b19dc74938, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 720
+      value: 1515.2274
       objectReference: {fileID: 0}
     - target: {fileID: 224413972544493284, guid: bdb8f55c79de3ce429e354b19dc74938, type: 3}
       propertyPath: m_AnchoredPosition.y
