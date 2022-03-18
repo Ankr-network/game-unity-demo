@@ -6,19 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="909ebaeb-a8bc-486b-b8f9-53eb2b557e7a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.mirage-unity-demo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.mirage-unity-demo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CharacterRotation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CharacterRotation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/CharacterNFTAnimatorController.controller" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/CharacterNFTAnimatorController.controller.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/Demo/Scenes/UIDemo-Demo.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MirageSDK/Demo/Scenes/UIDemo-Demo.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/Demo/Scenes/UIDemo.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MirageSDK/Demo/Scenes/UIDemo.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/Demo/Scripts/DemoContractHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MirageSDK/Demo/Scripts/DemoContractHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/Demo/Scripts/Helpers/ItemsContractHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MirageSDK/Demo/Scripts/Helpers/ItemsContractHelper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/Examples/Scripts/WearableNFTExample/WearableNFTContractInformation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MirageSDK/Examples/Scripts/WearableNFTExample/WearableNFTContractInformation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/Examples/UseCases/Index/UseCaseIndex.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/Examples/UseCases/Index/UseCaseIndex.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/Idle.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/Idle.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/Demo/Scripts/DemoScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MirageSDK/Demo/Scripts/DemoScript.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,6 +82,7 @@
       <workItem from="1647415949148" duration="3432000" />
       <workItem from="1647425868509" duration="7638000" />
       <workItem from="1647529730519" duration="3555000" />
+      <workItem from="1647590569609" duration="5257000" />
     </task>
     <servers />
   </component>

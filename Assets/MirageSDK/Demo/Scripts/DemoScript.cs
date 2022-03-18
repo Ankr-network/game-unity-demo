@@ -1,4 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using MirageSDK.Demo.Data;
 using MirageSDK.Demo.Helpers;
@@ -32,6 +35,10 @@ namespace MirageSDK.Demo
 		
 		private readonly Dictionary<HatColour, ItemSceneData> _items = new Dictionary<HatColour, ItemSceneData>();
 
+		private const int RefreshTimer = 10000;
+		
+		private CancellationTokenSource _source;
+
 		private void Awake()
 		{
 			foreach (var item in _itemsDescriptions.Descriptions)
@@ -54,6 +61,9 @@ namespace MirageSDK.Demo
 			{
 				itemData.Button.onClick.RemoveAllListeners();
 			}
+
+			_source?.Cancel();
+			_source?.Dispose();
 		}
 
 		private async void Start()
@@ -65,10 +75,11 @@ namespace MirageSDK.Demo
 			{
 				await _contractHandler.MintCharacter();
 				await _contractHandler.MintItems();
+				await LoadCharacter();
 			}
 
 			await CheckCharactersEquippedHatAndDisplay();
-			await GetItemTokensBalanceAndUpdateShow();
+			await GetItemTokensBalanceAndUpdateInventory();
 
 			var characterID = await _contractHandler.GetCharacterTokenId();
 			var equippedHatID = await _contractHandler.GetHat();
@@ -79,6 +90,21 @@ namespace MirageSDK.Demo
 			{
 				await _contractHandler.ApproveAllForCharacter(true);
 			}
+
+			_source = new CancellationTokenSource();
+			CancellationToken token = _source.Token;
+			CheckForChangesInEquippement(token).Forget();
+		}
+		
+		private async UniTaskVoid CheckForChangesInEquippement(CancellationToken token)
+		{
+			while (!token.IsCancellationRequested)
+			{
+				await CheckCharactersEquippedHatAndDisplay();
+				await GetItemTokensBalanceAndUpdateInventory();
+				await UniTask.Delay(RefreshTimer, cancellationToken: token);
+			}
+			
 		}
 
 		private GameObject CreateHat(ItemDescription item)
@@ -116,7 +142,7 @@ namespace MirageSDK.Demo
 		{
 			await _contractHandler.ChangeHat(address);
 			await CheckCharactersEquippedHatAndDisplay();
-			await GetItemTokensBalanceAndUpdateShow();
+			await GetItemTokensBalanceAndUpdateInventory();
 		}
 
 		private void UpdateHatVisuals(HatColour hatColour)
@@ -151,7 +177,7 @@ namespace MirageSDK.Demo
 			return true;
 		}
 
-		private async UniTask GetItemTokensBalanceAndUpdateShow()
+		private async UniTask GetItemTokensBalanceAndUpdateInventory()
 		{
 			for (var i = 0; i < _itemsDescriptions.Descriptions.Count; i++)
 			{
