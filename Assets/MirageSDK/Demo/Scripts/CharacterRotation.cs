@@ -1,69 +1,72 @@
 using UnityEngine;
 
-public class CharacterRotation : MonoBehaviour
+namespace MirageSDK.Demo
 {
-	private readonly float _rotatespeed = 100f;
-
-	private float _startingPosition;
-
-	private void Update()
+	public class CharacterRotation : MonoBehaviour
 	{
-	#if UNITY_ANDROID
-		RotateTransformOnFingerDrag();
-	#endif
-	#if UNITY_STANDALONE_WIN
-		RotateTransformOnMouseDrag();
-	#endif
-	}
+		private readonly float _rotatespeed = 100f;
 
-	private void RotateTransformOnFingerDrag()
-	{
-		if (Input.touchCount > 0)
+		private float _startingPosition;
+
+		private void Update()
 		{
-			var touch = Input.GetTouch(0);
-
-			switch (touch.phase)
+			RotateTransformOnFingerDrag();
+		
+			if(Application.isEditor)
 			{
-				case TouchPhase.Began:
-					_startingPosition = touch.position.x;
-					break;
-				case TouchPhase.Moved:
-				case TouchPhase.Stationary:
-					var angleRotation = _rotatespeed * Time.deltaTime;
-
-					if (_startingPosition > touch.position.x)
-					{
-						transform.Rotate(Vector3.up, angleRotation);
-					}
-					else if (_startingPosition < touch.position.x)
-					{
-						transform.Rotate(Vector3.up, -angleRotation);
-					}
-
-					break;
+				RotateTransformOnMouseDrag();
 			}
 		}
-	}
 
-	private void RotateTransformOnMouseDrag()
-	{
-		if (Input.GetMouseButtonDown(0))
+		private void RotateTransformOnFingerDrag()
 		{
-			_startingPosition = Input.mousePosition.x;
+			if (Input.touchCount > 0)
+			{
+				var touch = Input.GetTouch(0);
+
+				switch (touch.phase)
+				{
+					case TouchPhase.Began:
+						_startingPosition = touch.position.x;
+						break;
+					case TouchPhase.Moved:
+					case TouchPhase.Stationary:
+						var angleRotation = _rotatespeed * Time.deltaTime;
+
+						if (_startingPosition > touch.position.x)
+						{
+							transform.Rotate(Vector3.up, angleRotation);
+						}
+						else if (_startingPosition < touch.position.x)
+						{
+							transform.Rotate(Vector3.up, -angleRotation);
+						}
+
+						break;
+				}
+			}
 		}
 
-		if (Input.GetMouseButton(0))
+		private void RotateTransformOnMouseDrag()
 		{
-			var posDelta = _startingPosition - Input.mousePosition.x;
-			var angleRotation = _rotatespeed * Time.deltaTime;
-
-			if (posDelta > 0)
+			if (Input.GetMouseButtonDown(0))
 			{
-				transform.Rotate(Vector3.up, angleRotation);
+				_startingPosition = Input.mousePosition.x;
 			}
-			else
+
+			if (Input.GetMouseButton(0))
 			{
-				transform.Rotate(Vector3.up, -angleRotation);
+				var posDelta = _startingPosition - Input.mousePosition.x;
+				var angleRotation = _rotatespeed * Time.deltaTime;
+
+				if (posDelta > 0)
+				{
+					transform.Rotate(Vector3.up, angleRotation);
+				}
+				else
+				{
+					transform.Rotate(Vector3.up, -angleRotation);
+				}
 			}
 		}
 	}
