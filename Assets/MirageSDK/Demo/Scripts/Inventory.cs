@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Numerics;
 using MirageSDK.Demo.Data;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -37,19 +36,27 @@ namespace MirageSDK.Demo
 			return itemButton;
 		}
 
-		public void ShowInventoryItem(int itemID, bool show, BigInteger balanceOfItem)
+		public void ShowInventoryItem(int itemID, bool shouldShowItem, BigInteger balanceOfItem)
 		{
-			_itemList[itemID].SetActive(show);
+			_itemList[itemID].SetActive(shouldShowItem);
 
-			if(show)
+			if (shouldShowItem)
 			{
-				UpdateInventoryItemUIBalance(_itemList[itemID],balanceOfItem);
+				UpdateInventoryItemUIBalance(_itemList[itemID], balanceOfItem);
 			}
 		}
-		
+
+		public void EnableItemButtons(bool enable)
+		{
+			foreach (var itemButton in _itemList)
+			{
+				itemButton.GetComponent<Button>().interactable = enable;
+			}
+		}
+
 		private void UpdateInventoryItemUIBalance(GameObject item, BigInteger balanceOfItem)
 		{
-			item.GetComponentInChildren<TMP_Text>().text = "X" + balanceOfItem;
+			item.GetComponent<ItemButton>()._itemBalanceText.text = "X" + balanceOfItem;
 		}
 	}
 }

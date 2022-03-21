@@ -6,11 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="909ebaeb-a8bc-486b-b8f9-53eb2b557e7a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.mirage-unity-demo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.mirage-unity-demo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/Demo/Scenes/UIDemo-Demo.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MirageSDK/Demo/Scenes/UIDemo-Demo.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/Demo/Scripts/CharacterRotation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MirageSDK/Demo/Scripts/CharacterRotation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/Demo/Prefabs/ItemButton.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MirageSDK/Demo/Prefabs/ItemButton.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/Demo/Scenes/UIDemo-Opening.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MirageSDK/Demo/Scenes/UIDemo-Opening.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/Demo/Scripts/DemoContractHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MirageSDK/Demo/Scripts/DemoContractHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/Demo/Scripts/DemoScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MirageSDK/Demo/Scripts/DemoScript.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MirageSDK/Demo/Scripts/Inventory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MirageSDK/Demo/Scripts/Inventory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +88,7 @@
       <workItem from="1647529730519" duration="3555000" />
       <workItem from="1647590569609" duration="5850000" />
       <workItem from="1647798844510" duration="318000" />
-      <workItem from="1647850848733" duration="11042000" />
+      <workItem from="1647850848733" duration="14347000" />
     </task>
     <servers />
   </component>

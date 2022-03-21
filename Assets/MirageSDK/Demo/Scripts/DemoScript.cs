@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
-using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using MirageSDK.Demo.Data;
 using MirageSDK.Demo.Helpers;
@@ -12,6 +10,8 @@ namespace MirageSDK.Demo
 {
 	public class DemoScript : MonoBehaviour
 	{
+		private const int RefreshTimer = 10000;
+
 		[SerializeField]
 		private TMP_Text _text;
 
@@ -32,11 +32,9 @@ namespace MirageSDK.Demo
 
 		[SerializeField]
 		private DemoContractHandler _contractHandler;
-		
+
 		private readonly Dictionary<HatColour, ItemSceneData> _items = new Dictionary<HatColour, ItemSceneData>();
 
-		private const int RefreshTimer = 10000;
-		
 		private CancellationTokenSource _source;
 
 		private void Awake()
@@ -50,8 +48,27 @@ namespace MirageSDK.Demo
 				_items.Add(item.Colour, new ItemSceneData
 				{
 					Button = itemButton,
-					GameObject = instantiatedGO,
+					GameObject = instantiatedGO
 				});
+			}
+		}
+
+		private async void Start()
+		{
+			_character.SetActive(false);
+
+			await CheckIfHasCharacterOrMint();
+			await CheckCharactersEquippedHatAndDisplay();
+			await GetItemTokensBalanceAndUpdateInventory();
+
+			var characterID = await _contractHandler.GetCharacterTokenId();
+			var equippedHatID = await _contractHandler.GetHat();
+			UpdateUILogs("characterID: " + characterID + " / HatID: " + equippedHatID);
+
+			var isApprovedForAll = await _contractHandler.CheckIfCharacterIsApprovedForAll();
+			if (!isApprovedForAll)
+			{
+				await _contractHandler.ApproveAllForCharacter(true);
 			}
 		}
 
@@ -66,10 +83,8 @@ namespace MirageSDK.Demo
 			_source?.Dispose();
 		}
 
-		private async void Start()
+		private async UniTask CheckIfHasCharacterOrMint()
 		{
-			_character.SetActive(false);
-			
 			var hasCharacter = await LoadCharacter();
 			if (!hasCharacter)
 			{
@@ -77,34 +92,6 @@ namespace MirageSDK.Demo
 				await _contractHandler.MintItems();
 				await LoadCharacter();
 			}
-
-			await CheckCharactersEquippedHatAndDisplay();
-			await GetItemTokensBalanceAndUpdateInventory();
-
-			var characterID = await _contractHandler.GetCharacterTokenId();
-			var equippedHatID = await _contractHandler.GetHat();
-			UpdateUILogs("characterID: " + characterID + " / HatID: " + equippedHatID);
-
-			var isApprovedForAll = await _contractHandler.CheckIfCharacterIsApprovedForAll();
-			if (!isApprovedForAll)
-			{
-				await _contractHandler.ApproveAllForCharacter(true);
-			}
-
-			/*_source = new CancellationTokenSource();
-			CancellationToken token = _source.Token;
-			CheckForChangesInEquippement(token).Forget();*/
-		}
-		
-		private async UniTaskVoid CheckForChangesInEquippement(CancellationToken token)
-		{
-			while (!token.IsCancellationRequested)
-			{
-				await CheckCharactersEquippedHatAndDisplay();
-				await GetItemTokensBalanceAndUpdateInventory();
-				await UniTask.Delay(RefreshTimer, cancellationToken: token);
-			}
-			
 		}
 
 		private GameObject CreateHat(ItemDescription item)
@@ -140,7 +127,13 @@ namespace MirageSDK.Demo
 
 		private async UniTask EquipHat(string address)
 		{
-			await _contractHandler.ChangeHat(address);
+			if (await _contractHandler.GetHasHatToken(address))
+			{
+				_inventory.EnableItemButtons(false);
+				await _contractHandler.ChangeHat(address);
+				_inventory.EnableItemButtons(true);
+			}
+
 			await CheckCharactersEquippedHatAndDisplay();
 			await GetItemTokensBalanceAndUpdateInventory();
 		}
@@ -183,11 +176,10 @@ namespace MirageSDK.Demo
 			{
 				var addressTokenBalance =
 					await _contractHandler.GetItemBalance(_itemsDescriptions.Descriptions[i].Address);
-				_inventory.ShowInventoryItem(i, addressTokenBalance >0 , addressTokenBalance);
-
+				_inventory.ShowInventoryItem(i, addressTokenBalance > 0, addressTokenBalance);
 			}
 		}
-		
+
 		private void UpdateUILogs(string log)
 		{
 			_text.text += "\n" + log;

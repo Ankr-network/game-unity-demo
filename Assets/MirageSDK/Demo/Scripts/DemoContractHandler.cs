@@ -170,7 +170,7 @@ namespace MirageSDK.Demo
 			UpdateUILogs("Error: " + err.Message);
 		}
 
-		private async UniTask<bool> GetHasHatToken(string tokenAddress)
+		public async UniTask<bool> GetHasHatToken(string tokenAddress)
 		{
 			var tokenBalance = await GetBalanceERC1155(_gameItemContract, tokenAddress);
 
