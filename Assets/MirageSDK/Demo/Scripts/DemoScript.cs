@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Threading;
 using Cysharp.Threading.Tasks;
 using MirageSDK.Demo.Data;
 using MirageSDK.Demo.Helpers;
@@ -10,8 +9,6 @@ namespace MirageSDK.Demo
 {
 	public class DemoScript : MonoBehaviour
 	{
-		private const int RefreshTimer = 10000;
-
 		[SerializeField]
 		private TMP_Text _text;
 
@@ -34,8 +31,6 @@ namespace MirageSDK.Demo
 		private DemoContractHandler _contractHandler;
 
 		private readonly Dictionary<HatColour, ItemSceneData> _items = new Dictionary<HatColour, ItemSceneData>();
-
-		private CancellationTokenSource _source;
 
 		private void Awake()
 		{
@@ -78,9 +73,6 @@ namespace MirageSDK.Demo
 			{
 				itemData.Button.onClick.RemoveAllListeners();
 			}
-
-			_source?.Cancel();
-			_source?.Dispose();
 		}
 
 		private async UniTask CheckIfHasCharacterOrMint()

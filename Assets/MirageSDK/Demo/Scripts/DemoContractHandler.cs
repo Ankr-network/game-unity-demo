@@ -8,10 +8,8 @@ using MirageSDK.Core.Utils;
 using MirageSDK.Demo.Helpers;
 using MirageSDK.Examples.ContractMessages.ERC1155;
 using MirageSDK.Examples.ContractMessages.GameCharacterContract;
-using MirageSDK.Examples.DTO;
 using MirageSDK.Examples.WearableNFTExample;
 using MirageSDK.WalletConnectSharp.Unity;
-using Nethereum.Contracts;
 using Nethereum.RPC.Eth.DTOs;
 using TMPro;
 using UnityEngine;
@@ -20,9 +18,11 @@ namespace MirageSDK.Demo
 {
 	public class DemoContractHandler : MonoBehaviour
 	{
+		private const string TransactionGasLimit = "1000000";
+
 		[SerializeField]
 		private TMP_Text _text;
-		private const string TransactionGasLimit = "1000000";
+
 		private IContract _gameCharacterContract;
 		private IContract _gameItemContract;
 
@@ -56,7 +56,7 @@ namespace MirageSDK.Demo
 			var data = new byte[] { };
 
 			var receipt = await _gameItemContract.CallMethod(mintBatchMethodName,
-				new object[] { activeSessionAccount, itemsToMint, itemsAmounts, data });
+				new object[] {activeSessionAccount, itemsToMint, itemsAmounts, data});
 
 			UpdateUILogs($"Game Items Minted. Receipts : {receipt}");
 		}
@@ -80,7 +80,7 @@ namespace MirageSDK.Demo
 			var activeSessionAccount = WalletConnect.ActiveSession.Accounts[0];
 
 			var transactionHash = await _gameCharacterContract.CallMethod(safeMintMethodName,
-				new object[] { activeSessionAccount });
+				new object[] {activeSessionAccount});
 
 			UpdateUILogs($"Game Character Minted. Hash : {transactionHash}");
 		}
@@ -103,7 +103,7 @@ namespace MirageSDK.Demo
 		{
 			const string changeHatMethodName = "changeHat";
 			var characterId = await GetCharacterTokenId();
-			
+
 			var evController = new EventController();
 			EventControllerSubscribeToEvents(evController);
 
@@ -121,9 +121,9 @@ namespace MirageSDK.Demo
 					hatAddress
 				}, evController);
 
-				UpdateUILogs($"Change Hat transaction Complete !");
+				UpdateUILogs("Change Hat transaction Complete !");
 			}
-			
+
 			EventControllerUnsubscribeToEvents(evController);
 		}
 
@@ -135,7 +135,7 @@ namespace MirageSDK.Demo
 			evController.OnReceipt += HandleReceipt;
 			evController.OnError += HandleError;
 		}
-		
+
 		private void EventControllerUnsubscribeToEvents(EventController evController)
 		{
 			evController.OnSending -= HandleSending;
@@ -144,15 +144,15 @@ namespace MirageSDK.Demo
 			evController.OnReceipt -= HandleReceipt;
 			evController.OnError -= HandleError;
 		}
-		
+
 		private void HandleSent(object sender, TransactionInput transaction)
 		{
-			UpdateUILogs($"Transaction sent");
+			UpdateUILogs("Transaction sent");
 		}
 
 		private void HandleSending(object sender, TransactionInput transaction)
 		{
-			UpdateUILogs($"Transaction is sending");
+			UpdateUILogs("Transaction is sending");
 		}
 
 		private void HandleTransactionHash(object sender, string transactionHash)

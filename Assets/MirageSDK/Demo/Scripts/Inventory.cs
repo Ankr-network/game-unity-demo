@@ -11,7 +11,7 @@ namespace MirageSDK.Demo
 		[SerializeField] private GameObject _inventoryButtonRoot;
 		[SerializeField] private GameObject _buttonPrefab;
 
-		private readonly List<GameObject> _itemList = new List<GameObject>();
+		private readonly List<ItemButton> _itemList = new List<ItemButton>();
 
 		private void Start()
 		{
@@ -22,23 +22,24 @@ namespace MirageSDK.Demo
 		{
 			foreach (var item in _itemList)
 			{
-				item.SetActive(false);
+				item.gameObject.SetActive(false);
 			}
 		}
 
 		public Button AddItem(ItemDescription item)
 		{
 			var itemButtonGO = Instantiate(_buttonPrefab, _inventoryButtonRoot.transform, true);
-			itemButtonGO.GetComponent<Image>().sprite = item.Icon;
-			var itemButton = itemButtonGO.GetComponent<Button>();
-			_itemList.Add(itemButtonGO);
+			var itemButtonScript = itemButtonGO.GetComponent<ItemButton>();
+			itemButtonScript.SetItemImageSprite(item.Icon);
 
-			return itemButton;
+			_itemList.Add(itemButtonScript);
+
+			return itemButtonScript.GetItemButton();
 		}
 
 		public void ShowInventoryItem(int itemID, bool shouldShowItem, BigInteger balanceOfItem)
 		{
-			_itemList[itemID].SetActive(shouldShowItem);
+			_itemList[itemID].gameObject.SetActive(shouldShowItem);
 
 			if (shouldShowItem)
 			{
@@ -54,9 +55,9 @@ namespace MirageSDK.Demo
 			}
 		}
 
-		private void UpdateInventoryItemUIBalance(GameObject item, BigInteger balanceOfItem)
+		private void UpdateInventoryItemUIBalance(ItemButton itemButton, BigInteger balanceOfItem)
 		{
-			item.GetComponent<ItemButton>()._itemBalanceText.text = "X" + balanceOfItem;
+			itemButton.SetItemBalanceText("X" + balanceOfItem);
 		}
 	}
 }
