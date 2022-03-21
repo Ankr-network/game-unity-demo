@@ -7,6 +7,7 @@ namespace MirageSDK.Demo
 		private readonly float _rotatespeed = 100f;
 
 		private float _startingPosition;
+		private bool _canRotate = false;
 
 		private void Update()
 		{
@@ -23,25 +24,36 @@ namespace MirageSDK.Demo
 			if (Input.touchCount > 0)
 			{
 				var touch = Input.GetTouch(0);
-
+				
 				switch (touch.phase)
 				{
 					case TouchPhase.Began:
-						_startingPosition = touch.position.x;
+						RaycastHit2D hit;
+						hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position), Vector2.zero);
+						if (hit)
+						{
+							_canRotate = true;
+							_startingPosition = touch.position.x;
+						}
 						break;
 					case TouchPhase.Moved:
 					case TouchPhase.Stationary:
-						var angleRotation = _rotatespeed * Time.deltaTime;
-
-						if (_startingPosition > touch.position.x)
+						if (_canRotate)
 						{
-							transform.Rotate(Vector3.up, angleRotation);
-						}
-						else if (_startingPosition < touch.position.x)
-						{
-							transform.Rotate(Vector3.up, -angleRotation);
-						}
+							var angleRotation = _rotatespeed * Time.deltaTime;
 
+							if (_startingPosition > touch.position.x)
+							{
+								transform.Rotate(Vector3.up, angleRotation);
+							}
+							else if (_startingPosition < touch.position.x)
+							{
+								transform.Rotate(Vector3.up, -angleRotation);
+							}
+						}
+						break;
+					case TouchPhase.Ended:
+						_canRotate = false;
 						break;
 				}
 			}
