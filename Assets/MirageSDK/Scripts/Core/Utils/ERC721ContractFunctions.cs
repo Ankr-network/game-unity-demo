@@ -111,6 +111,20 @@ namespace MirageSDK.Core.Utils
 
 			return contract.GetData<TokenByIndexMessage, BigInteger>(tokenByIndexMessage).AsUniTask();
 		}
+		
+		/// <summary>
+		///     Returns if the `operator` is allowed to manage all of the assets of `owner`.
+		/// </summary>
+		public static UniTask<bool> IsApprovedForAll(string owner,string theOperator, IContract contract)
+		{
+			var isApprovedForAllMessage = new IsApprovedForAllMessage
+			{
+				Owner = owner,	
+				Operator = theOperator
+			};
+
+			return contract.GetData<IsApprovedForAllMessage, bool>(isApprovedForAllMessage).AsUniTask();
+		}
 
 		#endregion
 
