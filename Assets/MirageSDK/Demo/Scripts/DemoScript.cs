@@ -183,10 +183,11 @@ namespace MirageSDK.Demo
 			{
 				var addressTokenBalance =
 					await _contractHandler.GetItemBalance(_itemsDescriptions.Descriptions[i].Address);
-				_inventory.ShowInventoryItem(i, addressTokenBalance > 0);
+				_inventory.ShowInventoryItem(i, addressTokenBalance >0 , addressTokenBalance);
+
 			}
 		}
-
+		
 		private void UpdateUILogs(string log)
 		{
 			_text.text += "\n" + log;

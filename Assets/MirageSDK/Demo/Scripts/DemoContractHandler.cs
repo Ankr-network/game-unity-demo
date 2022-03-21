@@ -145,12 +145,6 @@ namespace MirageSDK.Demo
 			evController.OnError -= HandleError;
 		}
 		
-		/*public void HandleReceipt(object sender, TransactionReceipt receipt)
-		{
-			var transferEventOutput = receipt.DecodeAllEvents<TransferEventDTO>();
-			transferEventOutput[0].Event./// Get all data what you need
-		}*/
-
 		private void HandleSent(object sender, TransactionInput transaction)
 		{
 			UpdateUILogs($"Transaction sent");

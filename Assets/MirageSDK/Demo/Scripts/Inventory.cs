@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Numerics;
 using MirageSDK.Demo.Data;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -35,9 +37,19 @@ namespace MirageSDK.Demo
 			return itemButton;
 		}
 
-		public void ShowInventoryItem(int itemID, bool show)
+		public void ShowInventoryItem(int itemID, bool show, BigInteger balanceOfItem)
 		{
 			_itemList[itemID].SetActive(show);
+
+			if(show)
+			{
+				UpdateInventoryItemUIBalance(_itemList[itemID],balanceOfItem);
+			}
+		}
+		
+		private void UpdateInventoryItemUIBalance(GameObject item, BigInteger balanceOfItem)
+		{
+			item.GetComponentInChildren<TMP_Text>().text = "X" + balanceOfItem;
 		}
 	}
 }
