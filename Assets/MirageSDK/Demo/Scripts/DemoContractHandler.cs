@@ -1,19 +1,27 @@
+using System;
 using System.Numerics;
 using Cysharp.Threading.Tasks;
+using MirageSDK.Core.Events;
 using MirageSDK.Core.Implementation;
 using MirageSDK.Core.Infrastructure;
 using MirageSDK.Core.Utils;
 using MirageSDK.Demo.Helpers;
 using MirageSDK.Examples.ContractMessages.ERC1155;
 using MirageSDK.Examples.ContractMessages.GameCharacterContract;
+using MirageSDK.Examples.DTO;
 using MirageSDK.Examples.WearableNFTExample;
 using MirageSDK.WalletConnectSharp.Unity;
+using Nethereum.Contracts;
+using Nethereum.RPC.Eth.DTOs;
+using TMPro;
 using UnityEngine;
 
 namespace MirageSDK.Demo
 {
 	public class DemoContractHandler : MonoBehaviour
 	{
+		[SerializeField]
+		private TMP_Text _text;
 		private const string TransactionGasLimit = "1000000";
 		private IContract _gameCharacterContract;
 		private IContract _gameItemContract;
@@ -95,6 +103,9 @@ namespace MirageSDK.Demo
 		{
 			const string changeHatMethodName = "changeHat";
 			var characterId = await GetCharacterTokenId();
+			
+			var evController = new EventController();
+			EventControllerSubscribeToEvents(evController);
 
 			var hasHat = await GetHasHatToken(hatAddress);
 
@@ -104,14 +115,65 @@ namespace MirageSDK.Demo
 			}
 			else
 			{
-				var transactionHash = await _gameCharacterContract.CallMethod(changeHatMethodName, new object[]
+				await _gameCharacterContract.Web3SendMethod(changeHatMethodName, new object[]
 				{
 					characterId,
 					hatAddress
-				}, TransactionGasLimit);
+				}, evController);
 
-				UpdateUILogs($"Hat Changed. Hash : {transactionHash}");
+				UpdateUILogs($"Change Hat transaction Complete !");
 			}
+			
+			EventControllerUnsubscribeToEvents(evController);
+		}
+
+		private void EventControllerSubscribeToEvents(EventController evController)
+		{
+			evController.OnSending += HandleSending;
+			evController.OnSent += HandleSent;
+			evController.OnTransactionHash += HandleTransactionHash;
+			evController.OnReceipt += HandleReceipt;
+			evController.OnError += HandleError;
+		}
+		
+		private void EventControllerUnsubscribeToEvents(EventController evController)
+		{
+			evController.OnSending -= HandleSending;
+			evController.OnSent -= HandleSent;
+			evController.OnTransactionHash -= HandleTransactionHash;
+			evController.OnReceipt -= HandleReceipt;
+			evController.OnError -= HandleError;
+		}
+		
+		/*public void HandleReceipt(object sender, TransactionReceipt receipt)
+		{
+			var transferEventOutput = receipt.DecodeAllEvents<TransferEventDTO>();
+			transferEventOutput[0].Event./// Get all data what you need
+		}*/
+
+		private void HandleSent(object sender, TransactionInput transaction)
+		{
+			UpdateUILogs($"Transaction sent");
+		}
+
+		private void HandleSending(object sender, TransactionInput transaction)
+		{
+			UpdateUILogs($"Transaction is sending");
+		}
+
+		private void HandleTransactionHash(object sender, string transactionHash)
+		{
+			UpdateUILogs($"transactionHash: {transactionHash}");
+		}
+
+		private void HandleReceipt(object sender, TransactionReceipt receipt)
+		{
+			UpdateUILogs("Receipt: " + receipt.Status);
+		}
+
+		private void HandleError(object sender, Exception err)
+		{
+			UpdateUILogs("Error: " + err.Message);
 		}
 
 		private async UniTask<bool> GetHasHatToken(string tokenAddress)
@@ -179,6 +241,7 @@ namespace MirageSDK.Demo
 
 		private void UpdateUILogs(string log)
 		{
+			_text.text += "\n" + log;
 			Debug.Log(log);
 		}
 	}

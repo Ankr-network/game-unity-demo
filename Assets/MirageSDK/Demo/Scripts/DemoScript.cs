@@ -91,9 +91,9 @@ namespace MirageSDK.Demo
 				await _contractHandler.ApproveAllForCharacter(true);
 			}
 
-			_source = new CancellationTokenSource();
+			/*_source = new CancellationTokenSource();
 			CancellationToken token = _source.Token;
-			CheckForChangesInEquippement(token).Forget();
+			CheckForChangesInEquippement(token).Forget();*/
 		}
 		
 		private async UniTaskVoid CheckForChangesInEquippement(CancellationToken token)
