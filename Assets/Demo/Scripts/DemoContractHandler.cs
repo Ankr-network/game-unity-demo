@@ -1,15 +1,15 @@
 using System;
 using System.Numerics;
+using AnkrSDK.Core.Data.ContractMessages.ERC1155;
+using AnkrSDK.Core.Events;
+using AnkrSDK.Core.Implementation;
+using AnkrSDK.Core.Infrastructure;
+using AnkrSDK.Core.Utils;
+using AnkrSDK.Examples.GameCharacterContract;
+using AnkrSDK.Examples.WearableNFTExample;
+using AnkrSDK.WalletConnectSharp.Unity;
 using Cysharp.Threading.Tasks;
 using Demo.Scripts.Helpers;
-using MirageSDK.Core.Events;
-using MirageSDK.Core.Implementation;
-using MirageSDK.Core.Infrastructure;
-using MirageSDK.Core.Utils;
-using MirageSDK.Examples.ContractMessages.ERC1155;
-using MirageSDK.Examples.ContractMessages.GameCharacterContract;
-using MirageSDK.Examples.WearableNFTExample;
-using MirageSDK.WalletConnectSharp.Unity;
 using Nethereum.RPC.Eth.DTOs;
 using TMPro;
 using UnityEngine;
@@ -20,19 +20,18 @@ namespace Demo.Scripts
 	{
 		private const string TransactionGasLimit = "1000000";
 
-		[SerializeField]
-		private TMP_Text _text;
+		[SerializeField] private TMP_Text _text;
 
 		private IContract _gameCharacterContract;
 		private IContract _gameItemContract;
 
 		private void Awake()
 		{
-			var mirageSDKWrapper = MirageSDKWrapper.GetSDKInstance(WearableNFTContractInformation.ProviderURL);
-			_gameCharacterContract = mirageSDKWrapper.GetContract(
+			var sdkWrapper = AnkrSDKWrapper.GetSDKInstance(WearableNFTContractInformation.ProviderURL);
+			_gameCharacterContract = sdkWrapper.GetContract(
 				WearableNFTContractInformation.GameCharacterContractAddress,
 				WearableNFTContractInformation.GameCharacterABI);
-			_gameItemContract = mirageSDKWrapper.GetContract(WearableNFTContractInformation.GameItemContractAddress,
+			_gameItemContract = sdkWrapper.GetContract(WearableNFTContractInformation.GameItemContractAddress,
 				WearableNFTContractInformation.GameItemABI);
 		}
 
@@ -56,31 +55,31 @@ namespace Demo.Scripts
 			var data = new byte[] { };
 
 			var receipt = await _gameItemContract.CallMethod(mintBatchMethodName,
-				new object[] {activeSessionAccount, itemsToMint, itemsAmounts, data});
+				new object[] { activeSessionAccount, itemsToMint, itemsAmounts, data });
 
 			UpdateUILogs($"Game Items Minted. Receipts : {receipt}");
 		}
 
 		public async UniTask<bool> CheckIfCharacterIsApprovedForAll()
 		{
-			var activeSessionAccount = WalletConnect.ActiveSession.Accounts[0];
-			return await ERC721ContractFunctions.IsApprovedForAll(activeSessionAccount,
-				WearableNFTContractInformation.GameCharacterContractAddress, _gameItemContract);
+			var activeSessionAccount = EthHandler.DefaultAccount;
+			return await _gameCharacterContract.IsApprovedForAll(activeSessionAccount,
+				WearableNFTContractInformation.GameCharacterContractAddress);
 		}
 
 		public async UniTask<string> ApproveAllForCharacter(bool approved)
 		{
-			return await ERC721ContractFunctions.SetApprovalForAll(
-				WearableNFTContractInformation.GameCharacterContractAddress, approved, _gameItemContract);
+			return await _gameItemContract.SetApprovalForAll(
+				WearableNFTContractInformation.GameCharacterContractAddress, approved);
 		}
 
 		public async UniTask MintCharacter()
 		{
 			const string safeMintMethodName = "safeMint";
-			var activeSessionAccount = WalletConnect.ActiveSession.Accounts[0];
+			var activeSessionAccount = EthHandler.DefaultAccount;
 
 			var transactionHash = await _gameCharacterContract.CallMethod(safeMintMethodName,
-				new object[] {activeSessionAccount});
+				new object[] { activeSessionAccount });
 
 			UpdateUILogs($"Game Character Minted. Hash : {transactionHash}");
 		}
@@ -93,7 +92,7 @@ namespace Demo.Scripts
 				CharacterId = characterID.ToString()
 			};
 			var hatId = await _gameCharacterContract.GetData<GetHatMessage, BigInteger>(getHatMessage);
-			var hexHatID = MirageSDKHelper.StringToBigInteger(hatId.ToString());
+			var hexHatID = AnkrSDKHelper.StringToBigInteger(hatId.ToString());
 			UpdateUILogs($"Hat Id: {hexHatID}");
 
 			return hexHatID;
@@ -186,13 +185,13 @@ namespace Demo.Scripts
 
 		public async UniTask<BigInteger> GetCharacterTokenId()
 		{
-			var activeSessionAccount = WalletConnect.ActiveSession.Accounts[0];
+			var activeSessionAccount = EthHandler.DefaultAccount;
 			var tokenBalance = await GetCharacterBalance();
 
 			if (tokenBalance > 0)
 			{
 				var tokenId =
-					await ERC721ContractFunctions.TokenOfOwnerByIndex(activeSessionAccount, 0, _gameCharacterContract);
+					await _gameCharacterContract.TokenOfOwnerByIndex(activeSessionAccount, 0);
 
 				UpdateUILogs($"GameCharacter tokenId  : {tokenId}");
 
@@ -205,8 +204,8 @@ namespace Demo.Scripts
 
 		private async UniTask<BigInteger> GetCharacterBalance()
 		{
-			var activeSessionAccount = WalletConnect.ActiveSession.Accounts[0];
-			var balance = await ERC721ContractFunctions.BalanceOf(activeSessionAccount, _gameCharacterContract);
+			var activeSessionAccount = EthHandler.DefaultAccount;
+			var balance = await _gameCharacterContract.BalanceOf(activeSessionAccount);
 
 			UpdateUILogs($"Number of NFTs Owned: {balance}");
 			return balance;
@@ -220,7 +219,7 @@ namespace Demo.Scripts
 
 		private async UniTask<BigInteger> GetBalanceERC1155(IContract contract, string id)
 		{
-			var activeSessionAccount = WalletConnect.ActiveSession.Accounts[0];
+			var activeSessionAccount = EthHandler.DefaultAccount;
 			var balanceOfMessage = new BalanceOfMessage
 			{
 				Account = activeSessionAccount,

@@ -2,37 +2,40 @@
 using System.IO;
 using UnityEditor;
 
-public static class PackageExporter
+namespace Editor
 {
-	private const string PackageName = "MirageSDK";
+	public static class PackageExporter
+	{
+		private const string PackageName = "AnkrSDK";
 
-	// The path to the package under the `Assets/` folder.
-	private const string PackagePath = "Assets/MirageSDK";
+		// The path to the package under the `Assets/` folder.
+		private const string PackagePath = "Assets/AnkrSDK";
 
-	// Path to export to.
-	private const string ExportPath = "Build";
+		// Path to export to.
+		private const string ExportPath = "Build";
 	
-	[MenuItem("MirageSDK/Export Mirage Package")]
-	public static void Export()
-	{
-		ExportPackage($"{ExportPath}/{PackageName}.unitypackage");
-	}
-
-	private static void ExportPackage(string exportPath)
-	{
-		// Ensure export path.
-		var dir = new FileInfo(exportPath).Directory;
-		if (dir?.Exists == false)
+		[MenuItem("AnkrSDK/Export Ankr Package")]
+		public static void Export()
 		{
-			dir.Create();
+			ExportPackage($"{ExportPath}/{PackageName}.unitypackage");
 		}
 
-		// Export
-		AssetDatabase.ExportPackage(
-			PackagePath,
-			exportPath,
-			ExportPackageOptions.Recurse
-		);
+		private static void ExportPackage(string exportPath)
+		{
+			// Ensure export path.
+			var dir = new FileInfo(exportPath).Directory;
+			if (dir?.Exists == false)
+			{
+				dir.Create();
+			}
+
+			// Export
+			AssetDatabase.ExportPackage(
+				PackagePath,
+				exportPath,
+				ExportPackageOptions.Recurse
+			);
+		}
 	}
 }
 #endif
