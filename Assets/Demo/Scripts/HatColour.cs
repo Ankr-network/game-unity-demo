@@ -1,4 +1,4 @@
-namespace MirageSDK.Demo
+namespace Demo.Scripts
 {
 	public enum HatColour
 	{

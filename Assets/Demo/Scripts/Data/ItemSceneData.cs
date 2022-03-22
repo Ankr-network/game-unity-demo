@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace MirageSDK.Demo.Data
+namespace Demo.Scripts.Data
 {
 	public class ItemSceneData
 	{

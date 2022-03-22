@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace MirageSDK.Demo.Data
+namespace Demo.Scripts.Data
 {
 	[Serializable]
 	public class ItemDescription

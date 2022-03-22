@@ -1,11 +1,11 @@
 using System;
 using System.Numerics;
 using Cysharp.Threading.Tasks;
+using Demo.Scripts.Helpers;
 using MirageSDK.Core.Events;
 using MirageSDK.Core.Implementation;
 using MirageSDK.Core.Infrastructure;
 using MirageSDK.Core.Utils;
-using MirageSDK.Demo.Helpers;
 using MirageSDK.Examples.ContractMessages.ERC1155;
 using MirageSDK.Examples.ContractMessages.GameCharacterContract;
 using MirageSDK.Examples.WearableNFTExample;
@@ -14,7 +14,7 @@ using Nethereum.RPC.Eth.DTOs;
 using TMPro;
 using UnityEngine;
 
-namespace MirageSDK.Demo
+namespace Demo.Scripts
 {
 	public class DemoContractHandler : MonoBehaviour
 	{

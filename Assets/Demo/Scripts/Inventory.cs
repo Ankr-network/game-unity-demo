@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Numerics;
-using MirageSDK.Demo.Data;
+using Demo.Scripts.Data;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace MirageSDK.Demo
+namespace Demo.Scripts
 {
 	public class Inventory : MonoBehaviour
 	{
@@ -34,7 +34,7 @@ namespace MirageSDK.Demo
 
 			_itemList.Add(itemButtonScript);
 
-			return itemButtonScript.GetItemButton();
+			return itemButtonScript.Button;
 		}
 
 		public void ShowInventoryItem(int itemID, bool shouldShowItem, BigInteger balanceOfItem)

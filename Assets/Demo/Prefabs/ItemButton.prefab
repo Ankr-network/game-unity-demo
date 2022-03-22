@@ -269,3 +269,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _itemBalanceText: {fileID: 315248922647046606}
+  _itemButton: {fileID: 8032307023216792550}
+  _itemImage: {fileID: 6723989050571738642}

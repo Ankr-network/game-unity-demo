@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace MirageSDK.Demo
+namespace Demo.Scripts
 {
 	public class CharacterRotation : MonoBehaviour
 	{

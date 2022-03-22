@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using MirageSDK.Demo.Data;
-using MirageSDK.Demo.Helpers;
+using Demo.Scripts.Data;
+using Demo.Scripts.Helpers;
 using TMPro;
 using UnityEngine;
 
-namespace MirageSDK.Demo
+namespace Demo.Scripts
 {
 	public class DemoScript : MonoBehaviour
 	{

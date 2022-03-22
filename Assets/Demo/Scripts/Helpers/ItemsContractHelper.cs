@@ -1,4 +1,4 @@
-namespace MirageSDK.Demo.Helpers
+namespace Demo.Scripts.Helpers
 {
 	public static class ItemsContractHelper
 	{
