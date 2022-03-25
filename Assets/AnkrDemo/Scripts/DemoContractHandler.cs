@@ -2,9 +2,12 @@ using System;
 using System.Numerics;
 using AnkrSDK.Core.Data.ContractMessages.ERC1155;
 using AnkrSDK.Core.Events;
+using AnkrSDK.Core.Events.Implementation;
+using AnkrSDK.Core.Events.Infrastructure;
 using AnkrSDK.Core.Implementation;
 using AnkrSDK.Core.Infrastructure;
 using AnkrSDK.Core.Utils;
+using AnkrSDK.Examples;
 using AnkrSDK.Examples.GameCharacterContract;
 using AnkrSDK.Examples.WearableNFTExample;
 using AnkrSDK.WalletConnectSharp.Unity;
@@ -103,7 +106,7 @@ namespace Demo.Scripts
 			const string changeHatMethodName = "changeHat";
 			var characterId = await GetCharacterTokenId();
 
-			var evController = new EventController();
+			var evController = new LoggerEventHandler();
 			EventControllerSubscribeToEvents(evController);
 
 			var hasHat = await GetHasHatToken(hatAddress);
@@ -126,49 +129,14 @@ namespace Demo.Scripts
 			EventControllerUnsubscribeToEvents(evController);
 		}
 
-		private void EventControllerSubscribeToEvents(EventController evController)
+		private void EventControllerSubscribeToEvents(LoggerEventHandler evController)
 		{
-			evController.OnSending += HandleSending;
-			evController.OnSent += HandleSent;
-			evController.OnTransactionHash += HandleTransactionHash;
-			evController.OnReceipt += HandleReceipt;
-			evController.OnError += HandleError;
 		}
 
-		private void EventControllerUnsubscribeToEvents(EventController evController)
+		private void EventControllerUnsubscribeToEvents(LoggerEventHandler evController)
 		{
-			evController.OnSending -= HandleSending;
-			evController.OnSent -= HandleSent;
-			evController.OnTransactionHash -= HandleTransactionHash;
-			evController.OnReceipt -= HandleReceipt;
-			evController.OnError -= HandleError;
 		}
-
-		private void HandleSent(object sender, TransactionInput transaction)
-		{
-			UpdateUILogs("Transaction sent");
-		}
-
-		private void HandleSending(object sender, TransactionInput transaction)
-		{
-			UpdateUILogs("Transaction is sending");
-		}
-
-		private void HandleTransactionHash(object sender, string transactionHash)
-		{
-			UpdateUILogs($"transactionHash: {transactionHash}");
-		}
-
-		private void HandleReceipt(object sender, TransactionReceipt receipt)
-		{
-			UpdateUILogs("Receipt: " + receipt.Status);
-		}
-
-		private void HandleError(object sender, Exception err)
-		{
-			UpdateUILogs("Error: " + err.Message);
-		}
-
+		
 		public async UniTask<bool> GetHasHatToken(string tokenAddress)
 		{
 			var tokenBalance = await GetBalanceERC1155(_gameItemContract, tokenAddress);
