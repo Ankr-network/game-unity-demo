@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using AnkrSDK.UseCases;
 using Cysharp.Threading.Tasks;
 using Demo.Scripts.Data;
 using Demo.Scripts.Helpers;
@@ -7,7 +8,7 @@ using UnityEngine;
 
 namespace Demo.Scripts
 {
-	public class DemoScript : MonoBehaviour
+	public class DemoScript : UseCase
 	{
 		[SerializeField]
 		private TMP_Text _text;
@@ -32,6 +33,13 @@ namespace Demo.Scripts
 
 		private readonly Dictionary<HatColour, ItemSceneData> _items = new Dictionary<HatColour, ItemSceneData>();
 
+		public override void ActivateUseCase()
+		{
+			base.ActivateUseCase();
+			Init();
+
+		}
+
 		private void Awake()
 		{
 			foreach (var item in _itemsDescriptions.Descriptions)
@@ -48,8 +56,9 @@ namespace Demo.Scripts
 			}
 		}
 
-		private async void Start()
+		private async void Init()
 		{
+			_contractHandler.Init();
 			_character.SetActive(false);
 
 			await CheckIfHasCharacterOrMint();

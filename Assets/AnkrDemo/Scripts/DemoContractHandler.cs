@@ -28,7 +28,7 @@ namespace Demo.Scripts
 		private IContract _gameCharacterContract;
 		private IContract _gameItemContract;
 
-		private void Awake()
+		public void Init()
 		{
 			var sdkWrapper = AnkrSDKWrapper.GetSDKInstance(WearableNFTContractInformation.ProviderURL);
 			_gameCharacterContract = sdkWrapper.GetContract(
