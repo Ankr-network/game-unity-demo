@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8ddcc703c3f1b54eaeefc0ef88c5e16, type: 3}
+  m_Script: {fileID: 11500000, guid: e482fa2230972564288919248d8dd67f, type: 3}
   m_Name: Hats
   m_EditorClassIdentifier: 
   _descriptions:
-  - _icon: {fileID: 21300000, guid: a69626339e43a0a4bbe9657d8b54904b, type: 3}
+  - _icon: {fileID: 21300000, guid: 20f6419405418a74882e35f48c48a423, type: 3}
     _gameObjectPrefab: {fileID: 1808829136793856, guid: 6491c78cebfe38848bdaa31989231659, type: 3}
     _colour: 0
     _address: 0x00010000000000000000000000000000000000000000000000000000000002
-  - _icon: {fileID: 21300000, guid: 6310b7190376cde40901631e0bf6b1d5, type: 3}
+  - _icon: {fileID: 21300000, guid: ea8131d2693338349a189392b2fcf310, type: 3}
     _gameObjectPrefab: {fileID: 1914578172662308, guid: 262dd57453dcef54b82d0005a815e9de, type: 3}
     _colour: 1
     _address: 0x00010000000000000000000000000000000000000000000000000000000001

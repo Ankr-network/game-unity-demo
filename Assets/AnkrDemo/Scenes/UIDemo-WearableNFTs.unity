@@ -167,14 +167,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _text: {fileID: 1685600447}
-  _mintItemsButton: {fileID: 1685600455}
-  _mintCharacterButton: {fileID: 1685600454}
-  _getItemSetApprovalButton: {fileID: 1685600453}
-  _getCharacterBalanceButton: {fileID: 1685600452}
-  _getCharacterIDButton: {fileID: 1685600451}
-  _changeHatBlueButton: {fileID: 1685600450}
-  _changeHatRedButton: {fileID: 1685600448}
-  _getHatButton: {fileID: 1685600449}
 --- !u!1 &285040555
 GameObject:
   m_ObjectHideFlags: 0
@@ -2406,93 +2398,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1685600448 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5060647486733349001, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
-  m_PrefabInstance: {fileID: 1685600446}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1685600449 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8986190887606416537, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
-  m_PrefabInstance: {fileID: 1685600446}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1685600450 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1329788204455792441, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
-  m_PrefabInstance: {fileID: 1685600446}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1685600451 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2483984513279600410, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
-  m_PrefabInstance: {fileID: 1685600446}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1685600452 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4240396639280999955, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
-  m_PrefabInstance: {fileID: 1685600446}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1685600453 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7967684813498803012, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
-  m_PrefabInstance: {fileID: 1685600446}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1685600454 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1238535073476117021, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
-  m_PrefabInstance: {fileID: 1685600446}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1685600455 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3067758468657805827, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
-  m_PrefabInstance: {fileID: 1685600446}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
