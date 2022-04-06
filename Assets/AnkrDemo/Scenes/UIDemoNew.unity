@@ -166,6 +166,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 217482406771772269, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -107.08594
+      objectReference: {fileID: 0}
     - target: {fileID: 597183331427731627, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -206,6 +210,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 855516598972120549, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -107.08594
+      objectReference: {fileID: 0}
     - target: {fileID: 1223904074175500821, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -274,6 +282,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1495120381535344231, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1569358558612366300, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -332,6 +344,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1662244623210883875, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1662244623217597759, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
+      propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1662244623457679846, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
@@ -681,6 +697,10 @@ PrefabInstance:
     - target: {fileID: 3255500380739827500, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280036874785337819, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -107.08594
       objectReference: {fileID: 0}
     - target: {fileID: 3556130238099365548, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1694,6 +1714,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7728842655661479363, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -107.08594
+      objectReference: {fileID: 0}
     - target: {fileID: 7789699073978351208, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1718,6 +1742,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7902470710245470207, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8058278027808048064, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1821,6 +1849,10 @@ PrefabInstance:
     - target: {fileID: 8574258001260526968, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8586439684701920558, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -107.08594
       objectReference: {fileID: 0}
     - target: {fileID: 8635958831189265469, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2110,22 +2142,17 @@ MonoBehaviour:
     _icons:
     - https://www.ankr.com/static/favicon/apple-touch-icon.png
     _name: Wallet
-  _connectedEvent:
+  _transport: {fileID: 2890500774512866450}
+  _connectedEventSession:
     m_PersistentCalls:
       m_Calls: []
-  ConnectedEventSession:
+  _disconnectedEvent:
     m_PersistentCalls:
       m_Calls: []
-  DisconnectedEvent:
+  _newSessionConnected:
     m_PersistentCalls:
       m_Calls: []
-  ConnectionFailedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  NewSessionConnected:
-    m_PersistentCalls:
-      m_Calls: []
-  ResumedSessionConnected:
+  _resumedSessionConnected:
     m_PersistentCalls:
       m_Calls: []
 --- !u!4 &2890500774512866453
