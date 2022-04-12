@@ -230,7 +230,7 @@ namespace AnkrSDK.Core.Utils
 				tokenId
 			});
 		}
-
+		
 		/// <summary>
 		///     Approve or remove "<paramref name="callOperator" />" as an operator for the caller.
 		///     Operators can call <see cref="TransferFrom" /> or <see cref="SafeTransferFrom" /> for any token owned by the
