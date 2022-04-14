@@ -1,12 +1,14 @@
 using System.Collections.Generic;
 using AnkrSDK.UseCases;
 using Cysharp.Threading.Tasks;
+using Demo.Scripts;
 using Demo.Scripts.Data;
 using Demo.Scripts.Helpers;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-namespace Demo.Scripts
+namespace AnkrDemo.Scripts
 {
 	public class DemoScript : UseCase
 	{
@@ -31,17 +33,20 @@ namespace Demo.Scripts
 		[SerializeField]
 		private DemoContractHandler _contractHandler;
 
+		[SerializeField] private Button _mintCharacterButton;
+		[SerializeField] private Button _mintHatButton;
+		[SerializeField] private Button _approveCharacterButton;
+		[SerializeField] private Button _loadCharacterButton;
+
 		private readonly Dictionary<HatColour, ItemSceneData> _items = new Dictionary<HatColour, ItemSceneData>();
-
-		public override void ActivateUseCase()
-		{
-			base.ActivateUseCase();
-			Init();
-
-		}
 
 		private void Awake()
 		{
+			_mintCharacterButton.onClick.AddListener(MintCharacterCall);
+			_mintHatButton.onClick.AddListener(MintItemsCall);
+			_approveCharacterButton.onClick.AddListener(ApproveCharacterCall);
+			_loadCharacterButton.onClick.AddListener(OnLoadButtonClickedCall);
+
 			foreach (var item in _itemsDescriptions.Descriptions)
 			{
 				var instantiatedGO = CreateHat(item);
@@ -56,32 +61,29 @@ namespace Demo.Scripts
 			}
 		}
 
-		private async void Init()
-		{
-			_contractHandler.Init();
-			_character.SetActive(false);
-
-			await CheckIfHasCharacterOrMint();
-			await CheckCharactersEquippedHatAndDisplay();
-			await GetItemTokensBalanceAndUpdateInventory();
-
-			var characterID = await _contractHandler.GetCharacterTokenId();
-			var equippedHatID = await _contractHandler.GetHat();
-			UpdateUILogs("characterID: " + characterID + " / HatID: " + equippedHatID);
-
-			var isApprovedForAll = await _contractHandler.CheckIfCharacterIsApprovedForAll();
-			if (!isApprovedForAll)
-			{
-				await _contractHandler.ApproveAllForCharacter(true);
-			}
-		}
-
 		private void OnDestroy()
 		{
+			_mintCharacterButton.onClick.RemoveListener(MintCharacterCall);
+			_mintHatButton.onClick.RemoveListener(MintItemsCall);
+			_approveCharacterButton.onClick.RemoveListener(ApproveCharacterCall);
+			_loadCharacterButton.onClick.RemoveListener(OnLoadButtonClickedCall);
+
 			foreach (var itemData in _items.Values)
 			{
 				itemData.Button.onClick.RemoveAllListeners();
 			}
+		}
+
+		public override void ActivateUseCase()
+		{
+			base.ActivateUseCase();
+			Init();
+		}
+
+		private void Init()
+		{
+			_contractHandler.Init();
+			_character.SetActive(false);
 		}
 
 		private async UniTask CheckIfHasCharacterOrMint()
@@ -179,6 +181,32 @@ namespace Demo.Scripts
 					await _contractHandler.GetItemBalance(_itemsDescriptions.Descriptions[i].Address);
 				_inventory.ShowInventoryItem(i, addressTokenBalance > 0, addressTokenBalance);
 			}
+		}
+
+		private async void MintItemsCall()
+		{
+			await _contractHandler.MintItems();
+		}
+
+		private async void MintCharacterCall()
+		{
+			await _contractHandler.MintCharacter();
+		}
+
+		private async void ApproveCharacterCall()
+		{
+			await _contractHandler.ApproveAllForCharacter(true);
+		}
+
+		private async void OnLoadButtonClickedCall()
+		{
+			await CheckIfHasCharacterOrMint();
+			await CheckCharactersEquippedHatAndDisplay();
+			await GetItemTokensBalanceAndUpdateInventory();
+
+			var characterID = await _contractHandler.GetCharacterTokenId();
+			var equippedHatID = await _contractHandler.GetHat();
+			UpdateUILogs("characterID: " + characterID + " / HatID: " + equippedHatID);
 		}
 
 		private void UpdateUILogs(string log)
