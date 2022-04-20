@@ -91,9 +91,7 @@ namespace AnkrDemo.Scripts
 			var hasCharacter = await LoadCharacter();
 			if (!hasCharacter)
 			{
-				await _contractHandler.MintCharacter();
-				await _contractHandler.MintItems();
-				await LoadCharacter();
+				UpdateUILogs("You do not have a CharacterNFT");
 			}
 		}
 
@@ -121,10 +119,12 @@ namespace AnkrDemo.Scripts
 			if (equippedHat.TryConvertToHatColour(out var hatColour))
 			{
 				UpdateHatVisuals(hatColour);
+				UpdateUILogs("Your character has a "+hatColour+" hat equipped");
 			}
 			else
 			{
 				RemoveHatVisuals();
+				UpdateUILogs("Your character doesnt have a hat equipped");
 			}
 		}
 
@@ -206,7 +206,7 @@ namespace AnkrDemo.Scripts
 
 			var characterID = await _contractHandler.GetCharacterTokenId();
 			var equippedHatID = await _contractHandler.GetHat();
-			UpdateUILogs("characterID: " + characterID + " / HatID: " + equippedHatID);
+			UpdateUILogs("CharacterID: " + characterID + " / Equipped HatID: " + equippedHatID);
 		}
 
 		private void UpdateUILogs(string log)

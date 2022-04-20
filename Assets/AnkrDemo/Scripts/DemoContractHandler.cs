@@ -92,7 +92,7 @@ namespace Demo.Scripts
 			var characterID = await GetCharacterTokenId();
 			var getHatMessage = new GetHatMessage
 			{
-				CharacterId = characterID.ToString()
+				CharacterId = characterID
 			};
 			var hatId = await _gameCharacterContract.GetData<GetHatMessage, BigInteger>(getHatMessage);
 			var hexHatID = AnkrSDKHelper.StringToBigInteger(hatId.ToString());
@@ -195,7 +195,7 @@ namespace Demo.Scripts
 			};
 			var balance =
 				await contract.GetData<BalanceOfMessage, BigInteger>(balanceOfMessage);
-
+			
 			UpdateUILogs($"Number of NFTs Owned: {balance}");
 			return balance;
 		}
