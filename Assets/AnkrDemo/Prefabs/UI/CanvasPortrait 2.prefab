@@ -324,6 +324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _button: {fileID: 114234834837520536}
+  _walletConnect: {fileID: 0}
 --- !u!1 &8898735254270096
 GameObject:
   m_ObjectHideFlags: 0
@@ -840,7 +841,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -762.75}
+  m_AnchoredPosition: {x: 0, y: -788.26465}
   m_SizeDelta: {x: 1200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7820432432731918015
@@ -1770,7 +1771,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'USE CASE 5
+  m_text: 'USE CASE 6
 
 '
   m_isRightToLeft: 0
@@ -3741,9 +3742,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'This is an example for one of the use cases for this sdk : .
-
-'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fa328c1ae3ffb6b4583cf371153b0be6, type: 2}
   m_sharedMaterial: {fileID: 21918420405216288, guid: fa328c1ae3ffb6b4583cf371153b0be6, type: 2}
@@ -7080,7 +7079,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1759325352732356225}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -13040,7 +13039,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'USE CASE 5
+  m_text: 'USE CASE 6
 
 '
   m_isRightToLeft: 0
@@ -13574,7 +13573,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'This is an example for one of the use cases for this sdk : .
+  m_text: 'This is an example for one of the use cases for this sdk : getting ads
+    from Ankr Ad services.
 
 '
   m_isRightToLeft: 0
@@ -13843,10 +13843,10 @@ RectTransform:
   m_Father: {fileID: 5382850687294841019}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -1167.4854}
-  m_SizeDelta: {x: -100, y: -2430.5283}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -1193}
+  m_SizeDelta: {x: 1340, y: 527.4717}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2187965669922526593
 CanvasRenderer:
@@ -24346,7 +24346,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'USE CASE 5
+  m_text: 'USE CASE 7
 
 '
   m_isRightToLeft: 0
@@ -29436,7 +29436,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'USE CASE 5
+  m_text: 'USE CASE 7
 
 '
   m_isRightToLeft: 0
@@ -33395,6 +33395,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: AnkrSDK.UI.CustomSceneManager, AnkrSDK.Examples
+        m_MethodName: LoadScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: DemoScene-ScifiCity
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!95 &1680117593317594978
 Animator:
   serializedVersion: 3
@@ -34186,7 +34198,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -437.26013}
+  m_AnchoredPosition: {x: 0, y: -462.77478}
   m_SizeDelta: {x: -100, y: -2579.9795}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2770573514904907207
@@ -34993,7 +35005,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -1353.75}
+  m_AnchoredPosition: {x: 0, y: -1379.2646}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &9221721019211032164
