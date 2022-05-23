@@ -1,10 +1,10 @@
 using System.Numerics;
-using AnkrSDK.Core.Data.ContractMessages.ERC721;
-using AnkrSDK.Core.Implementation;
 using AnkrSDK.Core.Infrastructure;
-using AnkrSDK.Core.Utils;
-using AnkrSDK.Examples.GameCharacterContract;
-using AnkrSDK.Examples.WearableNFTExample;
+using AnkrSDK.Data.ContractMessages.ERC721;
+using AnkrSDK.GameCharacterContract;
+using AnkrSDK.Provider;
+using AnkrSDK.Utils;
+using AnkrSDK.WearableNFTExample;
 using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
@@ -35,11 +35,16 @@ namespace AnkrSDK.UseCases.LoadNFTs
 
 		private void StartUseCaseExample()
 		{
-			var ankrSDKWrapper = AnkrSDKWrapper.GetSDKInstance(WearableNFTContractInformation.ProviderURL);
+			var ankrSDKWrapper = AnkrSDKFactory.GetAnkrSDKInstance(WearableNFTContractInformation.ProviderURL);
 			_gameCharacterContract = ankrSDKWrapper.GetContract(
 				WearableNFTContractInformation.GameCharacterContractAddress,
 				WearableNFTContractInformation.GameCharacterABI);
-			_activeSessionAccount = EthHandler.DefaultAccount;
+			StartAsync(ankrSDKWrapper).Forget();
+		}
+
+		private async UniTaskVoid StartAsync(IAnkrSDK ankrSDKWrapper)
+		{
+			_activeSessionAccount = await ankrSDKWrapper.Eth.GetDefaultAccount();
 		}
 
 		public override void ActivateUseCase()

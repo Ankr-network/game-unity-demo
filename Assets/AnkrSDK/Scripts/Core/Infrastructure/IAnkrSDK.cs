@@ -1,11 +1,10 @@
-using AnkrSDK.Core.Implementation;
-
 namespace AnkrSDK.Core.Infrastructure
 {
 	public interface IAnkrSDK
 	{
-		EthHandler Eth { get; }
+		IEthHandler Eth { get; }
+		INetworkHelper NetworkHelper { get; }
 		IContract GetContract(string contractAddress, string contractABI);
-		ContractEventSubscriber CreateSubscriber(string wsUrl);
+		IContractEventSubscriber CreateSubscriber(string wsUrl);
 	}
 }

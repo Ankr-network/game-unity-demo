@@ -1,0 +1,8 @@
+{
+  "name": "AnkrSDK.Utils",
+  "references": [
+    "AnkrSDK.Data",
+    "AnkrSDK.Core.Infrastructure",
+    "UniTask"
+  ]
+}

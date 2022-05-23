@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using AnkrSDK.Core.Data;
-using AnkrSDK.Core.Events.Infrastructure;
 using AnkrSDK.Core.Infrastructure;
 using AnkrSDK.Core.Utils;
+using AnkrSDK.Data;
 using Cysharp.Threading.Tasks;
 using Nethereum.ABI.FunctionEncoding.Attributes;
 using Nethereum.Contracts;
@@ -18,14 +17,17 @@ namespace AnkrSDK.Core.Implementation
 	{
 		private readonly string _contractABI;
 		private readonly string _contractAddress;
-		private readonly IWeb3 _web3Provider;
+		private readonly IEthHandler _ethHandler;
+		private readonly IContractFunctions _contractFunctions;
 
-		private readonly EthHandler _ethHandler;
-
-		internal Contract(IWeb3 web3Provider, EthHandler ethHandler, string contractAddress, string contractABI)
+		internal Contract(
+			IEthHandler ethHandler,
+			IContractFunctions contractFunctions,
+			string contractAddress,
+			string contractABI)
 		{
-			_web3Provider = web3Provider;
 			_ethHandler = ethHandler;
+			_contractFunctions = contractFunctions;
 			_contractABI = contractABI;
 			_contractAddress = contractAddress;
 		}
@@ -33,36 +35,30 @@ namespace AnkrSDK.Core.Implementation
 		public Task<TReturnType> GetData<TFieldData, TReturnType>(TFieldData requestData = null)
 			where TFieldData : FunctionMessage, new()
 		{
-			var contract = _web3Provider.Eth.GetContractHandler(_contractAddress);
-			return contract.QueryAsync<TFieldData, TReturnType>(requestData);
+			return _contractFunctions.GetContractData<TFieldData, TReturnType>(_contractAddress, requestData);
 		}
 
 		public Task<List<EventLog<TEvDto>>> GetEvents<TEvDto>(EventFilterData evFilter)
 			where TEvDto : IEventDTO, new()
 		{
-			var eventHandler = _web3Provider.Eth.GetEvent<TEvDto>(_contractAddress);
-
 			var filters = EventFilterHelper.CreateEventFilters<TEvDto>(_contractAddress, evFilter);
-
-			return eventHandler.GetAllChangesAsync(filters);
+			return _contractFunctions.GetEvents<TEvDto>(filters, _contractAddress);
 		}
-		
+
 		public Task<List<EventLog<TEvDto>>> GetEvents<TEvDto>(EventFilterRequest<TEvDto> evFilter)
 			where TEvDto : IEventDTO, new()
 		{
-			var eventHandler = _web3Provider.Eth.GetEvent<TEvDto>(_contractAddress);
-
 			var filters = EventFilterHelper.CreateEventFilters(_contractAddress, evFilter);
-
-			return eventHandler.GetAllChangesAsync(filters);
+			return _contractFunctions.GetEvents<TEvDto>(filters, _contractAddress);
 		}
 
 		public async Task<string> CallMethod(string methodName, object[] arguments = null, string gas = null,
 			string gasPrice = null, string nonce = null)
 		{
-			var transactionInput = CreateTransactionInput(methodName, arguments);
-			var sendTransaction = await AnkrWalletHelper.SendTransaction(
-				EthHandler.DefaultAccount,
+			var defaultAccount = await _ethHandler.GetDefaultAccount();
+			var transactionInput = CreateTransactionInput(methodName, arguments, defaultAccount);
+			var sendTransaction = await _ethHandler.SendTransaction(
+				defaultAccount,
 				_contractAddress,
 				transactionInput.Data,
 				gas: gas,
@@ -70,18 +66,19 @@ namespace AnkrSDK.Core.Implementation
 				nonce: nonce
 			);
 
-			return sendTransaction.Result;
+			return sendTransaction;
 		}
 
 		public async Task Web3SendMethod(string methodName, object[] arguments,
-			ITransactionEventHandler evController = null, string gas = null, string gasPrice = null, string nonce = null)
+			ITransactionEventHandler evController = null, string gas = null, string gasPrice = null,
+			string nonce = null)
 		{
-			var transactionInput = CreateTransactionInput(methodName, arguments);
-
+			var defaultAccount = await _ethHandler.GetDefaultAccount();
+			var transactionInput = CreateTransactionInput(methodName, arguments, defaultAccount);
 			evController?.TransactionSendBegin(transactionInput);
 
-			var sendTransactionTask = AnkrWalletHelper.SendTransaction(
-				EthHandler.DefaultAccount,
+			var sendTransactionTask = _ethHandler.SendTransaction(
+				await _ethHandler.GetDefaultAccount(),
 				_contractAddress,
 				transactionInput.Data,
 				gas: gas,
@@ -97,9 +94,8 @@ namespace AnkrSDK.Core.Implementation
 
 				if (!sendTransactionTask.IsFaulted)
 				{
-					var transactionHash = response.Result;
-					evController?.TransactionHashReceived(transactionHash);
-					await LoadReceipt(transactionHash, evController);
+					evController?.TransactionHashReceived(response);
+					await LoadReceipt(response, evController);
 				}
 				else
 				{
@@ -112,16 +108,16 @@ namespace AnkrSDK.Core.Implementation
 			}
 		}
 
-		public Task<HexBigInteger> EstimateGas(string methodName, object[] arguments = null, string gas = null,
+		public async UniTask<HexBigInteger> EstimateGas(string methodName, object[] arguments = null, string gas = null,
 			string gasPrice = null, string nonce = null)
 		{
-			var transactionInput = CreateTransactionInput(methodName, arguments);
-
+			var defaultAccount = await _ethHandler.GetDefaultAccount();
+			var transactionInput = CreateTransactionInput(methodName, arguments, defaultAccount);
 			transactionInput.Gas = gas != null ? new HexBigInteger(gas) : null;
 			transactionInput.GasPrice = gasPrice != null ? new HexBigInteger(gasPrice) : null;
 			transactionInput.Nonce = nonce != null ? new HexBigInteger(nonce) : null;
 
-			return _web3Provider.TransactionManager.EstimateGasAsync(transactionInput);
+			return await _ethHandler.EstimateGas(transactionInput);
 		}
 
 		private async UniTask LoadReceipt(string transactionHash, ITransactionEventHandler evController)
@@ -141,12 +137,12 @@ namespace AnkrSDK.Core.Implementation
 			}
 		}
 
-		private TransactionInput CreateTransactionInput(string methodName, object[] arguments)
+		private TransactionInput CreateTransactionInput(string methodName, object[] arguments, string defaultAccount)
 		{
-			var activeSessionAccount = EthHandler.DefaultAccount;
-			var contract = _web3Provider.Eth.GetContract(_contractABI, _contractAddress);
-			var callFunction = contract.GetFunction(methodName);
-			return callFunction.CreateTransactionInput(activeSessionAccount, arguments);
+			var contractBuilder = new ContractBuilder(_contractABI, _contractAddress);
+			var callFunction = contractBuilder.GetFunctionBuilder(methodName);
+			
+			return callFunction.CreateTransactionInput(defaultAccount, arguments);
 		}
 	}
 }

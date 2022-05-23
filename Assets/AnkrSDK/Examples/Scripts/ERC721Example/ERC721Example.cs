@@ -1,25 +1,26 @@
 ﻿using System;
 using System.Numerics;
-using AnkrSDK.Core.Data;
-using AnkrSDK.Core.Data.ContractMessages.ERC721;
-using AnkrSDK.Core.Implementation;
 using AnkrSDK.Core.Infrastructure;
-using AnkrSDK.Examples.DTO;
+using AnkrSDK.Data;
+using AnkrSDK.Data.ContractMessages.ERC721;
+using AnkrSDK.DTO;
+using AnkrSDK.Provider;
 using AnkrSDK.UseCases;
+using Cysharp.Threading.Tasks;
 using Nethereum.RPC.Eth.DTOs;
 using UnityEngine;
 
-namespace AnkrSDK.Examples.ERC721Example
+namespace AnkrSDK.ERC721Example
 {
 	public class ERC721Example : UseCase
 	{
 		private const string MintMethodName = "mint";
 		private IContract _erc721Contract;
-		private EthHandler _eth;
+		private IEthHandler _eth;
 
 		private void Start()
 		{
-			var ankrSDKWrapper = AnkrSDKWrapper.GetSDKInstance(ERC721ContractInformation.ProviderURL);
+			var ankrSDKWrapper = AnkrSDKFactory.GetAnkrSDKInstance(ERC721ContractInformation.ProviderURL);
 			_erc721Contract =
 				ankrSDKWrapper.GetContract(
 					ERC721ContractInformation.ContractAddress,
@@ -37,23 +38,23 @@ namespace AnkrSDK.Examples.ERC721Example
 			Debug.Log($"Nonce: {trx.Nonce}");
 		}
 
-		public async void GetBalance()
+		public async UniTaskVoid GetBalance()
 		{
 			var balanceOfMessage = new BalanceOfMessage
 			{
-				Owner = EthHandler.DefaultAccount
+				Owner = await _eth.GetDefaultAccount()
 			};
 			var balance = await _erc721Contract.GetData<BalanceOfMessage, BigInteger>(balanceOfMessage);
 			Debug.Log($"Balance: {balance}");
 		}
 
-		public async void GetEvents()
+		public async UniTaskVoid GetEvents()
 		{
 			var filters = new EventFilterData()
 			{
-				fromBlock = BlockParameter.CreateEarliest(),
-				toBlock = BlockParameter.CreateLatest(),
-				filterTopic2 = new [] { EthHandler.DefaultAccount }
+				FromBlock = BlockParameter.CreateEarliest(),
+				ToBlock = BlockParameter.CreateLatest(),
+				FilterTopic2 = new object[] { await _eth.GetDefaultAccount() }
 			};
 			var events = await _erc721Contract.GetEvents<TransferEventDTO>(filters);
 

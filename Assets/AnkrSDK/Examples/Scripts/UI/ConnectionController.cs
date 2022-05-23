@@ -1,13 +1,9 @@
-using System;
-using AnkrSDK.Core.Utils.UI;
-using AnkrSDK.WalletConnectSharp.Core;
-using AnkrSDK.WalletConnectSharp.Core.Models;
-using AnkrSDK.WalletConnectSharp.Unity;
 using Cysharp.Threading.Tasks;
+using System;
 using TMPro;
-using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine;
 
 namespace AnkrSDK.UI
 {
@@ -17,133 +13,120 @@ namespace AnkrSDK.UI
 		private const string ConnectingText = "Connecting...";
 		private const string DisconnectedText = "Disconnected";
 
-		[SerializeField] private QRCodeImage _qrCodeImage;
 		[SerializeField] private TMP_Text _connectionText;
 		[SerializeField] private Button _loginButton;
 		[SerializeField] private GameObject _sceneChooser;
+	#if !UNITY_WEBGL || UNITY_EDITOR
+		[SerializeField] private AnkrSDK.WalletConnectSharp.Unity.WalletConnect _walletConnect;
+	#endif
+	#if !UNITY_ANDROID && !UNITY_IOS || UNITY_EDITOR
+		[SerializeField] private AnkrSDK.Utils.UI.QRCodeImage _qrCodeImage;
+	#endif
 
 		private void OnEnable()
 		{
+		#if UNITY_WEBGL && !UNITY_EDITOR
+			try
+			{
+				_connectionText.text = ConnectingText;
+				_sceneChooser.SetActive(true);
+				_loginButton.gameObject.SetActive(false);
+			}
+			catch (Exception)
+			{
+				_connectionText.text = LoginText;
+			}
+		#else
 			TrySubscribeToWalletEvents().Forget();
+		#endif
 		}
 
+
+	#if UNITY_WEBGL && !UNITY_EDITOR
+	#elif !UNITY_EDITOR && (UNITY_ANDROID || UNITY_IOS)
+		private UnityAction GetLoginAction()
+		{
+			return _walletConnect.OpenDeepLink;
+		}
+	#else
+		private UnityAction GetLoginAction()
+		{
+			var connectURL = _walletConnect.ConnectURL;
+			if (_qrCodeImage != null)
+			{
+				return () =>
+				{
+					_qrCodeImage.UpdateQRCode(connectURL);
+					_qrCodeImage.SetImageActive(true);
+				};
+			}
+
+			return () => Debug.Log($"Trying to open {connectURL}");
+		}
+	#endif
+
+	#if !UNITY_WEBGL || UNITY_EDITOR
 		private void OnDisable()
 		{
 			UnsubscribeFromTransportEvents();
-			WalletConnect.Instance.ConnectionStarted -= OnConnectionStarted;
+			_walletConnect.ConnectionStarted -= OnConnectionStarted;
 		}
 
-		private void UpdateSceneState(WCSessionData _ = null)
+		private async UniTask TrySubscribeToWalletEvents()
 		{
-			var walletConnectUnitySession = WalletConnect.ActiveSession;
-			if (walletConnectUnitySession == null)
-			{
-				return;
-			}
-
-			var activeSessionConnected = walletConnectUnitySession.Connected;
-			_sceneChooser.SetActive(activeSessionConnected);
-			_loginButton.gameObject.SetActive(!activeSessionConnected);
-
-			if (_qrCodeImage != null)
-			{
-				_qrCodeImage.SetImageActive(false);
-			}
-		}
-
-		private async UniTaskVoid TrySubscribeToWalletEvents()
-		{
-			if (WalletConnect.ActiveSession == null)
-			{
-				Debug.Log("Wallet Connect Instance is null waiting.");
-				await UniTask.WaitWhile(() => WalletConnect.ActiveSession == null);
-			}
+			await UniTask.WaitUntil(() => _walletConnect.Session != null);
 
 			_loginButton.onClick.AddListener(GetLoginAction());
 
 			SubscribeOnTransportEvents();
 		}
 
-	#if !UNITY_EDITOR && (UNITY_ANDROID || UNITY_IOS)
-		private static UnityAction GetLoginAction()
-		{
-			return WalletConnect.Instance.OpenDeepLink;
-		}
-	#else
-		private UnityAction GetLoginAction()
-		{
-			if (_qrCodeImage != null)
-			{
-				return QrLogicAction;
-			}
-
-			return DefaultLoginAction;
-		}
-
-		private void QrLogicAction()
-		{
-			var connectURL = WalletConnect.Instance.ConnectURL;
-			_qrCodeImage.UpdateQRCode(connectURL);
-			_qrCodeImage.SetImageActive(true);
-		}
-
-		private static void DefaultLoginAction()
-		{
-			var connectURL = WalletConnect.Instance.ConnectURL;
-			Debug.Log($"Trying to open {connectURL}");
-		}
-	#endif
-
 		private void SubscribeOnTransportEvents()
 		{
-			UpdateLoginButtonState(this, WalletConnect.ActiveSession);
+			UpdateSceneState();
+			var walletConnectUnitySession = _walletConnect.Session;
+			UpdateLoginButtonState(this, walletConnectUnitySession);
 
-			WalletConnect.Instance.ConnectedEvent.AddListener(UpdateSceneState);
+			_walletConnect.ConnectedEvent.AddListener(UpdateSceneState);
 
-			WalletConnect.ActiveSession.OnTransportConnect += UpdateLoginButtonState;
-			WalletConnect.ActiveSession.OnTransportDisconnect += UpdateLoginButtonState;
-			WalletConnect.ActiveSession.OnTransportOpen += UpdateLoginButtonState;
-
-			WalletConnect.ActiveSession.OnSessionDisconnect += OnSessionDisconnect;
-			Debug.Log("[Connection Controller] Subscribed");
+			walletConnectUnitySession.OnTransportConnect += UpdateLoginButtonState;
+			walletConnectUnitySession.OnTransportDisconnect += UpdateLoginButtonState;
+			walletConnectUnitySession.OnTransportOpen += UpdateLoginButtonState;
+			walletConnectUnitySession.OnSessionDisconnect += OnSessionDisconnect;
 		}
 
 		private void OnSessionDisconnect(object sender, EventArgs e)
 		{
-			Debug.Log("Session Disconnected");
 			UnsubscribeFromTransportEvents();
-			UpdateLoginButtonState(this, WalletConnect.ActiveSession);
-			WalletConnect.Instance.ConnectionStarted += OnConnectionStarted;
+			UpdateLoginButtonState(this, _walletConnect.Session);
+			_walletConnect.ConnectionStarted += OnConnectionStarted;
 		}
 
 		private void OnConnectionStarted()
 		{
-			WalletConnect.Instance.ConnectionStarted -= OnConnectionStarted;
+			_walletConnect.ConnectionStarted -= OnConnectionStarted;
 
-			Debug.Log("Connection Started");
 			TrySubscribeToWalletEvents().Forget();
 		}
 
 		private void UnsubscribeFromTransportEvents()
 		{
 			_loginButton.onClick.RemoveAllListeners();
-			WalletConnect.Instance.ConnectedEvent.RemoveListener(UpdateSceneState);
+			_walletConnect.ConnectedEvent.RemoveListener(UpdateSceneState);
 
-			if (WalletConnect.ActiveSession == null)
+			var walletConnectSession = _walletConnect.Session;
+			if (walletConnectSession == null)
 			{
 				return;
 			}
 
-			WalletConnect.ActiveSession.OnTransportConnect -= UpdateLoginButtonState;
-			WalletConnect.ActiveSession.OnTransportDisconnect -= UpdateLoginButtonState;
-			WalletConnect.ActiveSession.OnTransportOpen -= UpdateLoginButtonState;
-
-			WalletConnect.ActiveSession.OnSessionDisconnect -= OnSessionDisconnect;
-
-			Debug.Log("[Connection Controller] Unsubscribed");
+			walletConnectSession.OnTransportConnect -= UpdateLoginButtonState;
+			walletConnectSession.OnTransportDisconnect -= UpdateLoginButtonState;
+			walletConnectSession.OnTransportOpen -= UpdateLoginButtonState;
+			walletConnectSession.OnSessionDisconnect -= OnSessionDisconnect;
 		}
 
-		private void UpdateLoginButtonState(object sender, WalletConnectProtocol e)
+		private void UpdateLoginButtonState(object sender, AnkrSDK.WalletConnectSharp.Core.WalletConnectProtocol e)
 		{
 			UpdateSceneState();
 			if (!e.Connected && !e.Connecting && e.Disconnected)
@@ -157,5 +140,25 @@ namespace AnkrSDK.UI
 
 			_loginButton.interactable = e.TransportConnected;
 		}
+
+		private void UpdateSceneState(AnkrSDK.WalletConnectSharp.Core.Models.WCSessionData _ = null)
+		{
+			var walletConnectUnitySession = _walletConnect.Session;
+			if (walletConnectUnitySession == null)
+			{
+				return;
+			}
+
+			var activeSessionConnected = walletConnectUnitySession.Connected;
+			_sceneChooser.SetActive(activeSessionConnected);
+			_loginButton.gameObject.SetActive(!activeSessionConnected);
+		#if !UNITY_ANDROID && !UNITY_IOS || UNITY_EDITOR
+			if (_qrCodeImage != null)
+			{
+				_qrCodeImage.SetImageActive(false);
+			}
+		#endif
+		}
+	#endif
 	}
 }

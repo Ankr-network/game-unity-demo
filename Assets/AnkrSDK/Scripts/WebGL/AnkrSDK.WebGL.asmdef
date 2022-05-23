@@ -1,0 +1,21 @@
+{
+    "name": "AnkrSDK.WebGL",
+    "references": [
+        "AnkrSDK.Core.Infrastructure",
+        "AnkrSDK.Data",
+        "AnkrSDK.Utils",
+        "UniTask"
+    ],
+    "includePlatforms": [
+        "Editor",
+        "WebGL"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

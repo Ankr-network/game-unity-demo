@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.IO.Compression;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
@@ -13,7 +12,6 @@ using AnkrSDK.WalletConnectSharp.Core.Models.Ethereum;
 using AnkrSDK.WalletConnectSharp.Core.Models.Ethereum.Types;
 using AnkrSDK.WalletConnectSharp.Core.Network;
 using AnkrSDK.WalletConnectSharp.Core.Utils;
-using Newtonsoft.Json;
 using UnityEngine;
 
 namespace AnkrSDK.WalletConnectSharp.Core
@@ -30,6 +28,8 @@ namespace AnkrSDK.WalletConnectSharp.Core
 		public event EventHandler OnSessionDisconnect;
 		public event EventHandler<WalletConnectSession> OnSend;
 		public event EventHandler<WCSessionData> SessionUpdate;
+		public event EventHandler<string[]> OnAccountChanged;
+		public event EventHandler<int> OnChainChanged;
 
 		public int NetworkId { get; private set; }
 
@@ -116,14 +116,7 @@ namespace AnkrSDK.WalletConnectSharp.Core
 
 			bridgeUrl = DefaultBridge.GetBridgeUrl(bridgeUrl);
 
-			if (bridgeUrl.StartsWith("https"))
-			{
-				bridgeUrl = bridgeUrl.Replace("https", "wss");
-			}
-			else if (bridgeUrl.StartsWith("http"))
-			{
-				bridgeUrl = bridgeUrl.Replace("http", "ws");
-			}
+			bridgeUrl = WSUrlFormatter.GetReadyToUseURL(bridgeUrl);
 
 			DappMetadata = clientMeta;
 			ChainId = chainId;
@@ -532,7 +525,14 @@ namespace AnkrSDK.WalletConnectSharp.Core
 
 			if (data.chainId != null)
 			{
+				var oldChainId = ChainId;
 				ChainId = (int)data.chainId;
+
+				if (oldChainId != ChainId)
+				{
+					OnChainChanged?.Invoke(this, (int)data.chainId);
+					Debug.Log("ChainID Changed, New ChainID: " + (int)data.chainId);
+				}
 			}
 
 			if (data.networkId != null)
@@ -540,7 +540,15 @@ namespace AnkrSDK.WalletConnectSharp.Core
 				NetworkId = (int)data.networkId;
 			}
 
+			var dataAccount = data.accounts?[0];
+			var oldAccount = Accounts?[0];
+
 			Accounts = data.accounts;
+			if (oldAccount != dataAccount)
+			{
+				OnAccountChanged?.Invoke(this, data.accounts);
+				Debug.Log("Account Changed, currently connected account : " + dataAccount);
+			}
 
 			switch (wasConnected)
 			{

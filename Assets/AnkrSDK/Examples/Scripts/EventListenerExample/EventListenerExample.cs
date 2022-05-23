@@ -1,12 +1,10 @@
-﻿using AnkrSDK.Core.Data;
-using AnkrSDK.Core.Implementation;
-using AnkrSDK.Core.Infrastructure;
-using AnkrSDK.Examples.DTO;
+﻿using AnkrSDK.Core.Infrastructure;
+using AnkrSDK.Data;
+using AnkrSDK.DTO;
 using AnkrSDK.Examples.ERC20Example;
+using AnkrSDK.Provider;
 using AnkrSDK.UseCases;
 using Cysharp.Threading.Tasks;
-using Nethereum.Contracts;
-using Nethereum.RPC.Eth.DTOs;
 using UnityEngine;
 
 namespace AnkrSDK.EventListenerExample
@@ -26,14 +24,17 @@ namespace AnkrSDK.EventListenerExample
 	/// 	</summary>
 	public class EventListenerExample : UseCase
 	{
-		private ContractEventSubscriber _eventSubscriber;
+		private IContractEventSubscriber _eventSubscriber;
 		private IContractEventSubscription _subscription;
+		private IEthHandler _eth;
 		
 		public override void ActivateUseCase()
 		{
 			base.ActivateUseCase();
 			
-			var ankrSDK = AnkrSDKWrapper.GetSDKInstance(ERC20ContractInformation.HttpProviderURL);
+
+			var ankrSDK = AnkrSDKFactory.GetAnkrSDKInstance(ERC20ContractInformation.HttpProviderURL);
+			_eth = ankrSDK.Eth;
 
 			_eventSubscriber = ankrSDK.CreateSubscriber(ERC20ContractInformation.WsProviderURL);
 			_eventSubscriber.ListenForEvents().Forget();
@@ -45,7 +46,7 @@ namespace AnkrSDK.EventListenerExample
 		{
 			var filters = new EventFilterData
 			{
-				filterTopic2 = new[] { EthHandler.DefaultAccount }
+				FilterTopic2 = new object[] { await _eth.GetDefaultAccount() }
 			};
 
 			_subscription = await _eventSubscriber.Subscribe(
@@ -59,12 +60,12 @@ namespace AnkrSDK.EventListenerExample
 		public async UniTaskVoid SubscribeWithRequest()
 		{
 			var filtersRequest = new EventFilterRequest<TransferEventDTO>();
-			filtersRequest.AddTopic("To", EthHandler.DefaultAccount);
+			filtersRequest.AddTopic("To", await _eth.GetDefaultAccount());
 
 			_subscription = await _eventSubscriber.Subscribe(
 				filtersRequest,
 				ERC20ContractInformation.ContractAddress, 
-				(TransferEventDTO t) => ReceiveEvent(t)
+				ReceiveEvent
 			);
 		}
 
@@ -75,7 +76,7 @@ namespace AnkrSDK.EventListenerExample
 
 		public void Unsubscribe()
 		{
-			_eventSubscriber.Unsubscribe(_subscription).Forget();
+			_eventSubscriber.Unsubscribe(_subscription.SubscriptionId).Forget();
 		}
 
 		public override void DeActivateUseCase()

@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
-using AnkrSDK.Core.Implementation;
-using AnkrSDK.Core.Utils;
 using AnkrSDK.OpenSea.Data;
 using AnkrSDK.OpenSea.Helpers;
+using AnkrSDK.Utils;
 using Cysharp.Threading.Tasks;
 using Newtonsoft.Json;
 using UnityEngine;
@@ -24,7 +23,7 @@ namespace AnkrSDK.OpenSea
 
 		private static string BaseURL => $"{(_isTestNet ? EndPoint : TestNetEndPoint)}{Version}";
 		private static string GetAssetsURL => $"{BaseURL}{GETAssets}";
-		
+
 		private static readonly TimeSpan DelayTimeSpan = TimeSpan.FromSeconds(1f);
 
 		private static string GetSingleAssetURL(string contractAddress, string tokenId) =>
@@ -56,14 +55,14 @@ namespace AnkrSDK.OpenSea
 			return JsonConvert.DeserializeObject<OpenSeaAsset>(singleAssetJSON);
 		}
 
-		public static UniTask<string> GetUserAssets(int offset = 0, int limit = 25,
+		public static async UniTask<string> GetUserAssetsByAddress(string address, int offset = 0, int limit = 25,
 			NFTOrderByType orderByType = NFTOrderByType.SalePrice)
 		{
-			return GetUserAssets(EthHandler.DefaultAccount, orderByType, offset, limit);
+			return await GetUserAssets(address, orderByType, offset, limit);
 		}
 
 		// Get assets from an owner
-		public static UniTask<string> GetUserAssets(string ownerId, int offset = 0, int limit = 25,
+		public static UniTask<string> GetUserAssetsById(string ownerId, int offset = 0, int limit = 25,
 			NFTOrderByType orderByType = NFTOrderByType.SalePrice)
 		{
 			return GetUserAssets(ownerId, orderByType, offset, limit);
@@ -115,8 +114,11 @@ namespace AnkrSDK.OpenSea
 				}
 
 				await webRequest.SendWebRequest();
-
+			#if UNITY_2020_1_OR_NEWER
 				if (webRequest.result == UnityWebRequest.Result.Success)
+			#else
+				if(!webRequest.isHttpError && !webRequest.isNetworkError)
+			#endif
 				{
 					return webRequest.downloadHandler.text;
 				}

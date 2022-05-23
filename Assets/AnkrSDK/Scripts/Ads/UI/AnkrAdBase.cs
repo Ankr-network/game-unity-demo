@@ -1,5 +1,5 @@
-using AnkrSDK.Ads.Data;
-using AnkrSDK.Core.Utils;
+using AnkrAds.Ads;
+using AnkrAds.Ads.Data;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -23,11 +23,12 @@ namespace AnkrSDK.Ads.UI
 			}
 		}
 
-		public virtual async UniTask SetupAd(AdData adData)
+		public virtual async UniTask SetupAd(byte[] byteData)
 		{
 			IsReady = false;
-			var texture = await DownloadTexture(adData);
-			OnTextureLoaded(texture);
+			var tex = new Texture2D(2, 2);
+			tex.LoadImage(byteData);
+			OnTextureLoaded(tex);
 			IsReady = true;
 		}
 
@@ -42,11 +43,11 @@ namespace AnkrSDK.Ads.UI
 			gameObject.SetActive(true);
 		}
 
-		protected abstract void OnTextureLoaded(Sprite texture);
+		protected abstract void OnTextureLoaded(Texture2D texture);
 
-		private static UniTask<Sprite> DownloadTexture(AdData adData)
+		private static UniTask<Sprite> DownloadTexture(string textureURL)
 		{
-			return AnkrWebHelper.GetImageFromURL(adData.TextureURL);
+			return AdsWebHelper.GetImageFromURL(textureURL).AsUniTask();
 		}
 	}
 }
