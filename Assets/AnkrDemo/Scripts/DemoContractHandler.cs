@@ -1,19 +1,13 @@
-using System;
 using System.Numerics;
-using AnkrSDK.Core.Data.ContractMessages.ERC1155;
-using AnkrSDK.Core.Events;
-using AnkrSDK.Core.Events.Implementation;
-using AnkrSDK.Core.Events.Infrastructure;
-using AnkrSDK.Core.Implementation;
+using AnkrSDK;
 using AnkrSDK.Core.Infrastructure;
-using AnkrSDK.Core.Utils;
-using AnkrSDK.Examples;
-using AnkrSDK.Examples.GameCharacterContract;
-using AnkrSDK.Examples.WearableNFTExample;
-using AnkrSDK.WalletConnectSharp.Unity;
+using AnkrSDK.Data.ContractMessages.ERC1155;
+using AnkrSDK.GameCharacterContract;
+using AnkrSDK.Provider;
+using AnkrSDK.Utils;
+using AnkrSDK.WearableNFTExample;
 using Cysharp.Threading.Tasks;
 using Demo.Scripts.Helpers;
-using Nethereum.RPC.Eth.DTOs;
 using TMPro;
 using UnityEngine;
 
@@ -27,21 +21,28 @@ namespace Demo.Scripts
 
 		private IContract _gameCharacterContract;
 		private IContract _gameItemContract;
+		private string _activeSessionAccount;
 
 		public void Init()
 		{
-			var sdkWrapper = AnkrSDKWrapper.GetSDKInstance(WearableNFTContractInformation.ProviderURL);
+			var sdkWrapper = AnkrSDKFactory.GetAnkrSDKInstance(WearableNFTContractInformation.ProviderURL);
 			_gameCharacterContract = sdkWrapper.GetContract(
 				WearableNFTContractInformation.GameCharacterContractAddress,
 				WearableNFTContractInformation.GameCharacterABI);
 			_gameItemContract = sdkWrapper.GetContract(WearableNFTContractInformation.GameItemContractAddress,
 				WearableNFTContractInformation.GameItemABI);
+			ActivateAsync(sdkWrapper).Forget();
+		}
+		
+		private async UniTaskVoid ActivateAsync(IAnkrSDK ankrSDK)
+		{
+			var result = await ankrSDK.Eth.GetDefaultAccount();
+			_activeSessionAccount = result;
 		}
 
 		public async UniTask MintItems()
 		{
 			const string mintBatchMethodName = "mintBatch";
-			var activeSessionAccount = WalletConnect.ActiveSession.Accounts[0];
 			var itemsToMint = new[]
 			{
 				ItemsContractHelper.BlueHatAddress,
@@ -58,15 +59,14 @@ namespace Demo.Scripts
 			var data = new byte[] { };
 
 			var receipt = await _gameItemContract.CallMethod(mintBatchMethodName,
-				new object[] { activeSessionAccount, itemsToMint, itemsAmounts, data });
+				new object[] { _activeSessionAccount, itemsToMint, itemsAmounts, data });
 
 			UpdateUILogs($"Game Items Minted. Receipts : {receipt}");
 		}
 
 		public async UniTask<bool> CheckIfCharacterIsApprovedForAll()
 		{
-			var activeSessionAccount = EthHandler.DefaultAccount;
-			return await _gameCharacterContract.IsApprovedForAll(activeSessionAccount,
+			return await _gameCharacterContract.IsApprovedForAll(_activeSessionAccount,
 				WearableNFTContractInformation.GameCharacterContractAddress);
 		}
 
@@ -79,10 +79,9 @@ namespace Demo.Scripts
 		public async UniTask MintCharacter()
 		{
 			const string safeMintMethodName = "safeMint";
-			var activeSessionAccount = EthHandler.DefaultAccount;
 
 			var transactionHash = await _gameCharacterContract.CallMethod(safeMintMethodName,
-				new object[] { activeSessionAccount });
+				new object[] { _activeSessionAccount });
 
 			UpdateUILogs($"Game Character Minted. Hash : {transactionHash}");
 		}
@@ -153,13 +152,12 @@ namespace Demo.Scripts
 
 		public async UniTask<BigInteger> GetCharacterTokenId()
 		{
-			var activeSessionAccount = EthHandler.DefaultAccount;
 			var tokenBalance = await GetCharacterBalance();
 
 			if (tokenBalance > 0)
 			{
 				var tokenId =
-					await _gameCharacterContract.TokenOfOwnerByIndex(activeSessionAccount, 0);
+					await _gameCharacterContract.TokenOfOwnerByIndex(_activeSessionAccount, 0);
 
 				UpdateUILogs($"GameCharacter tokenId  : {tokenId}");
 
@@ -172,8 +170,7 @@ namespace Demo.Scripts
 
 		private async UniTask<BigInteger> GetCharacterBalance()
 		{
-			var activeSessionAccount = EthHandler.DefaultAccount;
-			var balance = await _gameCharacterContract.BalanceOf(activeSessionAccount);
+			var balance = await _gameCharacterContract.BalanceOf(_activeSessionAccount);
 
 			UpdateUILogs($"Number of NFTs Owned: {balance}");
 			return balance;
@@ -187,10 +184,9 @@ namespace Demo.Scripts
 
 		private async UniTask<BigInteger> GetBalanceERC1155(IContract contract, string id)
 		{
-			var activeSessionAccount = EthHandler.DefaultAccount;
 			var balanceOfMessage = new BalanceOfMessage
 			{
-				Account = activeSessionAccount,
+				Account = _activeSessionAccount,
 				Id = id
 			};
 			var balance =
