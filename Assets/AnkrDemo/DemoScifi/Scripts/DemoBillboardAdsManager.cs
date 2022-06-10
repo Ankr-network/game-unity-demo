@@ -7,7 +7,7 @@ using AnkrSDK.Provider;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-public class Demo_AdsManager : MonoBehaviour
+public class DemoBillboardAdsManager : MonoBehaviour
 {
     [SerializeField] private List<AnkrBannerAdSprite> _worldSpaceAdsList;
     
