@@ -9724,6 +9724,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _demoAndroidAdsManager: {fileID: 0}
   _animator: {fileID: 1421951153}
+  _insideGfx: {fileID: 7412232021786816442}
 --- !u!95 &1421951153
 Animator:
   serializedVersion: 3
@@ -9940,7 +9941,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8789944729239955480
 Transform:
   m_ObjectHideFlags: 0

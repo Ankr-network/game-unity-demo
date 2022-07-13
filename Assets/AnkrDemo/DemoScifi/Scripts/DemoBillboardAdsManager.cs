@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using AnkrSDK.Ads.UI;
@@ -17,7 +18,12 @@ public class DemoBillboardAdsManager : MonoBehaviour
     {
         InitializeAds();
     }
-    
+
+    private void OnDestroy()
+    {
+        UnsubscribeToCallbackListenerEvents();
+    }
+
     private void InitializeAds()
     {
         const string walletAddress = "This is ankr mobile address";
@@ -46,27 +52,20 @@ public class DemoBillboardAdsManager : MonoBehaviour
     private async void CallbackListenerOnAdInitialized()
     {
         await UniTask.SwitchToMainThread();
-        Debug.Log("CallbackListenerOnAdInitialized");
+        AnkrAds.Ads.AnkrAds.LoadAdTexture(AdsBackendInformation.BannerAdTestUnitId);
         AnkrAds.Ads.AnkrAds.LoadAd(AdsBackendInformation.FullscreenAdTestUnitId);
     }
     
     private async void CallbackListenerOnAdFailedToLoad(string uuid)
     {
         await UniTask.SwitchToMainThread();
-        Debug.Log("CallbackListenerOnAdFailedToLoad");
     }
     
     private async void CallbackListenerOnAdTextureReceived(string unitID, byte[] adTextureData)
     {
         await UniTask.SwitchToMainThread();
-        Debug.Log("CallbackListenerOnAdTextureReceived");
         
         DownloadAds(adTextureData);
-        
-        if(_adCount<_worldSpaceAdsList.Count)
-        {
-            AnkrAds.Ads.AnkrAds.LoadAdTexture(AdsBackendInformation.BannerAdTestUnitId);
-        }
     }
 
     private async void CallbackListenerOnError(string errorMessage)
@@ -79,8 +78,10 @@ public class DemoBillboardAdsManager : MonoBehaviour
     {
         var texture = new Texture2D(2, 2);
         texture.LoadImage(adTextureData);
-        _worldSpaceAdsList[_adCount].SetupAd(texture);
-        _worldSpaceAdsList[_adCount].TryShow();
-        _adCount++;
+        foreach (var ankrBannerAdSprite in _worldSpaceAdsList)
+        {
+            ankrBannerAdSprite.SetupAd(texture);
+            ankrBannerAdSprite.TryShow();
+        }
     }
 }

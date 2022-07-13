@@ -94,7 +94,6 @@ public class DemoAndroidAdsManager : MonoBehaviour
 		private async void CallbackListenerOnAdRewarded(string uuid)
 		{
 			await UniTask.SwitchToMainThread();
-			UpdateUILogs("CallbackListenerOnAdRewarded");
 			_viewButton.interactable = false;
 			isAdLoaded = false;
 			AnkrAds.Ads.AnkrAds.LoadAd(AdsBackendInformation.FullscreenAdTestUnitId);
@@ -104,13 +103,11 @@ public class DemoAndroidAdsManager : MonoBehaviour
 		private async void CallbackListenerOnAdOpened()
 		{
 			await UniTask.SwitchToMainThread();
-			UpdateUILogs("CallbackListenerOnAdOpened");
 		}
 
 		private async void CallbackListenerOnAdFailedToLoad(string uuid)
 		{
 			await UniTask.SwitchToMainThread();
-			UpdateUILogs("CallbackListenerOnAdFailedToLoad");
 		}
 
 		private async void CallbackListenerOnError(string errorMessage)
