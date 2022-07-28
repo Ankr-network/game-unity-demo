@@ -1,8 +1,8 @@
+using AnkrSDK.Ads;
 using UnityEngine;
 
 namespace AnkrSDK.UseCases.Ads
 {
-	[RequireComponent(typeof(AdsCallbackListener))]
 	public class AdsUseCaseController : UseCase
 	{
 		[SerializeField] private AdsCallbackListener _adsCallbackListener;
@@ -38,22 +38,22 @@ namespace AnkrSDK.UseCases.Ads
 			_adsCallbackListener.UnsubscribeToCallbackListenerEvents();
 			_adsCallbackListener.SubscribeToCallbackListenerEvents();
 
-			AnkrAds.Ads.AnkrAds.Initialize(AdsBackendInformation.TestAppId, walletAddress, RuntimePlatform.Android);
+			AnkrAdvertisements.Initialize(AdsBackendInformation.TestAppId, walletAddress);
 		}
 
 		private void OnLoadFullscreenAdButtonClick()
 		{
-			AnkrAds.Ads.AnkrAds.LoadAd(AdsBackendInformation.FullscreenAdTestUnitId);
+			AnkrAdvertisements.LoadAd(AdsBackendInformation.FullscreenAdTestUnitId);
 		}
 
 		private void OnLoadImageButtonClick()
 		{
-			AnkrAds.Ads.AnkrAds.LoadAdTexture(AdsBackendInformation.BannerAdTestUnitId);
+			AnkrAdvertisements.LoadAdTexture(AdsBackendInformation.BannerAdTestUnitId);
 		}
 
 		private void OnViewButtonClick()
 		{
-			AnkrAds.Ads.AnkrAds.ShowAd(AdsBackendInformation.FullscreenAdTestUnitId);
+			AnkrAdvertisements.ShowAd(AdsBackendInformation.FullscreenAdTestUnitId);
 		}
 	}
 }
