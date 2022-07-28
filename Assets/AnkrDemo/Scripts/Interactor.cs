@@ -1,4 +1,4 @@
-using AnkrSDK.Ads.UI;
+using AnkrSDK.Ads;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,14 +11,14 @@ public class Interactor : MonoBehaviour
 
 	private void Start()
 	{
-		AnkrAds.Ads.AnkrAds.OnAdLoaded += CallbackListenerOnAdLoaded;
+		AnkrAdvertisements.AdLoaded += CallbackListenerOnAdLoaded;
 		_interactButton.onClick.AddListener(OnInteractButtonClicked);
 		_interactButton.interactable = false;
 	}
 
 	private void OnDestroy()
 	{
-		AnkrAds.Ads.AnkrAds.OnAdLoaded -= CallbackListenerOnAdLoaded;
+		AnkrAdvertisements.AdLoaded -= CallbackListenerOnAdLoaded;
 		_interactButton.onClick.RemoveAllListeners();
 	}
 

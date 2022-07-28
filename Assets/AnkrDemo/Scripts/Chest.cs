@@ -1,6 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using AnkrSDK.Ads;
 using AnkrSDK.UseCases.Ads;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -19,12 +17,12 @@ public class Chest : MonoBehaviour
     private void Start()
     {
         _insideGfx.SetActive(false);
-        AnkrAds.Ads.AnkrAds.OnAdRewarded += OnAdRewarded;
+        AnkrAdvertisements.AdRewarded += OnAdRewarded;
     }
 
     private void OnDestroy()
     {
-        AnkrAds.Ads.AnkrAds.OnAdRewarded -= OnAdRewarded;
+        AnkrAdvertisements.AdRewarded -= OnAdRewarded;
     }
 
     private async void OnAdRewarded(string uuid)
