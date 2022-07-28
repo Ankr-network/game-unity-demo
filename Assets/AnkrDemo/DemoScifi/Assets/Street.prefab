@@ -10984,6 +10984,10 @@ PrefabInstance:
       value: SM_Sign_Billboard_Large_01 (1)
       objectReference: {fileID: 0}
     - target: {fileID: 1473692558340328, guid: 3180d24cf316a724aba849078ed6e992, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1473692558340328, guid: 3180d24cf316a724aba849078ed6e992, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -13357,6 +13361,10 @@ PrefabInstance:
     - target: {fileID: 1473692558340328, guid: 3180d24cf316a724aba849078ed6e992, type: 3}
       propertyPath: m_Name
       value: SM_Sign_Billboard_Large_01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1473692558340328, guid: 3180d24cf316a724aba849078ed6e992, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1473692558340328, guid: 3180d24cf316a724aba849078ed6e992, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -41018,6 +41026,10 @@ PrefabInstance:
       value: SM_Sign_Billboard_Large_02 (5)
       objectReference: {fileID: 0}
     - target: {fileID: 1556487081134128, guid: 822f275bdc859ca4e9aded058796e259, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1556487081134128, guid: 822f275bdc859ca4e9aded058796e259, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -54031,6 +54043,10 @@ PrefabInstance:
     - target: {fileID: 1556487081134128, guid: 822f275bdc859ca4e9aded058796e259, type: 3}
       propertyPath: m_Name
       value: SM_Sign_Billboard_Large_02 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1556487081134128, guid: 822f275bdc859ca4e9aded058796e259, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1556487081134128, guid: 822f275bdc859ca4e9aded058796e259, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -71563,6 +71579,10 @@ PrefabInstance:
       value: SM_Sign_Billboard_Large_03 (2)
       objectReference: {fileID: 0}
     - target: {fileID: 1830963771395628, guid: ed06cce14d340b54b961bc8bc12ecf96, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1830963771395628, guid: ed06cce14d340b54b961bc8bc12ecf96, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -74456,6 +74476,10 @@ PrefabInstance:
     - target: {fileID: 1830963771395628, guid: ed06cce14d340b54b961bc8bc12ecf96, type: 3}
       propertyPath: m_Name
       value: SM_Sign_Billboard_Large_03 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1830963771395628, guid: ed06cce14d340b54b961bc8bc12ecf96, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1830963771395628, guid: ed06cce14d340b54b961bc8bc12ecf96, type: 3}
       propertyPath: m_StaticEditorFlags
