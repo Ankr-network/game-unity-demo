@@ -618,6 +618,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2244734739417624556, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1216235005}
+    - target: {fileID: 2244734739417624556, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LeftBarSlideIn
+      objectReference: {fileID: 0}
+    - target: {fileID: 2244734739417624556, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Demo.UI.Animations.LeftBarAnimationController, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 2334275351581708986, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -706,6 +718,30 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3121055011912252172, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1216235005}
+    - target: {fileID: 3121055011912252172, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LeftBarSlideIn
+      objectReference: {fileID: 0}
+    - target: {fileID: 3121055011912252172, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Demo.UI.Animations.LeftBarAnimationController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3196291622399318782, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1216235005}
+    - target: {fileID: 3196291622399318782, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LeftBarSlideIn
+      objectReference: {fileID: 0}
+    - target: {fileID: 3196291622399318782, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Demo.UI.Animations.LeftBarAnimationController, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 3255500380739827500, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -722,6 +758,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3412777430139078338, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1216235005}
+    - target: {fileID: 3412777430139078338, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LeftBarSlideIn
+      objectReference: {fileID: 0}
+    - target: {fileID: 3412777430139078338, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Demo.UI.Animations.LeftBarAnimationController, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 3556130238099365548, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -753,6 +801,18 @@ PrefabInstance:
     - target: {fileID: 3664668103832019831, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3856941479021731920, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1216235005}
+    - target: {fileID: 3856941479021731920, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LeftBarSlideIn
+      objectReference: {fileID: 0}
+    - target: {fileID: 3856941479021731920, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Demo.UI.Animations.LeftBarAnimationController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4057918430516310847, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1646,6 +1706,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6421452466663271458, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1216235005}
+    - target: {fileID: 6421452466663271458, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LeftBarSlideIn
+      objectReference: {fileID: 0}
+    - target: {fileID: 6421452466663271458, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Demo.UI.Animations.LeftBarAnimationController, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 6547118363066738219, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1698,6 +1770,18 @@ PrefabInstance:
       propertyPath: m_Alpha
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6994887378820587567, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1216235005}
+    - target: {fileID: 6994887378820587567, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LeftBarSlideIn
+      objectReference: {fileID: 0}
+    - target: {fileID: 6994887378820587567, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Demo.UI.Animations.LeftBarAnimationController, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 7083345969982059047, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1745,6 +1829,18 @@ PrefabInstance:
     - target: {fileID: 7348472757153427711, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7462433594874074077, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1216235005}
+    - target: {fileID: 7462433594874074077, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LeftBarSlideIn
+      objectReference: {fileID: 0}
+    - target: {fileID: 7462433594874074077, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Demo.UI.Animations.LeftBarAnimationController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7500258888373914896, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1988,6 +2084,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
+--- !u!114 &1216235005 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4603276180896998745, guid: 7d2ed8c6c249db6419dc78741072b60d, type: 3}
+  m_PrefabInstance: {fileID: 519345483}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4d0b92a4ea2cb340811d635b239e05a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1703087700
 PrefabInstance:
   m_ObjectHideFlags: 0
