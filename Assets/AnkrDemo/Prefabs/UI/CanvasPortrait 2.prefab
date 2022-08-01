@@ -1350,7 +1350,7 @@ RectTransform:
   - {fileID: 8137087588763014172}
   - {fileID: 5182699505787827931}
   m_Father: {fileID: 4603276180617314805}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4465,7 +4465,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1759325352732356225}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -6043,7 +6043,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2709284633124524952}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -7535,9 +7535,9 @@ RectTransform:
   - {fileID: 8401556012529456136}
   - {fileID: 3003355421194918026}
   - {fileID: 1590555675229766729}
-  - {fileID: 8916193299500219095}
   - {fileID: 5159640727974111689}
   - {fileID: 4511253959721032009}
+  - {fileID: 8916193299500219095}
   m_Father: {fileID: 4603276181760308986}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8836,7 +8836,7 @@ MonoBehaviour:
   - windowName: UseCase7-Ads
     windowObject: {fileID: 1759325352732356225}
     buttonObject: {fileID: 6252374524977150317}
-  currentWindowIndex: 8
+  currentWindowIndex: 0
   editMode: 1
   onWindowChange:
     m_PersistentCalls:
@@ -11755,7 +11755,7 @@ RectTransform:
   - {fileID: 5001421489156533715}
   - {fileID: 4087682174590949705}
   m_Father: {fileID: 4603276180617314805}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -14342,7 +14342,7 @@ RectTransform:
   - {fileID: 901150671574673610}
   - {fileID: 305408785054680290}
   m_Father: {fileID: 4603276180617314805}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -14401,43 +14401,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4603276181756279741}
-        m_TargetAssemblyTypeName: Michsky.UI.ModernUIPack.WindowManager, Assembly-CSharp-firstpass
-        m_MethodName: OpenPanel
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Demo
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 4603276180896998745}
-        m_TargetAssemblyTypeName: LeftBarAnimationController, Assembly-CSharp
-        m_MethodName: LeftBarSlideOut
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 5058050051070019571}
-        m_TargetAssemblyTypeName: Demo.Scripts.DemoScript, Assembly-CSharp
-        m_MethodName: ActivateUseCase
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2709284632669009588}
         m_TargetAssemblyTypeName: AnkrSDK.UI.CustomSceneManager, AnkrSDK.Examples
         m_MethodName: LoadScene
         m_Mode: 5
@@ -15379,11 +15343,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
---- !u!1 &1937372277345744 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1937372264736250, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
-  m_PrefabInstance: {fileID: 62957610}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &114234834837520536 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114234834791426226, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
@@ -15398,6 +15357,11 @@ MonoBehaviour:
 --- !u!224 &224514694457761204 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 224514694453540254, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
+  m_PrefabInstance: {fileID: 62957610}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1937372277345744 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1937372264736250, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
   m_PrefabInstance: {fileID: 62957610}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &64201150
@@ -15597,11 +15561,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
---- !u!224 &224514694458741792 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 224514694453540254, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
-  m_PrefabInstance: {fileID: 64201150}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &114234834836277516 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114234834791426226, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
@@ -15613,6 +15572,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &224514694458741792 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224514694453540254, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
+  m_PrefabInstance: {fileID: 64201150}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &382616359
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15810,11 +15774,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
---- !u!224 &224514694273857209 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 224514694453540254, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
-  m_PrefabInstance: {fileID: 382616359}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &114234834485357461 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114234834791426226, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
@@ -15826,6 +15785,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &224514694273857209 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224514694453540254, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
+  m_PrefabInstance: {fileID: 382616359}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &414468841
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16667,11 +16631,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
---- !u!224 &224514695169545866 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 224514694453540254, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
-  m_PrefabInstance: {fileID: 766354196}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &114234835133418406 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114234834791426226, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
@@ -16683,6 +16642,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &224514695169545866 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224514694453540254, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
+  m_PrefabInstance: {fileID: 766354196}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &834218959
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16880,6 +16844,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
+--- !u!224 &224514694700539473 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224514694453540254, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
+  m_PrefabInstance: {fileID: 834218959}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &114234835065553789 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114234834791426226, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
@@ -16891,11 +16860,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &224514694700539473 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 224514694453540254, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
-  m_PrefabInstance: {fileID: 834218959}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &890204591
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16986,11 +16950,6 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 5058050051824399967, guid: c46a32081406f1644b04c60288c33429, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c46a32081406f1644b04c60288c33429, type: 3}
---- !u!4 &5058050051070019569 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5058050051824399966, guid: c46a32081406f1644b04c60288c33429, type: 3}
-  m_PrefabInstance: {fileID: 890204591}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5058050051070019571 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5058050051824399964, guid: c46a32081406f1644b04c60288c33429, type: 3}
@@ -17002,6 +16961,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38c29963bf3bdca46bdc3049efdf0083, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &5058050051070019569 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5058050051824399966, guid: c46a32081406f1644b04c60288c33429, type: 3}
+  m_PrefabInstance: {fileID: 890204591}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1413985513
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17417,11 +17381,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
---- !u!224 &224514693769877924 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 224514694453540254, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
-  m_PrefabInstance: {fileID: 2025876538}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &114234835995165832 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114234834791426226, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
@@ -17433,6 +17392,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &224514693769877924 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224514694453540254, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
+  m_PrefabInstance: {fileID: 2025876538}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2027509581
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17518,6 +17482,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 806578116287531292}
     m_Modifications:
+    - target: {fileID: 6933383761822006731, guid: 311512b8f8cfb8a4094df0fa6b81476d, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4603276180896998745}
+    - target: {fileID: 6933383761822006731, guid: 311512b8f8cfb8a4094df0fa6b81476d, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Demo.UI.Animations.LeftBarAnimationController, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 6933383761871075308, guid: 311512b8f8cfb8a4094df0fa6b81476d, type: 3}
       propertyPath: m_Name
       value: Header
@@ -17810,11 +17782,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
---- !u!224 &170170869576209240 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 224514694453540254, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
-  m_PrefabInstance: {fileID: 90410014157022918}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &59924035831615092 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114234834791426226, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
@@ -17826,6 +17793,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &170170869576209240 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224514694453540254, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
+  m_PrefabInstance: {fileID: 90410014157022918}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &95668100106106522
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18041,6 +18013,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4812162786234681621}
     m_Modifications:
+    - target: {fileID: 6933383761822006731, guid: 311512b8f8cfb8a4094df0fa6b81476d, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4603276180896998745}
+    - target: {fileID: 6933383761822006731, guid: 311512b8f8cfb8a4094df0fa6b81476d, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Demo.UI.Animations.LeftBarAnimationController, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 6933383761871075308, guid: 311512b8f8cfb8a4094df0fa6b81476d, type: 3}
       propertyPath: m_Name
       value: Header
@@ -18460,6 +18440,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
+--- !u!224 &1420986840006909745 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224514694453540254, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
+  m_PrefabInstance: {fileID: 1199645166485367471}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1238535073476117021 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114234834791426226, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
@@ -18471,11 +18456,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &1420986840006909745 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 224514694453540254, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
-  m_PrefabInstance: {fileID: 1199645166485367471}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1432580816333989771
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18673,11 +18653,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
---- !u!224 &1223904074175500821 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 224514694453540254, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
-  m_PrefabInstance: {fileID: 1432580816333989771}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1329788204455792441 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114234834791426226, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
@@ -18689,6 +18664,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &1223904074175500821 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224514694453540254, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
+  m_PrefabInstance: {fileID: 1432580816333989771}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1463835034063878614
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20102,7 +20082,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114576293925360936, guid: e5593e182ed176545b6eb3875b7f345c, type: 3}
       propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114576293925360936, guid: e5593e182ed176545b6eb3875b7f345c, type: 3}
       propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -20122,11 +20102,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114576293925360936, guid: e5593e182ed176545b6eb3875b7f345c, type: 3}
       propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MirageSDK.Examples.CustomSceneManager, Assembly-CSharp
+      value: AnkrSDK.UI.CustomSceneManager, AnkrSDK.Examples
       objectReference: {fileID: 0}
     - target: {fileID: 114576293925360936, guid: e5593e182ed176545b6eb3875b7f345c, type: 3}
       propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: UIDemo-Demo
+      value: DemoScene-ScifiCity
       objectReference: {fileID: 0}
     - target: {fileID: 114576293925360936, guid: e5593e182ed176545b6eb3875b7f345c, type: 3}
       propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -20876,22 +20856,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5593e182ed176545b6eb3875b7f345c, type: 3}
---- !u!114 &2597550693083160359 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114008992586160350, guid: e5593e182ed176545b6eb3875b7f345c, type: 3}
-  m_PrefabInstance: {fileID: 2709284632893245433}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!224 &2776187994547115127 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 224705272720495502, guid: e5593e182ed176545b6eb3875b7f345c, type: 3}
-  m_PrefabInstance: {fileID: 2709284632893245433}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2597505058257864561 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114104097396441224, guid: e5593e182ed176545b6eb3875b7f345c, type: 3}
@@ -20901,6 +20865,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!224 &2776187994547115127 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224705272720495502, guid: e5593e182ed176545b6eb3875b7f345c, type: 3}
+  m_PrefabInstance: {fileID: 2709284632893245433}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2597550693083160359 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114008992586160350, guid: e5593e182ed176545b6eb3875b7f345c, type: 3}
+  m_PrefabInstance: {fileID: 2709284632893245433}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &2709284632955400505
@@ -21536,6 +21516,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
+--- !u!224 &2889810144990766895 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224514694453540254, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
+  m_PrefabInstance: {fileID: 3100457763889517233}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3067758468657805827 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114234834791426226, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
@@ -21547,11 +21532,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &2889810144990766895 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 224514694453540254, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
-  m_PrefabInstance: {fileID: 3100457763889517233}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3104266522665444681
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22432,6 +22412,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6013584183585931574}
     m_Modifications:
+    - target: {fileID: 6933383761822006731, guid: 311512b8f8cfb8a4094df0fa6b81476d, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4603276180896998745}
+    - target: {fileID: 6933383761822006731, guid: 311512b8f8cfb8a4094df0fa6b81476d, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Demo.UI.Animations.LeftBarAnimationController, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 6933383761871075308, guid: 311512b8f8cfb8a4094df0fa6b81476d, type: 3}
       propertyPath: m_Name
       value: Header
@@ -22632,6 +22620,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6298de5a82438b40999f7768b7475db, type: 3}
+--- !u!224 &3108154642407475762 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1349178583392416231, guid: b6298de5a82438b40999f7768b7475db, type: 3}
+  m_PrefabInstance: {fileID: 4151013633289534421}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6071305443590853601 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7915851270184134708, guid: b6298de5a82438b40999f7768b7475db, type: 3}
@@ -22643,11 +22636,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &3108154642407475762 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1349178583392416231, guid: b6298de5a82438b40999f7768b7475db, type: 3}
-  m_PrefabInstance: {fileID: 4151013633289534421}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4273139502390527649
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27050,6 +27038,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4133659838930433071}
     m_Modifications:
+    - target: {fileID: 6933383761822006731, guid: 311512b8f8cfb8a4094df0fa6b81476d, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4603276180896998745}
+    - target: {fileID: 6933383761822006731, guid: 311512b8f8cfb8a4094df0fa6b81476d, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Demo.UI.Animations.LeftBarAnimationController, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 6933383761871075308, guid: 311512b8f8cfb8a4094df0fa6b81476d, type: 3}
       propertyPath: m_Name
       value: Header
@@ -27250,6 +27246,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6298de5a82438b40999f7768b7475db, type: 3}
+--- !u!224 &6845122013140436296 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1349178583392416231, guid: b6298de5a82438b40999f7768b7475db, type: 3}
+  m_PrefabInstance: {fileID: 5496639985683149999}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2422158400893508763 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7915851270184134708, guid: b6298de5a82438b40999f7768b7475db, type: 3}
@@ -27261,11 +27262,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &6845122013140436296 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1349178583392416231, guid: b6298de5a82438b40999f7768b7475db, type: 3}
-  m_PrefabInstance: {fileID: 5496639985683149999}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5504473518495475509
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27273,6 +27269,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7497973334165615701}
     m_Modifications:
+    - target: {fileID: 6933383761822006731, guid: 311512b8f8cfb8a4094df0fa6b81476d, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4603276180896998745}
+    - target: {fileID: 6933383761822006731, guid: 311512b8f8cfb8a4094df0fa6b81476d, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Demo.UI.Animations.LeftBarAnimationController, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 6933383761871075308, guid: 311512b8f8cfb8a4094df0fa6b81476d, type: 3}
       propertyPath: m_Name
       value: Header
@@ -27505,6 +27509,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8336365444208491394}
     m_Modifications:
+    - target: {fileID: 6933383761822006731, guid: 311512b8f8cfb8a4094df0fa6b81476d, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4603276180896998745}
+    - target: {fileID: 6933383761822006731, guid: 311512b8f8cfb8a4094df0fa6b81476d, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Demo.UI.Animations.LeftBarAnimationController, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 6933383761871075308, guid: 311512b8f8cfb8a4094df0fa6b81476d, type: 3}
       propertyPath: m_Name
       value: Header
@@ -28353,6 +28365,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4098447711049422746}
     m_Modifications:
+    - target: {fileID: 6933383761822006731, guid: 311512b8f8cfb8a4094df0fa6b81476d, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4603276180896998745}
+    - target: {fileID: 6933383761822006731, guid: 311512b8f8cfb8a4094df0fa6b81476d, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Demo.UI.Animations.LeftBarAnimationController, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 6933383761871075308, guid: 311512b8f8cfb8a4094df0fa6b81476d, type: 3}
       propertyPath: m_Name
       value: Header
@@ -30426,11 +30446,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
---- !u!224 &8513745512070893611 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 224514694453540254, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
-  m_PrefabInstance: {fileID: 8447420858360522165}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8407819705309072647 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114234834791426226, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
@@ -30442,6 +30457,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &8513745512070893611 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224514694453540254, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
+  m_PrefabInstance: {fileID: 8447420858360522165}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8507883275288601827
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30961,6 +30981,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
+--- !u!224 &9096470899843148213 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224514694453540254, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
+  m_PrefabInstance: {fileID: 9016359261534821419}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8986190887606416537 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114234834791426226, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
@@ -30972,11 +30997,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &9096470899843148213 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 224514694453540254, guid: 7cf95bd52071f424e85a8101dff97b68, type: 3}
-  m_PrefabInstance: {fileID: 9016359261534821419}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9159958329767481895
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30984,6 +31004,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2709284633124524955}
     m_Modifications:
+    - target: {fileID: 6933383761822006731, guid: 311512b8f8cfb8a4094df0fa6b81476d, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4603276180896998745}
+    - target: {fileID: 6933383761822006731, guid: 311512b8f8cfb8a4094df0fa6b81476d, type: 3}
+      propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Demo.UI.Animations.LeftBarAnimationController, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 6933383761871075308, guid: 311512b8f8cfb8a4094df0fa6b81476d, type: 3}
       propertyPath: m_Name
       value: Header
