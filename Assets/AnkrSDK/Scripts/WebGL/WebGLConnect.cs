@@ -20,6 +20,7 @@ namespace AnkrSDK.WebGl
 		
 		private async void Awake()
 		{
+			DontDestroyOnLoad(this);
 #if UNITY_WEBGL
 			if (_connectOnAwake)
 			{
