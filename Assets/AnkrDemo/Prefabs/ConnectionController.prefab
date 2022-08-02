@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6038322870753030378}
   - component: {fileID: 6038322870753030379}
+  - component: {fileID: 4113965205721387208}
   m_Layer: 0
   m_Name: ConnectionController
   m_TagString: Untagged
@@ -46,3 +47,19 @@ MonoBehaviour:
   _connectionText: {fileID: 0}
   _loginButton: {fileID: 0}
   _sceneChooser: {fileID: 0}
+  _walletConnect: {fileID: 0}
+  _qrCodeImage: {fileID: 0}
+--- !u!114 &4113965205721387208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6038322870753030388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4553a9243824f7ab0700be169ebcf42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _webGlConnect: {fileID: 0}
+  _webGlLoginManager: {fileID: 0}

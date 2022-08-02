@@ -31,6 +31,7 @@ namespace AnkrSDK.WebGl
 
 		private async void Start()
 		{
+			DontDestroyOnLoad(this);
 #if UNITY_WEBGL
 			if (_connectOnStart)
 			{
