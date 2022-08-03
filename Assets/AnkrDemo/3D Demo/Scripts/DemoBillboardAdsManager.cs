@@ -1,10 +1,6 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
+using AnkrSDK.Ads;
 using AnkrSDK.Ads.UI;
-using AnkrSDK.Core.Infrastructure;
-using AnkrSDK.Examples.ERC20Example;
-using AnkrSDK.Provider;
 using AnkrSDK.UseCases.Ads;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -30,30 +26,30 @@ public class DemoBillboardAdsManager : MonoBehaviour
         UnsubscribeToCallbackListenerEvents();
         SubscribeToCallbackListenerEvents();
 
-        AnkrAds.Ads.AnkrAds.Initialize(AdsBackendInformation.TestAppId, walletAddress, RuntimePlatform.Android);
+        AnkrAdvertisements.Initialize(AdsBackendInformation.TestAppId, walletAddress);
     }
     
     private void SubscribeToCallbackListenerEvents()
     {
-        AnkrAds.Ads.AnkrAds.OnAdInitialized += CallbackListenerOnAdInitialized;
-        AnkrAds.Ads.AnkrAds.OnAdFailedToLoad += CallbackListenerOnAdFailedToLoad;
-        AnkrAds.Ads.AnkrAds.OnAdTextureReceived += CallbackListenerOnAdTextureReceived;
-        AnkrAds.Ads.AnkrAds.OnError += CallbackListenerOnError;
+        AnkrAdvertisements.AdInitialized += CallbackListenerOnAdInitialized;
+        AnkrAdvertisements.AdFailedToLoad += CallbackListenerOnAdFailedToLoad;
+        AnkrAdvertisements.AdTextureReceived += CallbackListenerOnAdTextureReceived;
+        AnkrAdvertisements.Error += CallbackListenerOnError;
     }
 
     private void UnsubscribeToCallbackListenerEvents()
     {
-        AnkrAds.Ads.AnkrAds.OnAdInitialized -= CallbackListenerOnAdInitialized;
-        AnkrAds.Ads.AnkrAds.OnAdFailedToLoad -= CallbackListenerOnAdFailedToLoad;
-        AnkrAds.Ads.AnkrAds.OnAdTextureReceived -= CallbackListenerOnAdTextureReceived;
-        AnkrAds.Ads.AnkrAds.OnError -= CallbackListenerOnError;
+        AnkrAdvertisements.AdInitialized -= CallbackListenerOnAdInitialized;
+        AnkrAdvertisements.AdFailedToLoad -= CallbackListenerOnAdFailedToLoad;
+        AnkrAdvertisements.AdTextureReceived -= CallbackListenerOnAdTextureReceived;
+        AnkrAdvertisements.Error -= CallbackListenerOnError;
     }
     
     private async void CallbackListenerOnAdInitialized()
     {
         await UniTask.SwitchToMainThread();
-        AnkrAds.Ads.AnkrAds.LoadAdTexture(AdsBackendInformation.BannerAdTestUnitId);
-        AnkrAds.Ads.AnkrAds.LoadAd(AdsBackendInformation.FullscreenAdTestUnitId);
+        AnkrAdvertisements.LoadAdTexture(AdsBackendInformation.BannerAdTestUnitId);
+        AnkrAdvertisements.LoadAd(AdsBackendInformation.FullscreenAdTestUnitId);
     }
     
     private async void CallbackListenerOnAdFailedToLoad(string uuid)

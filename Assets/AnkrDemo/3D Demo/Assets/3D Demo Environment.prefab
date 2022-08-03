@@ -605,7 +605,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7254052234077411905}
   m_Layer: 0
-  m_Name: Street
+  m_Name: 3D Demo Environment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

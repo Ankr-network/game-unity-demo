@@ -72,8 +72,15 @@ namespace AnkrSDK.UseCases.Ads
 
 		public void ActivateBillboardAds(bool isActive)
 		{
-			_ankrBannerAdImage.gameObject.SetActive(isActive);
-			_ankrBannerAdSprite.gameObject.SetActive(isActive);
+			if (_ankrBannerAdImage != null)
+			{
+				_ankrBannerAdImage.gameObject.SetActive(isActive);
+			}
+
+			if (_ankrBannerAdSprite != null)
+			{
+				_ankrBannerAdSprite.gameObject.SetActive(isActive);
+			}
 		}
 
 		private async void CallbackListenerOnAdInitialized()

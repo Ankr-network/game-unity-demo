@@ -17,11 +17,15 @@ namespace AnkrSDK.UseCases.AddSwitchNetwork
 		private Button _bscTestButton;
 		
 		private IAnkrSDK _ankrSDKWrapper;
+		
+		public override void ActivateUseCase()
+		{
+			base.ActivateUseCase();
+			_ankrSDKWrapper = AnkrSDKFactory.GetAnkrSDKInstance(ERC20ContractInformation.HttpProviderURL);
+		}
 
 		private void Awake()
 		{
-			_ankrSDKWrapper = AnkrSDKFactory.GetAnkrSDKInstance(ERC20ContractInformation.HttpProviderURL);
-			
 			_bscButton.onClick.AddListener(OpenAddSwitchBsc);
 			_bscTestButton.onClick.AddListener(OpenAddSwitchBscTestnet);
 		}

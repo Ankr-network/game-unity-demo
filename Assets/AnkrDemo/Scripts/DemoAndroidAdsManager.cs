@@ -1,3 +1,4 @@
+using AnkrSDK.Ads;
 using UnityEngine;
 using AnkrSDK.UseCases.Ads;
 using Cysharp.Threading.Tasks;
@@ -30,15 +31,15 @@ public class DemoAndroidAdsManager : MonoBehaviour
 
 		private void SubscribeToCallbackListenerEvents()
 		{
-			AnkrAds.Ads.AnkrAds.OnAdInitialized += CallbackListenerOnAdInitialized;
-			AnkrAds.Ads.AnkrAds.OnAdClicked += CallbackListenerOnAdClicked;
-			AnkrAds.Ads.AnkrAds.OnAdClosed += CallbackListenerOnAdClosed;
-			AnkrAds.Ads.AnkrAds.OnAdFinished += CallbackListenerOnAdFinished;
-			AnkrAds.Ads.AnkrAds.OnAdLoaded += CallbackListenerOnAdLoaded;
-			AnkrAds.Ads.AnkrAds.OnAdOpened += CallbackListenerOnAdOpened;
-			AnkrAds.Ads.AnkrAds.OnAdRewarded += CallbackListenerOnAdRewarded;
-			AnkrAds.Ads.AnkrAds.OnAdFailedToLoad += CallbackListenerOnAdFailedToLoad;
-			AnkrAds.Ads.AnkrAds.OnError += CallbackListenerOnError;
+			AnkrAdvertisements.AdInitialized += CallbackListenerOnAdInitialized;
+			AnkrAdvertisements.AdClicked += CallbackListenerOnAdClicked;
+			AnkrAdvertisements.AdClosed += CallbackListenerOnAdClosed;
+			AnkrAdvertisements.AdFinished += CallbackListenerOnAdFinished;
+			AnkrAdvertisements.AdLoaded += CallbackListenerOnAdLoaded;
+			AnkrAdvertisements.AdOpened += CallbackListenerOnAdOpened;
+			AnkrAdvertisements.AdRewarded += CallbackListenerOnAdRewarded;
+			AnkrAdvertisements.AdFailedToLoad += CallbackListenerOnAdFailedToLoad;
+			AnkrAdvertisements.Error += CallbackListenerOnError;
 		}
 
 		private void UpdateUILogs(string log)
@@ -77,7 +78,7 @@ public class DemoAndroidAdsManager : MonoBehaviour
 			UpdateUILogs("CallbackListenerOnAdClosed");
 			_viewButton.interactable = false;
 			isAdLoaded = false;
-			AnkrAds.Ads.AnkrAds.LoadAd(AdsBackendInformation.FullscreenAdTestUnitId);
+			AnkrAdvertisements.LoadAd(AdsBackendInformation.FullscreenAdTestUnitId);
 			
 		}
 
@@ -87,7 +88,7 @@ public class DemoAndroidAdsManager : MonoBehaviour
 			UpdateUILogs("CallbackListenerOnAdFinished");
 			_viewButton.interactable = false;
 			isAdLoaded = false;
-			AnkrAds.Ads.AnkrAds.LoadAd(AdsBackendInformation.FullscreenAdTestUnitId);
+			AnkrAdvertisements.LoadAd(AdsBackendInformation.FullscreenAdTestUnitId);
 			
 		}
 
@@ -96,7 +97,7 @@ public class DemoAndroidAdsManager : MonoBehaviour
 			await UniTask.SwitchToMainThread();
 			_viewButton.interactable = false;
 			isAdLoaded = false;
-			AnkrAds.Ads.AnkrAds.LoadAd(AdsBackendInformation.FullscreenAdTestUnitId);
+			AnkrAdvertisements.LoadAd(AdsBackendInformation.FullscreenAdTestUnitId);
 			
 		}
 
@@ -118,15 +119,15 @@ public class DemoAndroidAdsManager : MonoBehaviour
 
 		private void UnsubscribeToCallbackListenerEvents()
 		{
-			AnkrAds.Ads.AnkrAds.OnAdInitialized -= CallbackListenerOnAdInitialized;
-			AnkrAds.Ads.AnkrAds.OnAdClicked -= CallbackListenerOnAdClicked;
-			AnkrAds.Ads.AnkrAds.OnAdClosed -= CallbackListenerOnAdClosed;
-			AnkrAds.Ads.AnkrAds.OnAdFinished -= CallbackListenerOnAdFinished;
-			AnkrAds.Ads.AnkrAds.OnAdLoaded -= CallbackListenerOnAdLoaded;
-			AnkrAds.Ads.AnkrAds.OnAdOpened -= CallbackListenerOnAdOpened;
-			AnkrAds.Ads.AnkrAds.OnAdRewarded -= CallbackListenerOnAdRewarded;
-			AnkrAds.Ads.AnkrAds.OnAdFailedToLoad -= CallbackListenerOnAdFailedToLoad;
-			AnkrAds.Ads.AnkrAds.OnError -= CallbackListenerOnError;
+			AnkrAdvertisements.AdInitialized -= CallbackListenerOnAdInitialized;
+			AnkrAdvertisements.AdClicked -= CallbackListenerOnAdClicked;
+			AnkrAdvertisements.AdClosed -= CallbackListenerOnAdClosed;
+			AnkrAdvertisements.AdFinished -= CallbackListenerOnAdFinished;
+			AnkrAdvertisements.AdLoaded -= CallbackListenerOnAdLoaded;
+			AnkrAdvertisements.AdOpened -= CallbackListenerOnAdOpened;
+			AnkrAdvertisements.AdRewarded -= CallbackListenerOnAdRewarded;
+			AnkrAdvertisements.AdFailedToLoad -= CallbackListenerOnAdFailedToLoad;
+			AnkrAdvertisements.Error -= CallbackListenerOnError;
 		}
 
 		private void OnViewButtonClick()
@@ -139,7 +140,7 @@ public class DemoAndroidAdsManager : MonoBehaviour
 		{
 			if (isAdLoaded)
 			{
-				AnkrAds.Ads.AnkrAds.ShowAd(AdsBackendInformation.FullscreenAdTestUnitId);
+				AnkrAdvertisements.ShowAd(AdsBackendInformation.FullscreenAdTestUnitId);
 			}
 			else
 			{
