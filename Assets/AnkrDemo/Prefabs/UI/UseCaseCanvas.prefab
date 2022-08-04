@@ -1135,8 +1135,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4f406c9aa4fd234b84d7df8e1969f7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bscButton: {fileID: 8546157249404570880}
-  _bscTestButton: {fileID: 7880371623044341484}
+  _avaxButton: {fileID: 8546157249404570880}
+  _avaxTestButton: {fileID: 7880371623044341484}
 --- !u!1 &1531595755352086323
 GameObject:
   m_ObjectHideFlags: 0
