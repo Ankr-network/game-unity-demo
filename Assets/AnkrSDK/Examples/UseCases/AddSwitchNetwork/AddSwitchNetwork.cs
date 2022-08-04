@@ -11,10 +11,10 @@ namespace AnkrSDK.UseCases.AddSwitchNetwork
 	public class AddSwitchNetwork : UseCase
 	{
 		[SerializeField]
-		private Button _bscButton;
+		private Button _avaxButton;
 
 		[SerializeField]
-		private Button _bscTestButton;
+		private Button _avaxTestButton;
 		
 		private IAnkrSDK _ankrSDKWrapper;
 		
@@ -26,25 +26,25 @@ namespace AnkrSDK.UseCases.AddSwitchNetwork
 
 		private void Awake()
 		{
-			_bscButton.onClick.AddListener(OpenAddSwitchBsc);
-			_bscTestButton.onClick.AddListener(OpenAddSwitchBscTestnet);
+			_avaxButton.onClick.AddListener(OpenAddSwitchAvalanche);
+			_avaxTestButton.onClick.AddListener(OpenAddSwitchAvalancheTestnet);
 		}
 
 		private void OnDestroy()
 		{
-			_bscButton.onClick.RemoveListener(OpenAddSwitchBsc);
-			_bscTestButton.onClick.RemoveListener(OpenAddSwitchBscTestnet);
+			_avaxButton.onClick.RemoveListener(OpenAddSwitchAvalanche);
+			_avaxTestButton.onClick.RemoveListener(OpenAddSwitchAvalancheTestnet);
 		}
 
-		private void OpenAddSwitchBsc()
+		private void OpenAddSwitchAvalanche()
 		{
-			var network = EthereumNetworks.GetNetworkByName(NetworkName.BinanceSmartChain);
+			var network = EthereumNetworks.GetNetworkByName(NetworkName.Avalanche);
 			_ankrSDKWrapper.NetworkHelper.AddAndSwitchNetwork(network);
 		}
 
-		private void OpenAddSwitchBscTestnet()
+		private void OpenAddSwitchAvalancheTestnet()
 		{
-			var network = EthereumNetworks.GetNetworkByName(NetworkName.Goerli);
+			var network = EthereumNetworks.GetNetworkByName(NetworkName.Avalanche_TestNet);
 			_ankrSDKWrapper.NetworkHelper.AddAndSwitchNetwork(network);
 		}
 	}

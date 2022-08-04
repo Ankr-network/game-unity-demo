@@ -10,6 +10,8 @@ namespace AnkrSDK.Data
 		BinanceSmartChain,
 		BinanceSmartChain_TestNet,
 		Polygon,
-		Polygon_Mumbai
+		Polygon_Mumbai,
+		Avalanche,
+		Avalanche_TestNet
 	}
 }

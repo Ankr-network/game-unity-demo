@@ -17,7 +17,9 @@ namespace AnkrSDK.Utils
 			{ NetworkName.Goerli, CreateMetamaskExistedNetwork(5, nameof(NetworkName.Goerli)) },
 			{ NetworkName.Kovan, CreateMetamaskExistedNetwork(42, nameof(NetworkName.Kovan)) },
 			{ NetworkName.BinanceSmartChain, CreateBinanceSmartChain() },
-			{ NetworkName.BinanceSmartChain_TestNet, CreateBinanceSmartChainTestNet() }
+			{ NetworkName.BinanceSmartChain_TestNet, CreateBinanceSmartChainTestNet() },
+			{ NetworkName.Avalanche, CreateAvalancheNetwork()},
+			{ NetworkName.Avalanche_TestNet, CreateAvalancheTestnetNetwork() }
 		};
 		
 		public static EthereumNetwork GetNetworkByName(NetworkName networkName)
@@ -73,6 +75,42 @@ namespace AnkrSDK.Utils
 				},
 				RpcUrls = new[] {"https://data-seed-prebsc-1-s1.binance.org:8545/"},
 				BlockExplorerUrls = new[] {"https://testnet.bscscan.com"},
+				IconUrls = new[] {"future"}
+			};
+		}
+		
+		private static EthereumNetwork CreateAvalancheTestnetNetwork()
+		{
+			return new EthereumNetwork
+			{
+				ChainId = new HexBigInteger(43113),
+				ChainName = "Avalanche Testnet",
+				NativeCurrency = new NativeCurrency
+				{
+					Name = "AVAX",
+					Symbol = "AVAX",
+					Decimals = 18
+				},
+				RpcUrls = new[] {"https://api.avax-test.network/ext/bc/C/rpc"},
+				BlockExplorerUrls = new[] {"https://testnet.snowtrace.io"},
+				IconUrls = new[] {"future"}
+			};
+		}
+		
+		private static EthereumNetwork CreateAvalancheNetwork()
+		{
+			return new EthereumNetwork
+			{
+				ChainId = new HexBigInteger(43114),
+				ChainName = "Avalanche",
+				NativeCurrency = new NativeCurrency
+				{
+					Name = "AVAX",
+					Symbol = "AVAX",
+					Decimals = 18
+				},
+				RpcUrls = new[] {"https://api.avax.network/ext/bc/C/rpc"},
+				BlockExplorerUrls = new[] {"https://snowtrace.io/"},
 				IconUrls = new[] {"future"}
 			};
 		}
