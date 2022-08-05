@@ -220,19 +220,19 @@ namespace AnkrDemo.Scripts
 			UpdateUILogs("CharacterID: " + characterID + " / Equipped HatID: " + equippedHatID);
 		}
 		
-		private async UniTask MintItemsCall()
+		private UniTask MintItemsCall()
 		{
-			await _contractHandler.MintItems();
+			return _contractHandler.MintItems();
 		}
 
-		private async UniTask MintCharacterCall()
+		private UniTask MintCharacterCall()
 		{
-			await _contractHandler.MintCharacter();
+			return _contractHandler.MintCharacter();
 		}
 
-		private async UniTask ApproveCharacterCall()
+		private UniTask ApproveCharacterCall()
 		{
-			await _contractHandler.ApproveAllForCharacter(true);
+			return _contractHandler.ApproveAllForCharacter(true);
 		}
 
 		private void UpdateUILogs(string log)
