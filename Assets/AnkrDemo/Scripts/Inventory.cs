@@ -3,6 +3,7 @@ using System.Numerics;
 using Demo.Scripts.Data;
 using UnityEngine;
 using UnityEngine.UI;
+using Vector3 = UnityEngine.Vector3;
 
 namespace Demo.Scripts
 {
@@ -10,25 +11,46 @@ namespace Demo.Scripts
 	{
 		[SerializeField] private GameObject _inventoryButtonRoot;
 		[SerializeField] private GameObject _buttonPrefab;
+		[SerializeField] private GameObject _uiGameObject;
+		[SerializeField] private Button _showUIButton;
+		[SerializeField] private Button _closeUIButton;
 
 		private readonly List<ItemButton> _itemList = new List<ItemButton>();
 
 		private void Start()
 		{
-			HideInventoryItems();
+			HideInventoryUI();
+			_showUIButton.onClick.AddListener(OnShowUIButtonClicked);
+			_closeUIButton.onClick.AddListener(OnCloseUIButtonClicked);
 		}
 
-		private void HideInventoryItems()
+		private void OnDestroy()
 		{
-			foreach (var item in _itemList)
-			{
-				item.gameObject.SetActive(false);
-			}
+			_showUIButton.onClick.RemoveListener(OnShowUIButtonClicked);
+			_closeUIButton.onClick.RemoveListener(OnCloseUIButtonClicked);
+		}
+
+		private void OnShowUIButtonClicked()
+		{
+			_uiGameObject.SetActive(true);
+			_showUIButton.interactable = false;
+		}
+		
+		private void OnCloseUIButtonClicked()
+		{
+			_uiGameObject.SetActive(false);
+			_showUIButton.interactable = true;
+		}
+
+		private void HideInventoryUI()
+		{
+			_uiGameObject.SetActive(false);
 		}
 
 		public Button AddItem(ItemDescription item)
 		{
 			var itemButtonGO = Instantiate(_buttonPrefab, _inventoryButtonRoot.transform, true);
+			itemButtonGO.transform.localScale = Vector3.one;
 			var itemButtonScript = itemButtonGO.GetComponent<ItemButton>();
 			itemButtonScript.SetItemImageSprite(item.Icon);
 

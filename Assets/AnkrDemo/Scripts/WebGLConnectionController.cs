@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace AnkrSDK.Examples.UseCases.WebGlLogin
 {
+#if UNITY_WEBGL
 	public class WebGLConnectionController : MonoBehaviour
 	{
 		[SerializeField]
@@ -47,4 +48,5 @@ namespace AnkrSDK.Examples.UseCases.WebGlLogin
 			_webGlLoginManager.WalletChosen -= OnWalletChosen;
 		}
 	}
+#endif
 }

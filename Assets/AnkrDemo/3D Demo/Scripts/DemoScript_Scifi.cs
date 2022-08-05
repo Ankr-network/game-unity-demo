@@ -89,7 +89,7 @@ namespace AnkrDemo.Scripts
 		private void Init()
 		{
 			_contractHandler.Init();
-			//_character.SetActive(false);
+			LoadCharacterAndInventoryData();
 		}
 
 		private async UniTask CheckIfHasCharacterOrMint()
@@ -204,7 +204,12 @@ namespace AnkrDemo.Scripts
 			await _contractHandler.ApproveAllForCharacter(true);
 		}
 
-		private async void OnLoadButtonClickedCall()
+		private void OnLoadButtonClickedCall()
+		{
+			LoadCharacterAndInventoryData();
+		}
+		
+		private async void LoadCharacterAndInventoryData()
 		{
 			await CheckIfHasCharacterOrMint();
 			await CheckCharactersEquippedHatAndDisplay();
