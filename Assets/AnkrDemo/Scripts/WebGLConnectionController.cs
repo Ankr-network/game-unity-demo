@@ -3,9 +3,10 @@ using UnityEngine;
 
 namespace AnkrSDK.Examples.UseCases.WebGlLogin
 {
-#if UNITY_WEBGL
+
 	public class WebGLConnectionController : MonoBehaviour
 	{
+#if UNITY_WEBGL
 		[SerializeField]
 		private WebGl.WebGLConnect _webGlConnect;
 
@@ -47,6 +48,7 @@ namespace AnkrSDK.Examples.UseCases.WebGlLogin
 			_webGlLoginManager.NetworkChosen -= OnNetworkChosen;
 			_webGlLoginManager.WalletChosen -= OnWalletChosen;
 		}
-	}
 #endif
+	}
+
 }

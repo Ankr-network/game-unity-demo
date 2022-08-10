@@ -47,6 +47,7 @@ MonoBehaviour:
   _connectionText: {fileID: 0}
   _loginButton: {fileID: 0}
   _sceneChooser: {fileID: 0}
+  _chooseWalletScreen: {fileID: 0}
   _walletConnect: {fileID: 0}
   _qrCodeImage: {fileID: 0}
 --- !u!114 &4113965205721387208
@@ -61,5 +62,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4553a9243824f7ab0700be169ebcf42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _webGlConnect: {fileID: 0}
-  _webGlLoginManager: {fileID: 0}
