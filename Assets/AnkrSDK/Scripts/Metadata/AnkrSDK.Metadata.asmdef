@@ -1,17 +1,9 @@
 {
-    "name": "WalletConnectSharp",
+    "name": "AnkrSDK.Metadata",
     "rootNamespace": "",
-    "references": [
-        "AnkrSDK.Metadata",
-        "UniTask",
-        "WalletConnectSharp.Core",
-        "Unity.TextMeshPro",
-        "endel.nativewebsocket"
-    ],
+    "references": [],
     "includePlatforms": [],
-    "excludePlatforms": [
-        "WebGL"
-    ],
+    "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
     "precompiledReferences": [],

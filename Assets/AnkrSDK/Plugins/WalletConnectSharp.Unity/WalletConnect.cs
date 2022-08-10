@@ -2,15 +2,18 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using AnkrSDK.Metadata;
 using AnkrSDK.WalletConnectSharp.Core;
 using AnkrSDK.WalletConnectSharp.Core.Models;
 using AnkrSDK.WalletConnectSharp.Core.Network;
 using AnkrSDK.WalletConnectSharp.Unity.Models.DeepLink;
+using AnkrSDK.WalletConnectSharp.Unity.Models.DeepLink.Helpers;
 using AnkrSDK.WalletConnectSharp.Unity.Network;
 using AnkrSDK.WalletConnectSharp.Unity.Utils;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
+using Logger = AnkrSDK.InternalUtils.Logger;
 
 namespace AnkrSDK.WalletConnectSharp.Unity
 {
@@ -142,6 +145,7 @@ namespace AnkrSDK.WalletConnectSharp.Unity
 		{
 			TeardownEvents();
 			var savedSession = SessionSaveHandler.GetSavedSession();
+			Logger.AddLog(PackageInfo.Version);
 
 			if (string.IsNullOrWhiteSpace(_customBridgeUrl))
 			{
@@ -396,16 +400,21 @@ namespace AnkrSDK.WalletConnectSharp.Unity
 
 		private async UniTask SetupDefaultWallet()
 		{
+			if (_defaultWallet == Wallets.None)
+			{
+				return;
+			}
+
 			var supportedWallets = await WalletDownloadHelper.FetchWalletList(false);
 
 			var wallet =
 				supportedWallets.Values.FirstOrDefault(a =>
-					string.Equals(a.name, _defaultWallet.ToString(), StringComparison.InvariantCultureIgnoreCase));
+					string.Equals(a.name, _defaultWallet.GetWalletName(), StringComparison.InvariantCultureIgnoreCase));
 
 			if (wallet != null)
 			{
-				await wallet.DownloadImages();
 				SelectedWallet = wallet;
+				await wallet.DownloadImages();
 			}
 		}
 

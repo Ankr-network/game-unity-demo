@@ -20,6 +20,10 @@ namespace AnkrSDK.UseCases.Ads
 		private void OnEnable()
 		{
 			ActivateNextButton(0);
+			
+			var isPhone = IsMobilePlatform();
+			_loadFullscreenAdButton.gameObject.SetActive(isPhone);
+			_viewButton.gameObject.SetActive(isPhone);
 		}
 
 		public void SubscribeToCallbackListenerEvents()
@@ -81,6 +85,12 @@ namespace AnkrSDK.UseCases.Ads
 			{
 				_ankrBannerAdSprite.gameObject.SetActive(isActive);
 			}
+		}
+
+		private bool IsMobilePlatform()
+		{
+			return Application.platform == RuntimePlatform.Android ||
+			       Application.platform == RuntimePlatform.IPhonePlayer;
 		}
 
 		private async void CallbackListenerOnAdInitialized()

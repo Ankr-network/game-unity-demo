@@ -22,6 +22,7 @@ namespace AnkrSDK.WebGl
 		{
 			DontDestroyOnLoad(this);
 #if UNITY_WEBGL
+			DontDestroyOnLoad(this);
 			if (_connectOnAwake)
 			{
 				await Connect(); 
@@ -33,6 +34,7 @@ namespace AnkrSDK.WebGl
 		{
 			DontDestroyOnLoad(this);
 #if UNITY_WEBGL
+			DontDestroyOnLoad(this);
 			if (_connectOnStart)
 			{
 				await Connect(); 
