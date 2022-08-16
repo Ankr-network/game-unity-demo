@@ -1,3 +1,4 @@
+using System;
 using System.Numerics;
 using AnkrSDK;
 using AnkrSDK.Core.Infrastructure;
@@ -6,10 +7,12 @@ using AnkrSDK.GameCharacterContract;
 using AnkrSDK.Provider;
 using AnkrSDK.Utils;
 using AnkrSDK.WearableNFTExample;
+using Common.Logging.Configuration;
 using Cysharp.Threading.Tasks;
 using Demo.Scripts.Helpers;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Demo.Scripts
 {
@@ -17,11 +20,13 @@ namespace Demo.Scripts
 	{
 		private const string TransactionGasLimit = "1000000";
 
-		[SerializeField] private TMP_Text _text;
+		[FormerlySerializedAs("_text")] [SerializeField] private TMP_Text text;
 
 		private IContract _gameCharacterContract;
 		private IContract _gameItemContract;
 		private string _activeSessionAccount;
+
+		public Action onContractInitializedCallback;
 
 		public void Init()
 		{
@@ -38,6 +43,7 @@ namespace Demo.Scripts
 		{
 			var result = await ankrSDK.Eth.GetDefaultAccount();
 			_activeSessionAccount = result;
+			onContractInitializedCallback?.Invoke();
 		}
 
 		public async UniTask MintItems()
@@ -138,7 +144,7 @@ namespace Demo.Scripts
 		
 		public async UniTask<bool> GetHasHatToken(string tokenAddress)
 		{
-			var tokenBalance = await GetBalanceERC1155(_gameItemContract, tokenAddress);
+			var tokenBalance = await GetBalanceErc1155(_gameItemContract, tokenAddress);
 
 			if (tokenBalance > 0)
 			{
@@ -178,11 +184,11 @@ namespace Demo.Scripts
 
 		public async UniTask<BigInteger> GetItemBalance(string id)
 		{
-			var balance = await GetBalanceERC1155(_gameItemContract, id);
+			var balance = await GetBalanceErc1155(_gameItemContract, id);
 			return balance;
 		}
 
-		private async UniTask<BigInteger> GetBalanceERC1155(IContract contract, string id)
+		private async UniTask<BigInteger> GetBalanceErc1155(IContract contract, string id)
 		{
 			var balanceOfMessage = new BalanceOfMessage
 			{
@@ -198,7 +204,7 @@ namespace Demo.Scripts
 
 		private void UpdateUILogs(string log)
 		{
-			_text.text += "\n" + log;
+			text.text += "\n" + log;
 			Debug.Log(log);
 		}
 	}

@@ -48,6 +48,8 @@ namespace AnkrDemo.Scripts
 			_approveCharacterButton.onClick.AddListener(OnApproveCharacterButtonClickedCall);
 			_loadCharacterButton.onClick.AddListener(OnLoadButtonClickedCall);
 
+			_contractHandler.onContractInitializedCallback += OnContractInitialized;
+
 			foreach (var item in _itemsDescriptions.Descriptions)
 			{
 				var instantiatedGO = CreateHat(item);
@@ -89,6 +91,10 @@ namespace AnkrDemo.Scripts
 		private void Init()
 		{
 			_contractHandler.Init();
+		}
+
+		private void OnContractInitialized()
+		{
 			LoadCharacterAndInventoryData().Forget();
 		}
 
@@ -174,7 +180,6 @@ namespace AnkrDemo.Scripts
 			}
 
 			_characterID.text = tokenID.ToString();
-			//_character.SetActive(true);
 
 			return true;
 		}
@@ -217,6 +222,7 @@ namespace AnkrDemo.Scripts
 
 			var characterID = await _contractHandler.GetCharacterTokenId();
 			var equippedHatID = await _contractHandler.GetHat();
+			
 			UpdateUILogs("CharacterID: " + characterID + " / Equipped HatID: " + equippedHatID);
 		}
 		
