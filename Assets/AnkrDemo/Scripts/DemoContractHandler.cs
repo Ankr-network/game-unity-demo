@@ -20,7 +20,7 @@ namespace Demo.Scripts
 	{
 		private const string TransactionGasLimit = "1000000";
 
-		[FormerlySerializedAs("_text")] [SerializeField] private TMP_Text text;
+		[SerializeField] private TMP_Text _text;
 
 		private IContract _gameCharacterContract;
 		private IContract _gameItemContract;
@@ -204,7 +204,7 @@ namespace Demo.Scripts
 
 		private void UpdateUILogs(string log)
 		{
-			text.text += "\n" + log;
+			_text.text += "\n" + log;
 			Debug.Log(log);
 		}
 	}

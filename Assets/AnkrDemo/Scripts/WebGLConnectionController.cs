@@ -50,5 +50,4 @@ namespace AnkrSDK.Examples.UseCases.WebGlLogin
 		}
 #endif
 	}
-
 }
