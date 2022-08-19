@@ -13,6 +13,7 @@ namespace AnkrSDK.Examples.UseCases.WebGlLogin
 		[SerializeField]
 		private GameObject _panel;
 		
+		
 		[SerializeField]
 		private WalletButton[] _buttons;
 

@@ -20,7 +20,6 @@ namespace AnkrSDK.WebGl
 		
 		private async void Awake()
 		{
-			DontDestroyOnLoad(this);
 #if UNITY_WEBGL
 			if (_connectOnAwake)
 			{
@@ -31,7 +30,6 @@ namespace AnkrSDK.WebGl
 
 		private async void Start()
 		{
-			DontDestroyOnLoad(this);
 #if UNITY_WEBGL
 			if (_connectOnStart)
 			{
@@ -42,7 +40,6 @@ namespace AnkrSDK.WebGl
 
 		private async UniTask Connect()
 		{
-			Session = new WebGL.WebGLWrapper();
 			var wallet = _defaultWallet;
 			if (wallet == WebGL.SupportedWallets.None)
 			{

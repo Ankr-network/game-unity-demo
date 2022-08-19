@@ -1,3 +1,4 @@
+using AnkrDemo.Scripts;
 using AnkrSDK.Data;
 using UnityEngine;
 
@@ -10,6 +11,9 @@ namespace AnkrSDK.Examples.UseCases.WebGlLogin
 
 		[SerializeField]
 		private WebGLLoginPanelController _webGlLoginManager;
+		
+		[SerializeField]
+		private WebGLHeaderWalletsPanel _webGlLoginViewer;
 
 		private void Awake()
 		{
