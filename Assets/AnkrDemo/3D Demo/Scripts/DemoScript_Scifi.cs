@@ -43,10 +43,12 @@ namespace AnkrDemo.Scripts
 
 		private void Awake()
 		{
-			_mintCharacterButton.onClick.AddListener(MintCharacterCall);
-			_mintHatButton.onClick.AddListener(MintItemsCall);
-			_approveCharacterButton.onClick.AddListener(ApproveCharacterCall);
+			_mintCharacterButton.onClick.AddListener(OnMintCharacterButtonClickedCall);
+			_mintHatButton.onClick.AddListener(OnMintItemsButtonClickedCall);
+			_approveCharacterButton.onClick.AddListener(OnApproveCharacterButtonClickedCall);
 			_loadCharacterButton.onClick.AddListener(OnLoadButtonClickedCall);
+
+			_contractHandler.onContractInitializedCallback += OnContractInitialized;
 
 			foreach (var item in _itemsDescriptions.Descriptions)
 			{
@@ -64,9 +66,9 @@ namespace AnkrDemo.Scripts
 
 		private void OnDestroy()
 		{
-			_mintCharacterButton.onClick.RemoveListener(MintCharacterCall);
-			_mintHatButton.onClick.RemoveListener(MintItemsCall);
-			_approveCharacterButton.onClick.RemoveListener(ApproveCharacterCall);
+			_mintCharacterButton.onClick.RemoveListener(OnMintCharacterButtonClickedCall);
+			_mintHatButton.onClick.RemoveListener(OnMintItemsButtonClickedCall);
+			_approveCharacterButton.onClick.RemoveListener(OnApproveCharacterButtonClickedCall);
 			_loadCharacterButton.onClick.RemoveListener(OnLoadButtonClickedCall);
 
 			foreach (var itemData in _items.Values)
@@ -89,7 +91,11 @@ namespace AnkrDemo.Scripts
 		private void Init()
 		{
 			_contractHandler.Init();
-			//_character.SetActive(false);
+		}
+
+		private void OnContractInitialized()
+		{
+			LoadCharacterAndInventoryData().Forget();
 		}
 
 		private async UniTask CheckIfHasCharacterOrMint()
@@ -174,7 +180,6 @@ namespace AnkrDemo.Scripts
 			}
 
 			_characterID.text = tokenID.ToString();
-			//_character.SetActive(true);
 
 			return true;
 		}
@@ -189,22 +194,27 @@ namespace AnkrDemo.Scripts
 			}
 		}
 
-		private async void MintItemsCall()
+		private void OnLoadButtonClickedCall()
 		{
-			await _contractHandler.MintItems();
+			LoadCharacterAndInventoryData().Forget();
 		}
-
-		private async void MintCharacterCall()
+		
+		private void OnMintItemsButtonClickedCall()
 		{
-			await _contractHandler.MintCharacter();
+			MintItemsCall().Forget();
 		}
-
-		private async void ApproveCharacterCall()
+		
+		private void OnMintCharacterButtonClickedCall()
 		{
-			await _contractHandler.ApproveAllForCharacter(true);
+			MintCharacterCall().Forget();
 		}
-
-		private async void OnLoadButtonClickedCall()
+		
+		private void OnApproveCharacterButtonClickedCall()
+		{
+			ApproveCharacterCall().Forget();
+		}
+		
+		private async UniTask LoadCharacterAndInventoryData()
 		{
 			await CheckIfHasCharacterOrMint();
 			await CheckCharactersEquippedHatAndDisplay();
@@ -212,7 +222,23 @@ namespace AnkrDemo.Scripts
 
 			var characterID = await _contractHandler.GetCharacterTokenId();
 			var equippedHatID = await _contractHandler.GetHat();
+			
 			UpdateUILogs("CharacterID: " + characterID + " / Equipped HatID: " + equippedHatID);
+		}
+		
+		private UniTask MintItemsCall()
+		{
+			return _contractHandler.MintItems();
+		}
+
+		private UniTask MintCharacterCall()
+		{
+			return _contractHandler.MintCharacter();
+		}
+
+		private UniTask ApproveCharacterCall()
+		{
+			return _contractHandler.ApproveAllForCharacter(true);
 		}
 
 		private void UpdateUILogs(string log)

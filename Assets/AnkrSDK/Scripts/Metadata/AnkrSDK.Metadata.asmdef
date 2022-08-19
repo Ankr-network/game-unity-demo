@@ -1,13 +1,8 @@
 {
-    "name": "TestUtils",
+    "name": "AnkrSDK.Metadata",
     "rootNamespace": "",
-    "references": [
-        "WalletConnectSharp",
-        "WalletConnectSharp.Core"
-    ],
-    "includePlatforms": [
-        "Editor"
-    ],
+    "references": [],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
