@@ -1,5 +1,6 @@
 using AnkrDemo.Scripts;
 using AnkrSDK.Data;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace AnkrSDK.Examples.UseCases.WebGlLogin
@@ -21,6 +22,13 @@ namespace AnkrSDK.Examples.UseCases.WebGlLogin
 			_webGlConnect.OnConnect += ChangeLoginPanel;
 			_webGlLoginManager.NetworkChosen += OnNetworkChosen;
 			_webGlLoginManager.WalletChosen += OnWalletChosen;
+			_webGlLoginViewer.ConnectTo += OnConnect;
+		}
+
+		private async void Start()
+		{
+			var status = await _webGlConnect.GetWalletsStatus();
+			_webGlLoginViewer.SetWalletsStatus(status);
 		}
 
 		private void ActivatePanel()
@@ -41,6 +49,11 @@ namespace AnkrSDK.Examples.UseCases.WebGlLogin
 		private void OnWalletChosen(WebGL.SupportedWallets wallet)
 		{
 			_webGlConnect.SetWallet(wallet);
+		}
+
+		private void OnConnect(WebGL.SupportedWallets wallet)
+		{
+			_webGlConnect.ConnectTo(wallet).Forget();
 		}
 
 		private void OnDisable()
