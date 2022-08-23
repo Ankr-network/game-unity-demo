@@ -1,5 +1,22 @@
 {
   "dependencies": {
+    "com.ankr.ankrsdk": {
+      "version": "https://github.com/Ankr-network/game-unity-sdk.git?path=Assets/AnkrSDK",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.cysharp.unitask": "2.3.1",
+        "com.unity.nuget.newtonsoft-json": "3.0.2"
+      },
+      "hash": "b9f6d3c8f8f8b9d0233f60250d565b46da11b422"
+    },
+    "com.cysharp.unitask": {
+      "version": "2.3.1",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://package.openupm.com"
+    },
     "com.unity.cinemachine": {
       "version": "2.6.11",
       "depth": 0,
@@ -38,8 +55,8 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.nuget.newtonsoft-json": {
-      "version": "2.0.2",
-      "depth": 0,
+      "version": "3.0.2",
+      "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
