@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using AnkrSDK.Examples.UseCases.WebGlLogin;
 using AnkrSDK.WebGL;
 using Demo.Scripts;
 using UnityEngine;
@@ -8,45 +9,45 @@ namespace AnkrDemo.Scripts
 {
 	public class WebGLHeaderWalletsPanel : MonoBehaviour
 	{
-		[SerializeField] private HeaderWalletButton[] _buttons;
-
+		[SerializeField]
+		private GameObject _panel;
+		[SerializeField]
+		private GameObject _buttonPrefab;
+		[SerializeField]
+		private WalletItem[] _wallets;
+		private List<HeaderWalletButton> _buttons;
 		public Action<SupportedWallets> ConnectTo;
 
 		public void SetWalletsStatus(Dictionary<string, bool> status)
 		{
-			foreach (KeyValuePair<string, bool> valuePair in status)
+			foreach (var wallet in _wallets)
 			{
-				foreach (var button in _buttons)
+				var button = Instantiate(_buttonPrefab);
+				button.transform.parent = _panel.transform;
+				var buttonScript = button.GetComponent<HeaderWalletButton>();
+				buttonScript.WalletItem = wallet;
+				buttonScript.OnClickHandler += OnWalletClick;
+				_buttons.Add(buttonScript);
+					
+				var walletType = SupportedWallets.None;
+				if (status[wallet.Type.ToString()])
 				{
-					var walletType = SupportedWallets.None;
-					if (SupportedWallets.TryParse(valuePair.Key, out walletType) &&
-					    button.WalletItem.Type == walletType && valuePair.Value)
-					{
-						button.SetLogined();
-					}
+					buttonScript.SetLogined();
 				}
-			}
-		}
-
-		private void SetUpButtons()
-		{
-			foreach (var button in _buttons)
-			{
-				button.OnClickHandler += OnWalletClick;
-			}
-		}
-
-		private void DisableButtons()
-		{
-			foreach (var button in _buttons)
-			{
-				button.OnClickHandler -= OnWalletClick;
 			}
 		}
 
 		private void OnWalletClick(SupportedWallets wallet)
 		{
 			ConnectTo?.Invoke(wallet);
+		}
+
+		private void OnDisable()
+		{
+			foreach (var button in _buttons)
+			{
+				button.OnClickHandler -= OnWalletClick;
+			}
 		}
 	}
 }

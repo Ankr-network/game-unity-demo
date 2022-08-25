@@ -1,11 +1,14 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using AnkrDemo.Scripts;
 using AnkrSDK.Data;
+using AnkrSDK.WebGL;
 using Cysharp.Threading.Tasks;
+using Newtonsoft.Json;
 using UnityEngine;
 
 namespace AnkrSDK.Examples.UseCases.WebGlLogin
 {
-
 	public class WebGLConnectionController : MonoBehaviour
 	{
 #if UNITY_WEBGL
@@ -18,8 +21,13 @@ namespace AnkrSDK.Examples.UseCases.WebGlLogin
 		[SerializeField]
 		private WebGLHeaderWalletsPanel _webGlLoginViewer;
 
+		private Dictionary<string, bool> _walletsStatus;
+		private TaskCompletionSource<Dictionary<string, bool>> _completionSource;
+
 		private void Awake()
 		{
+			_completionSource = new TaskCompletionSource<Dictionary<string, bool>>();
+			
 			_webGlConnect.OnNeedPanel += ActivatePanel;
 			_webGlConnect.OnConnect += ChangeLoginPanel;
 			_webGlLoginManager.NetworkChosen += OnNetworkChosen;
@@ -29,13 +37,32 @@ namespace AnkrSDK.Examples.UseCases.WebGlLogin
 
 		private async void Start()
 		{
-			var status = await _webGlConnect.GetWalletsStatus();
-			_webGlLoginViewer.SetWalletsStatus(status);
+			var _walletsStatus = await _webGlConnect.GetWalletsStatus();
+			_completionSource.TrySetResult(_walletsStatus);
+			_webGlLoginViewer.SetWalletsStatus(_walletsStatus);
 		}
 
 		private void ActivatePanel()
 		{
-			_webGlLoginManager.ShowPanel();
+			Debug.Log("-- ActivatePanel --");
+			var task = _completionSource.Task;
+			task.ContinueWith(answer =>
+			{
+				var status = answer.Result;
+				Debug.Log(JsonConvert.SerializeObject(status));
+				var loginedWallet = GetLoginedWallet(status);
+				Debug.Log($"loginedWallet = {loginedWallet}");
+				if (loginedWallet != SupportedWallets.None)
+				{
+					Debug.Log("SetWallet");
+					_webGlConnect.SetWallet(loginedWallet);
+				}
+				else
+				{
+					Debug.Log("ShowPanel");
+					_webGlLoginManager.ShowPanel();
+				}
+			});
 		}
 
 		private void ChangeLoginPanel(WebGL.WebGLWrapper provider)
@@ -48,14 +75,44 @@ namespace AnkrSDK.Examples.UseCases.WebGlLogin
 			_webGlConnect.SetNetwork(network);
 		}
 		
-		private void OnWalletChosen(WebGL.SupportedWallets wallet)
+		private void OnWalletChosen(SupportedWallets wallet)
 		{
 			_webGlConnect.SetWallet(wallet);
 		}
 
-		private void OnConnect(WebGL.SupportedWallets wallet)
+		private void OnConnect(SupportedWallets wallet)
 		{
-			_webGlConnect.ConnectTo(wallet).Forget();
+//			_webGlConnect.Session.ConnectTo(wallet).Forget();
+		}
+		
+		private SupportedWallets GetLoginedWallet(Dictionary<string, bool> status)
+		{
+			var defaultWallet = SupportedWallets.None;
+			var preferableWallet = SupportedWallets.Metamask;
+			
+			foreach (KeyValuePair<string, bool> valuePair in status)
+			{
+				var walletType = SupportedWallets.None;
+				if (SupportedWallets.TryParse(valuePair.Key, out walletType))
+				{
+					if (walletType == preferableWallet && valuePair.Value)
+					{
+						defaultWallet = preferableWallet;
+						break;
+					}
+					if (valuePair.Value)
+					{
+						defaultWallet = walletType;
+					}
+				}
+			}
+
+			return defaultWallet;
+		}
+		
+		public UniTask<Dictionary<string, bool>> GetWalletsStatus()
+		{
+			return _webGlConnect.Session.GetWalletsStatus();
 		}
 
 		private void OnDisable()
@@ -64,6 +121,7 @@ namespace AnkrSDK.Examples.UseCases.WebGlLogin
 			_webGlConnect.OnConnect -= ChangeLoginPanel;
 			_webGlLoginManager.NetworkChosen -= OnNetworkChosen;
 			_webGlLoginManager.WalletChosen -= OnWalletChosen;
+			_webGlLoginViewer.ConnectTo -= OnConnect;
 		}
 #endif
 	}
