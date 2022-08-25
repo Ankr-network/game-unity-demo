@@ -1095,7 +1095,7 @@ GameObject:
   - component: {fileID: 5885216827943657505}
   - component: {fileID: 135756642000475821}
   - component: {fileID: 4416926081852918493}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PlayerArmature
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1187,7 +1187,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a3194b8bbc96ef84fab1f98f4b7dae3e, type: 3}
   FootstepAudioVolume: 0.3
   JumpHeight: 1.2
-  Gravity: -15
+  Gravity: -9.81
   JumpTimeout: 0.3
   FallTimeout: 0.15
   Grounded: 1
@@ -1195,7 +1195,7 @@ MonoBehaviour:
   GroundedRadius: 0.28
   GroundLayers:
     serializedVersion: 2
-    m_Bits: 513
+    m_Bits: 1
   CinemachineCameraTarget: {fileID: 8338988566280778634}
   TopClamp: 70
   BottomClamp: -30

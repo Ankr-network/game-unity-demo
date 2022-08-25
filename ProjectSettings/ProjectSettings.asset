@@ -176,7 +176,7 @@ PlayerSettings:
   StripUnusedMeshComponents: 1
   VertexChannelCompressionMask: 4054
   iPhoneSdkVersion: 988
-  iOSTargetOSVersionString: 11.0
+  iOSTargetOSVersionString: 13.0
   tvOSSdkVersion: 0
   tvOSRequireExtendedGameController: 0
   tvOSTargetOSVersionString: 11.0
@@ -682,13 +682,14 @@ PlayerSettings:
   webGLTemplate: PROJECT:ankr-web3-template-2020
   webGLAnalyzeBuildSize: 0
   webGLUseEmbeddedResources: 0
-  webGLCompressionFormat: 1
+  webGLCompressionFormat: 2
   webGLWasmArithmeticExceptions: 0
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
   scriptingDefineSymbols:
     1: STARTER_ASSETS_PACKAGES_CHECKED
+    4: STARTER_ASSETS_PACKAGES_CHECKED
     7: ODIN_INSPECTOR;ODIN_INSPECTOR_3;STARTER_ASSETS_PACKAGES_CHECKED
     13: STARTER_ASSETS_PACKAGES_CHECKED
   additionalCompilerArguments: {}
