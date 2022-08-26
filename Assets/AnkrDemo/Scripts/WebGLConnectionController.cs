@@ -44,22 +44,18 @@ namespace AnkrSDK.Examples.UseCases.WebGlLogin
 
 		private void ActivatePanel()
 		{
-			Debug.Log("-- ActivatePanel --");
 			var task = _completionSource.Task;
 			task.ContinueWith(answer =>
 			{
 				var status = answer.Result;
 				Debug.Log(JsonConvert.SerializeObject(status));
 				var loginedWallet = GetLoginedWallet(status);
-				Debug.Log($"loginedWallet = {loginedWallet}");
 				if (loginedWallet != SupportedWallets.None)
 				{
-					Debug.Log("SetWallet");
 					_webGlConnect.SetWallet(loginedWallet);
 				}
 				else
 				{
-					Debug.Log("ShowPanel");
 					_webGlLoginManager.ShowPanel();
 				}
 			});

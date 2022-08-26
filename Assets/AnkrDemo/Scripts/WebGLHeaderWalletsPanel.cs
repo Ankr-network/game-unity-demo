@@ -18,6 +18,11 @@ namespace AnkrDemo.Scripts
 		private List<HeaderWalletButton> _buttons;
 		public Action<SupportedWallets> ConnectTo;
 
+		private void Start()
+		{
+			_buttons = new List<HeaderWalletButton>();
+		}
+
 		public void SetWalletsStatus(Dictionary<string, bool> status)
 		{
 			foreach (var wallet in _wallets)
@@ -28,8 +33,7 @@ namespace AnkrDemo.Scripts
 				buttonScript.WalletItem = wallet;
 				buttonScript.OnClickHandler += OnWalletClick;
 				_buttons.Add(buttonScript);
-					
-				var walletType = SupportedWallets.None;
+				
 				if (status[wallet.Type.ToString()])
 				{
 					buttonScript.SetLogined();

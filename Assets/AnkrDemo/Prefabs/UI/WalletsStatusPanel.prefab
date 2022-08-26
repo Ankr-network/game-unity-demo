@@ -84,7 +84,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b480f3c41c2425a89e229d9cba2ebdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _panel: {fileID: 8103691156395337310}
+  _panel: {fileID: 0}
   _buttonPrefab: {fileID: 8531447113334786567, guid: fbddcae1270f940df8782633d408d88d, type: 3}
   _wallets:
   - {fileID: 11400000, guid: 4c4dbe84fbf474224998c9ceab373799, type: 2}
