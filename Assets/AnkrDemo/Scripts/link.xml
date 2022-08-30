@@ -1,0 +1,14 @@
+<linker>
+    <assembly fullname="AnkrSDK.Data" preserve="all">
+        <type fullname="AnkrSDK.Data.WalletsStatus" preserve="all"/>
+    </assembly>
+    <assembly fullname="AnkrSDK.Utils" preserve="all">
+        <type fullname="AnkrSDK.Utils.EthereumNetworks" preserve="all"/>
+    </assembly>
+    <assembly fullname="Nethereum.Hex" preserve="all">
+        <type fullname="Nethereum.Hex.HexTypes.HexRPCTypeJsonConverter" preserve="all"/>
+    </assembly>
+    <assembly fullname="System.Threading.Tasks" preserve="all">
+        <type fullname="System.Threading.Tasks.Task" preserve="all"/>
+    </assembly>
+</linker>

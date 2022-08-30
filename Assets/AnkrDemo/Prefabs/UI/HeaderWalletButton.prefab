@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8051601057557828746
 RectTransform:
   m_ObjectHideFlags: 0
@@ -363,5 +363,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WalletItem: {fileID: 0}
   _logoContainer: {fileID: 7744795691354046010}
-  _markerContainer: {fileID: 8942172826998456058}
+  _markerContainer: {fileID: 4143562507896463563}
   _button: {fileID: 2387552882749149307}

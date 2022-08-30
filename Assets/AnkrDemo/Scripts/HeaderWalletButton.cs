@@ -1,6 +1,7 @@
 using System;
+using AnkrSDK.Data;
 using AnkrSDK.Examples.UseCases.WebGlLogin;
-using AnkrSDK.WebGL;
+using AnkrSDK.WebGL.DTO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,12 +15,12 @@ namespace Demo.Scripts
 		private Image _logoContainer;
 		
 		[SerializeField]
-		private Image _markerContainer;
+		private GameObject _markerContainer;
 		
 		[SerializeField]
 		private Button _button;
 		
-		public Action<SupportedWallets> OnClickHandler;
+		public Action<Wallet> OnClickHandler;
 
 		private void Start()
 		{
@@ -29,12 +30,12 @@ namespace Demo.Scripts
 
 		public void SetLogined()
 		{
-			_markerContainer.gameObject.SetActive(false);
+			_markerContainer.SetActive(true);
 		}
 		
 		public void SetLogouted()
 		{
-			_markerContainer.gameObject.SetActive(true);
+			_markerContainer.SetActive(false);
 		}
 
 		private void Initialize()
