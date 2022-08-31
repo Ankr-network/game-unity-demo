@@ -41,15 +41,13 @@ namespace AnkrSDK.Examples.UseCases.WebGlLogin
 
 		private void ActivatePanel()
 		{
-			var walletStatusTask = _completionSource.Task;
-			walletStatusTask.ContinueWith(HandleWalletStatus);
+			HandleWalletStatus().Forget();
 		}
 		
-		private void HandleWalletStatus(Task<WalletsStatus> answer)
+		private async UniTaskVoid HandleWalletStatus()
 		{
-			var status = answer.Result;
-			Debug.Log(JsonConvert.SerializeObject(status));
-			var loginedWallet = GetLoginedWallet(status);
+			var walletStatus = await _completionSource.Task;
+			var loginedWallet = GetLoginedWallet(walletStatus);
 			if (loginedWallet != Wallet.None)
 			{
 				_webGlConnect.SetWallet(loginedWallet);
@@ -60,7 +58,7 @@ namespace AnkrSDK.Examples.UseCases.WebGlLogin
 			}
 		}
 
-		private async UniTask UpdateWalletsStatus()
+		private async UniTaskVoid UpdateWalletsStatus()
 		{
 			var _walletsStatus = await _webGlConnect.GetWalletsStatus();
 			_webGlLoginViewer.SetWalletsStatus(_walletsStatus);
@@ -111,7 +109,7 @@ namespace AnkrSDK.Examples.UseCases.WebGlLogin
 
 		public UniTask<WalletsStatus> GetWalletsStatus()
 		{
-			return _webGlConnect.Session.GetWalletsStatus();
+			return _webGlConnect.SessionWrapper.GetWalletsStatus();
 		}
 
 		private void OnDisable()

@@ -8,7 +8,4 @@
     <assembly fullname="Nethereum.Hex" preserve="all">
         <type fullname="Nethereum.Hex.HexTypes.HexRPCTypeJsonConverter" preserve="all"/>
     </assembly>
-    <assembly fullname="System.Threading.Tasks" preserve="all">
-        <type fullname="System.Threading.Tasks.Task" preserve="all"/>
-    </assembly>
 </linker>

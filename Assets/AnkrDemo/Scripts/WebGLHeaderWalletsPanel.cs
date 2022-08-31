@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using AnkrSDK.Data;
 using AnkrSDK.Examples.UseCases.WebGlLogin;
-using AnkrSDK.WebGL.DTO;
 using Demo.Scripts;
 using Newtonsoft.Json;
 using UnityEngine;
