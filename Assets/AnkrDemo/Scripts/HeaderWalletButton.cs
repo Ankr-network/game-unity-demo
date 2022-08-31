@@ -1,7 +1,6 @@
 using System;
 using AnkrSDK.Data;
 using AnkrSDK.Examples.UseCases.WebGlLogin;
-using AnkrSDK.WebGL.DTO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,22 +19,22 @@ namespace Demo.Scripts
 		[SerializeField]
 		private Button _button;
 		
-		public Action<Wallet> OnClickHandler;
+		public event Action<Wallet> OnClickHandler;
 
 		private void Start()
 		{
 			Initialize();
-			SetLogouted();
-		}
-
-		public void SetLogined()
-		{
-			_markerContainer.SetActive(true);
+			SetLoginState(false);
 		}
 		
-		public void SetLogouted()
+		private void OnDisable()
 		{
-			_markerContainer.SetActive(false);
+			_button.onClick.RemoveListener(HandleClick);
+		}
+
+		public void SetLoginState(bool isLoggedIn)
+		{
+			_markerContainer.SetActive(isLoggedIn);
 		}
 
 		private void Initialize()
@@ -47,11 +46,6 @@ namespace Demo.Scripts
 		private void HandleClick()
 		{
 			OnClickHandler?.Invoke(WalletItem.Type);
-		}
-
-		private void OnDisable()
-		{
-			_button.onClick.RemoveListener(HandleClick);
 		}
 	}
 }

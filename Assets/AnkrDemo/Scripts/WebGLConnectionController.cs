@@ -1,10 +1,9 @@
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AnkrDemo.Scripts;
 using AnkrSDK.Data;
+using AnkrSDK.Tools;
 using Cysharp.Threading.Tasks;
-using Newtonsoft.Json;
 using UnityEngine;
 
 namespace AnkrSDK.Examples.UseCases.WebGlLogin
@@ -17,6 +16,9 @@ namespace AnkrSDK.Examples.UseCases.WebGlLogin
 		[SerializeField] private WebGLLoginPanelController _webGlLoginManager;
 
 		[SerializeField] private WebGLHeaderWalletsPanel _webGlLoginViewer;
+		
+		[CustomDropdown(typeof (SupportedWallets), "GetWebGLWallets")]
+		private Wallet _preferableWallet = Wallet.Metamask;
 
 		private Dictionary<string, bool> _walletsStatus;
 		private TaskCompletionSource<WalletsStatus> _completionSource;
@@ -32,7 +34,12 @@ namespace AnkrSDK.Examples.UseCases.WebGlLogin
 			_webGlLoginViewer.ConnectTo += OnConnect;
 		}
 
-		private async void Start()
+		private void Start()
+		{
+			Initialize().Forget();
+		}
+
+		private async UniTaskVoid Initialize()
 		{
 			var _walletsStatus = await _webGlConnect.GetWalletsStatus();
 			_completionSource.SetResult(_walletsStatus);
@@ -47,7 +54,7 @@ namespace AnkrSDK.Examples.UseCases.WebGlLogin
 		private async UniTaskVoid HandleWalletStatus()
 		{
 			var walletStatus = await _completionSource.Task;
-			var loginedWallet = GetLoginedWallet(walletStatus);
+			var loginedWallet = GetLoggedInWallet(walletStatus);
 			if (loginedWallet != Wallet.None)
 			{
 				_webGlConnect.SetWallet(loginedWallet);
@@ -85,22 +92,26 @@ namespace AnkrSDK.Examples.UseCases.WebGlLogin
 			_webGlConnect.Connect(wallet).Forget();
 		}
 
-		private Wallet GetLoginedWallet(WalletsStatus status)
+		private Wallet GetLoggedInWallet(WalletsStatus status)
+		{
+			if (status.ContainsKey(_preferableWallet) && status[_preferableWallet])
+			{
+				return _preferableWallet;
+			}
+
+			return GetFirstOrDefaultLoggedIn(status);
+		}
+
+		private Wallet GetFirstOrDefaultLoggedIn(WalletsStatus status)
 		{
 			var defaultWallet = Wallet.None;
-			var preferableWallet = Wallet.Metamask;
-
+			
 			foreach (KeyValuePair<Wallet, bool> valuePair in status)
 			{
-				if (valuePair.Key == preferableWallet && valuePair.Value)
-				{
-					defaultWallet = preferableWallet;
-					break;
-				}
-
 				if (valuePair.Value)
 				{
 					defaultWallet = valuePair.Key;
+					break;
 				}
 			}
 

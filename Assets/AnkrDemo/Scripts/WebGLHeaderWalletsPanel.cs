@@ -16,12 +16,11 @@ namespace AnkrDemo.Scripts
 		private GameObject _buttonPrefab;
 		[SerializeField]
 		private WalletItem[] _wallets;
-		private List<HeaderWalletButton> _buttons;
-		public Action<Wallet> ConnectTo;
+		private List<HeaderWalletButton> _buttons = new List<HeaderWalletButton>();
+		public event Action<Wallet> ConnectTo;
 
 		private void Start()
 		{
-			_buttons = new List<HeaderWalletButton>();
 			CreateButtons();
 		}
 
@@ -33,29 +32,21 @@ namespace AnkrDemo.Scripts
 				button.transform.SetParent(_panel.transform, false);
 				var buttonScript = button.GetComponent<HeaderWalletButton>();
 				buttonScript.WalletItem = wallet;
-				buttonScript.OnClickHandler += OnWalletClick;
+				buttonScript.OnClickHandler += OnWalletClicked;
 				_buttons.Add(buttonScript);
 			}
 		}
 
 		public void SetWalletsStatus(WalletsStatus status)
 		{
-			JsonConvert.SerializeObject(status);
 			foreach (var buttonScript in _buttons)
 			{	
 				var walletType = buttonScript.WalletItem.Type;
-				if (status.ContainsKey(walletType) && status[walletType])
-				{
-					buttonScript.SetLogined();
-				}
-				else
-				{
-					buttonScript.SetLogouted();
-				}
+				buttonScript.SetLoginState(status.ContainsKey(walletType) && status[walletType]);
 			}
 		}
 
-		private void OnWalletClick(Wallet wallet)
+		private void OnWalletClicked(Wallet wallet)
 		{
 			ConnectTo?.Invoke(wallet);
 		}
@@ -64,7 +55,7 @@ namespace AnkrDemo.Scripts
 		{
 			foreach (var button in _buttons)
 			{
-				button.OnClickHandler -= OnWalletClick;
+				button.OnClickHandler -= OnWalletClicked;
 			}
 		}
 	}
