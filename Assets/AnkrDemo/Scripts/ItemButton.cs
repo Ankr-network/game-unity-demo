@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Demo.Scripts
+namespace AnkrDemo
 {
 	public class ItemButton : MonoBehaviour
 	{

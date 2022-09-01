@@ -1,4 +1,4 @@
-namespace Demo.Scripts.Helpers
+namespace AnkrDemo.Helpers
 {
 	public static class ItemsContractHelper
 	{

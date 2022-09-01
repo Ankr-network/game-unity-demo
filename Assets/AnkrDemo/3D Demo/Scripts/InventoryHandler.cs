@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Numerics;
-using Demo.Scripts.Data;
+using AnkrDemo.Data;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Demo.Scripts
+namespace AnkrDemo
 {
 	public class InventoryHandler : MonoBehaviour
 	{

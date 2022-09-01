@@ -2,14 +2,14 @@ using System;
 using System.Collections.Generic;
 using AnkrSDK.UseCases;
 using Cysharp.Threading.Tasks;
-using Demo.Scripts;
-using Demo.Scripts.Data;
-using Demo.Scripts.Helpers;
+using AnkrDemo;
+using AnkrDemo.Data;
+using AnkrDemo.Helpers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace AnkrDemo.Scripts
+namespace AnkrAnkrDemo
 {
 	public class DemoScript_Scifi : UseCase
 	{

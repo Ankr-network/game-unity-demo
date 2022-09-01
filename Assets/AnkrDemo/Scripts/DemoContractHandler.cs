@@ -9,12 +9,12 @@ using AnkrSDK.Utils;
 using AnkrSDK.WearableNFTExample;
 using Common.Logging.Configuration;
 using Cysharp.Threading.Tasks;
-using Demo.Scripts.Helpers;
+using AnkrDemo.Helpers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Demo.Scripts
+namespace AnkrDemo
 {
 	public class DemoContractHandler : MonoBehaviour
 	{

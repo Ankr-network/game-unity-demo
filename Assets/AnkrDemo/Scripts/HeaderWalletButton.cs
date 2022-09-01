@@ -4,11 +4,17 @@ using AnkrSDK.Examples.UseCases.WebGlLogin;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Demo.Scripts
+namespace AnkrDemo
 {
 	public class HeaderWalletButton : MonoBehaviour
 	{
-		public WalletItem WalletItem;
+		public WalletItem WalletItem
+		{
+			get { return _walletItem; }
+			set { _walletItem = value; }
+		}
+		
+		public WalletItem _walletItem;
 		
 		[SerializeField]
 		private Image _logoContainer;
@@ -39,13 +45,13 @@ namespace Demo.Scripts
 
 		private void Initialize()
 		{
-			_logoContainer.sprite = WalletItem.Logo;
+			_logoContainer.sprite = _walletItem.Logo;
 			_button.onClick.AddListener(HandleClick);
 		}
 
 		private void HandleClick()
 		{
-			OnClickHandler?.Invoke(WalletItem.Type);
+			OnClickHandler?.Invoke(_walletItem.Type);
 		}
 	}
 }

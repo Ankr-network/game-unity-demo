@@ -2,18 +2,17 @@ using System;
 using System.Collections.Generic;
 using AnkrSDK.Data;
 using AnkrSDK.Examples.UseCases.WebGlLogin;
-using Demo.Scripts;
-using Newtonsoft.Json;
+using AnkrDemo;
 using UnityEngine;
 
-namespace AnkrDemo.Scripts
+namespace AnkrAnkrDemo
 {
 	public class WebGLHeaderWalletsPanel : MonoBehaviour
 	{
 		[SerializeField]
 		private GameObject _panel;
 		[SerializeField]
-		private GameObject _buttonPrefab;
+		private HeaderWalletButton _buttonPrefab;
 		[SerializeField]
 		private WalletItem[] _wallets;
 		private List<HeaderWalletButton> _buttons = new List<HeaderWalletButton>();
@@ -28,9 +27,8 @@ namespace AnkrDemo.Scripts
 		{
 			foreach (var wallet in _wallets)
 			{
-				var button = Instantiate(_buttonPrefab);
-				button.transform.SetParent(_panel.transform, false);
-				var buttonScript = button.GetComponent<HeaderWalletButton>();
+				var buttonScript = Instantiate(_buttonPrefab);
+				buttonScript.transform.SetParent(_panel.transform, false);
 				buttonScript.WalletItem = wallet;
 				buttonScript.OnClickHandler += OnWalletClicked;
 				_buttons.Add(buttonScript);

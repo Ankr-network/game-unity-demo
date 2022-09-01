@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Demo.Scripts
+namespace AnkrDemo
 {
 	public class CharacterRotation : MonoBehaviour
 	{
