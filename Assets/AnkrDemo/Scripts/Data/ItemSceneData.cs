@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Demo.Scripts.Data
+namespace AnkrDemo.Data
 {
 	public class ItemSceneData
 	{

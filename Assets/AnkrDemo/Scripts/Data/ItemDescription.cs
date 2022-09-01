@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Demo.Scripts.Data
+namespace AnkrDemo.Data
 {
 	[Serializable]
 	public class ItemDescription

@@ -1,4 +1,4 @@
-namespace Demo.Scripts
+namespace AnkrDemo
 {
 	public enum HatColour
 	{

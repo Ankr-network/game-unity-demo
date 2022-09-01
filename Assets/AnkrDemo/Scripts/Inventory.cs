@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using System.Numerics;
-using Demo.Scripts.Data;
+using AnkrDemo.Data;
 using UnityEngine;
 using UnityEngine.UI;
 using Vector3 = UnityEngine.Vector3;
 
-namespace Demo.Scripts
+namespace AnkrDemo
 {
 	public class Inventory : MonoBehaviour
 	{

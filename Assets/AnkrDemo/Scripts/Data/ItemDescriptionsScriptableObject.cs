@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Demo.Scripts.Data
+namespace AnkrDemo.Data
 {
 	[CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/ItemScriptableObject", order = 1)]
 	public class ItemDescriptionsScriptableObject : ScriptableObject
