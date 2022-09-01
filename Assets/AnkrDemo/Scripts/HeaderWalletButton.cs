@@ -19,8 +19,16 @@ namespace AnkrDemo
 		
 		[SerializeField]
 		private Button _button;
-		
-		public WalletItem WalletItem { get; set; }
+
+		public WalletItem WalletItem
+		{
+			get { return _walletItem; }
+			set
+			{
+				_walletItem = value;
+				Initialize();
+			}
+		}
 		
 		public event Action<Wallet> OnClickHandler;
 

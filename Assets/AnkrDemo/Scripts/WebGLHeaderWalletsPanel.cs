@@ -27,8 +27,7 @@ namespace AnkrAnkrDemo
 		{
 			foreach (var wallet in _wallets)
 			{
-				var buttonScript = Instantiate(_buttonPrefab);
-				buttonScript.transform.SetParent(_panel.transform, false);
+				var buttonScript = Instantiate(_buttonPrefab, _panel.transform);
 				buttonScript.WalletItem = wallet;
 				buttonScript.OnClickHandler += OnWalletClicked;
 				_buttons.Add(buttonScript);
