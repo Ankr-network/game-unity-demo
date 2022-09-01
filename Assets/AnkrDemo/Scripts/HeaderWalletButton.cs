@@ -8,13 +8,8 @@ namespace AnkrDemo
 {
 	public class HeaderWalletButton : MonoBehaviour
 	{
-		public WalletItem WalletItem
-		{
-			get { return _walletItem; }
-			set { _walletItem = value; }
-		}
-		
-		public WalletItem _walletItem;
+		[SerializeField]
+		private WalletItem _walletItem;
 		
 		[SerializeField]
 		private Image _logoContainer;
@@ -24,6 +19,8 @@ namespace AnkrDemo
 		
 		[SerializeField]
 		private Button _button;
+		
+		public WalletItem WalletItem { get; set; }
 		
 		public event Action<Wallet> OnClickHandler;
 
